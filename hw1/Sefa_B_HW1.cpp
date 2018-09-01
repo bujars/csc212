@@ -136,6 +136,31 @@ Point Point::cross(Point secondPoint){
 	return crossProduct; 
 }
 
+/* This function determines if a point is on a plane formed by the other 3 points.
+ * Thie function works by
+ * Pre-Condition: An array of 3 points, its size, and an addition point must be passed.
+ * Post-Condition Returns if the point not in the array is in the plane formed by the 3 points in the array.
+ * Worst Time Complexity: O(1) -- constant because its just small function calls?*/
+bool plane(Point* points, int size, Point otherPoint){
+	return false;
+}
+
+/*Thought process: Find the centroid of the 4 points(kind of difficult here because our points are all unique and we dont know the size, so how should we check them is the tricky part). Once you have the centroid check the distance from it to each point. If its equal, then we have a square. 
+ * Also, a square is 2d?????? Not 3d??
+ * This funciton determines if any four points of all points given form a square. 
+ * This function works by
+ * Pre-Condition: Array of points must all be unique.
+ * Post-Condition: Returns if any four points make a square or not.
+ * Worst Time Complexity: O(n) -- As of now because of the for loop.
+ * */
+bool square(Point* points, int size){
+	
+	for(int i = 0; i < size; i++){
+		//if()
+	}
+	return false;
+}
+
 /* This function calculates the cetroid of an array of points.
  * This function works by going through each point, 
  * summing up their coordinates and getting the average of each corrdinate. 

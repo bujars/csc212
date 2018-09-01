@@ -20,16 +20,18 @@ class Point{
     void setZ(double inZ);
     void setXY(double inX, double inY);
     void setXYZ(double inX, double inY, double inZ);
-    Point();
+    Point(); //Default constructor
     Point(double inX, double inY, double inZ);
     Point(double inX, double inY);
     void origin();
     Point(const Point& P); //Copy constructor
     Point& operator=(Point P); //assignment function
-    void print();
-    double distance();
-	Point cross(Point secondPoint);
+    void print(); //Print function
+    double distance(); //Distance function
+	bool line(Point secondPoint); //Functon that checks if points are collinear
+	Point cross(Point secondPoint); //Function that gets cross product of points
 };
-
-Point centroid(Point* points, int size);
+bool plane(Point* points, int size, Point otherPoint); //Funciton that checks if a point is on a plane
+bool square(Point* points, int size); //Function that checks if points make a square
+Point centroid(Point* points, int size); //Function that gets the centroid of points.
 #endif
