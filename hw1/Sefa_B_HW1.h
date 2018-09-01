@@ -30,4 +30,6 @@ class Point{
     double distance();
 	Point cross(Point secondPoint);
 };
+
+Point centroid(Point* points, int size);
 #endif

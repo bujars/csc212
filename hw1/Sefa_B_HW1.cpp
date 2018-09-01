@@ -54,11 +54,11 @@ void Point::setXYZ(double inX, double inY, double inZ){
 	y = inY;
 	z = inZ;
 }
-/*Time Complexity: O(n)*/
+/*Time Complexity: O(1)*/
 void Point::origin(){
 	setXYZ(0,0,0);
 }
-/*Time Complexity: 4? One for calling function set and then 3 for get. So O(n)*/
+/*Time Complexity: 4? One for calling function set and then 3 for get. So O(1)*/
 Point& Point::operator=(Point P){ //assignment function
 	setXYZ(P.getX(), P.getY(), P.getZ());
 	return (*this); //We want to return the current Point object
@@ -69,7 +69,7 @@ Point& Point::operator=(Point P){ //assignment function
  * This function  works by using the cout function to print message, and accesses the Point's x,y,z variables.
  * Pre-Condition: Object calling the function must be a Point.
  * Post:Condition: The coordinates of the Point are printed. 
- * Worst case complexity, O(n).*/
+ * Worst case complexity, O(1).*/
 void Point::print(){
 		cout << "Xcoord: " << x << " YCoord: " << y
 			<< " Zcoord: " << z << endl;
@@ -87,14 +87,12 @@ void Point::print(){
  *
  * Pre-Condition: A point can only call this function (must have 3 double coordinates).
  * Post Condition: The distance of the point from the origin is provided in a decimal value
- * Worst Time Complexity:O(n) */
+ * Worst Time Complexity:O(1) */
 double Point::distance(){
 	double innerRoot = pow(x,2) + pow(y,2)+pow(z,2); /*Or switch to (x*x)+(y*y)+(z*z)*/
 	double rad = sqrt(innerRoot);
 	return rad;
 }
-
-
 /*double Point::distance(Point secondPoint){
 	double dis = pow((secondPoint.getX()-x), 2) + pow((secondPoint.getY()-y),2) + pow((secondPoint.getZ()-z), 2);
 	double root = sqrt(dis);
@@ -128,6 +126,7 @@ bool Point::line(Point mainPoint, Point secondPoint){
  * It returns a new point containing the cross product(Technically a cross product is in the form of a vector). 
  * Pre-Condition:
  * Post-Condition: THe cross product of two points is returned. 
+ * Worst Time Complexity: O(1) - constant
  * */
 Point Point::cross(Point secondPoint){
 	double xCross = (y*secondPoint.getZ()) - (secondPoint.getY()*z);
@@ -137,6 +136,28 @@ Point Point::cross(Point secondPoint){
 	return crossProduct; 
 }
 
-
+/* This function calculates the cetroid of an array of points.
+ * This function works by going through each point, 
+ * summing up their coordinates and getting the average of each corrdinate. 
+ * Then it places each coordinate into a point to return.
+ * Pre-Condition: Array must be of points.
+ * Post-Condition: The centroid point of the points is returned.
+ * Worst Time Complexity: O(n)
+ * */
+Point centroid(Point* points, int size){
+	double xSum = 0;
+	double ySum = 0;
+	double zSum = 0;
+	for(int i = 0; i < size; i++){
+		xSum+= points[i].getX();
+		ySum+= points[i].getY();
+		zSum+= points[i].getZ();
+	}
+	double avgX = xSum/size;
+	double avgY = ySum/size;
+	double avgZ = zSum/size;
+	Point cent(avgX, avgY, avgZ);
+	return cent;
+}
 
 #endif

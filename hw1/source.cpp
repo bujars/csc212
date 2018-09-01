@@ -64,6 +64,7 @@ int main(){
 	
 #endif
 
+#if 0
 	/*Testing cross product function*/
 	Point pt1To2 = pt1.cross(pt2);
 	pt1To2.print();
@@ -71,5 +72,16 @@ int main(){
 	pt1To3.print();
 	Point pt2To3 = pt2.cross(pt3);
 	pt2To3.print();
+	
+	
+#endif
+	/*Testing centroid function*/
+	Point* points = new Point[4];
+	points[0] = pt1;
+	points[1] = pt2; 
+	points[2] = pt3;
+	points[3] = origin;
+	Point cent = centroid(points, 4);
+	cent.print();
 	return 0;
 }
