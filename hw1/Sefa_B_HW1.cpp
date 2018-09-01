@@ -75,28 +75,68 @@ void Point::print(){
 			<< " Zcoord: " << z << endl;
 		//NOTE not sure if it wants us to: cout << "(" << x << ", "<< y << ", " << z << ")\n";
 	}
-/*Time Complexity: I believe that for sqrt it is 1 because we calculate the value of a singular value, not many.(Size is independant here) 1 for x*x, 1 for y*y, x+y, y+z, z*z...etc. Eitherway, complexity is mesasured as whole, not individual. So O(n).  */
+/*Time Complexity: I believe that for sqrt it is 1 
+ * because we calculate the value of a singular value, not many.
+ * (Size is independant here) 1 for x*x, 1 for y*y, x+y, y+z, z*z...etc. 
+ * Eitherway, complexity is mesasured as whole, not individual. So O(n).  */
 
 /* This function calculates the distance of a point from the origin. 
- * This function works by sqaureing each x/y/z coordinate, adding them together, and taking the square root to provide a distance. (NOTE -- Mathematical forumla of distance)
+ * This function works by sqaureing each x/y/z coordinate, adding them together, 
+ * and taking the square root to provide a distance. 
+ * (NOTE -- Mathematical forumla of distance)
  *
  * Pre-Condition: A point can only call this function (must have 3 double coordinates).
  * Post Condition: The distance of the point from the origin is provided in a decimal value
  * Worst Time Complexity:O(n) */
-double Point::distance(Point secondPoint){
+double Point::distance(){
+	double innerRoot = pow(x,2) + pow(y,2)+pow(z,2); /*Or switch to (x*x)+(y*y)+(z*z)*/
+	double rad = sqrt(innerRoot);
+	return rad;
+}
+
+
+/*double Point::distance(Point secondPoint){
 	double dis = pow((secondPoint.getX()-x), 2) + pow((secondPoint.getY()-y),2) + pow((secondPoint.getZ()-z), 2);
 	double root = sqrt(dis);
 	return root;
-}
+}*/
 
-//To determine if three points are on the same line, find the line of the origin and the first point. Find y = mx+b. DO point slope formula. Then use third point and if statemenst to chack if they equal.
 
+//To determine if three points are on the same line, find the line of the origin and the first point. 
+//Find y = mx+b. DO point slope formula. Then use third point and if statemenst to chack if they equal.
+/* This function determins if three points, one being the orgin, are all collinear.
+ * This function works by
+ * Pre-Condition: 
+ * Post-Condition: Returns whether or not the two points and the origin are collinear.
+ * Worst Time Complexity: 
+ * */
+#if 0
 bool Point::line(Point mainPoint, Point secondPoint){
- //We know the origin is 0, 0, 0. First check if mainPoint and origin are the same point. Becasue then no line exists (technically infinitely many lines)
+ //We know the origin is 0, 0, 0. First check if mainPoint and origin are the same point. 
+ //Becasue then no line exists (technically infinitely many lines)
  if(mainPoint.getX() == 0 && mainPoint.getY() == 0 && mainPoint.getZ() ==0){
  	return false; 
  }
  //double disMainToOrigin
 
 }
+#endif
+
+/* This function calculates the cross product between two points.
+ * This function works by using the x, y, and z coordinate of the two points 
+ * and applying the cross product formula (sample <yz2-y2z,....>). 
+ * It returns a new point containing the cross product(Technically a cross product is in the form of a vector). 
+ * Pre-Condition:
+ * Post-Condition: THe cross product of two points is returned. 
+ * */
+Point Point::cross(Point secondPoint){
+	double xCross = (y*secondPoint.getZ()) - (secondPoint.getY()*z);
+	double yCross = (z*secondPoint.getX()) - (x*secondPoint.getZ());
+	double zCross = (x*secondPoint.getY()) - (secondPoint.getX()*y);
+	Point crossProduct(xCross, yCross, zCross);
+	return crossProduct; 
+}
+
+
+
 #endif

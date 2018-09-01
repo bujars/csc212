@@ -28,5 +28,6 @@ class Point{
     Point& operator=(Point P); //assignment function
     void print();
     double distance();
+	Point cross(Point secondPoint);
 };
 #endif
