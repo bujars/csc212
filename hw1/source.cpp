@@ -75,6 +75,7 @@ int main(){
 	
 	
 #endif
+#if 0
 	/*Testing centroid function*/
 	Point* points = new Point[4];
 	points[0] = pt1;
@@ -83,5 +84,22 @@ int main(){
 	points[3] = origin;
 	Point cent = centroid(points, 4);
 	cent.print();
+#endif
+	/*Testing line function*/
+	bool isLinePt1Pt2 = pt1.line(pt2);
+	bool isLinePt1Pt3 = pt1.line(pt3);
+	cout << isLinePt1Pt2 << "\n";
+	cout << isLinePt1Pt3 << "\n";
+	
+	Point pt4(1.5,1.5,1.5);
+	Point pt5(2.5,2.5,2.5);
+	bool isLinePt4Pt5 = pt4.line(pt5);
+	cout << isLinePt4Pt5 << "\n";
+
+	Point pt6(1.25,1.25,1.25);
+	bool isLinePt6Pt5 = pt6.line(pt5);
+	cout << isLinePt6Pt5 << "\n";
+
+	
 	return 0;
 }
