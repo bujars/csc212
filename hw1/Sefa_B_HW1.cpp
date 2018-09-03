@@ -108,17 +108,23 @@ double Point::distance(){
  * Post-Condition: Returns whether or not the two points and the origin are collinear.
  * Worst Time Complexity: 
  * */
-#if 0
-bool Point::line(Point mainPoint, Point secondPoint){
+//got rid of mainpoint parameter because a point calls this function as its a memeber function
+bool Point::line(Point secondPoint){
  //We know the origin is 0, 0, 0. First check if mainPoint and origin are the same point. 
  //Becasue then no line exists (technically infinitely many lines)
- if(mainPoint.getX() == 0 && mainPoint.getY() == 0 && mainPoint.getZ() ==0){
- 	return false; 
- }
- //double disMainToOrigin
 
+	Point vectPoints(secondPoint.getX()-x,secondPoint.getY()-y, secondPoint.getZ()-z);
+	double tOfX = -x/vectPoints.getX();
+	double tOfY = -y/vectPoints.getY();
+	double tOfZ = -z/vectPoints.getZ();
+	if(tOfX == tOfY && tOfX == tOfZ){
+		return true;
+	}
+  /*if(mainPoint.getX() == 0 && mainPoint.getY() == 0 && mainPoint.getZ() ==0){
+ 	return false; 
+ }*/
+ return false; 
 }
-#endif
 
 /* This function calculates the cross product between two points.
  * This function works by using the x, y, and z coordinate of the two points 
