@@ -114,10 +114,31 @@ bool Point::line(Point secondPoint){
  //Becasue then no line exists (technically infinitely many lines)
 
 	Point vectPoints(secondPoint.getX()-x,secondPoint.getY()-y, secondPoint.getZ()-z);
-	double tOfX = -x/vectPoints.getX();
-	double tOfY = -y/vectPoints.getY();
-	double tOfZ = -z/vectPoints.getZ();
-	if(tOfX == tOfY && tOfX == tOfZ){
+	vectPoints.print();
+	//tOfCoordinate is the variable used to compare each variable for collinearity. 
+	double tOfX = 0;
+	if(vectPoints.getX() !=0)
+		tOfX = -x/vectPoints.getX();
+	cout << tOfX << "p\n";
+	double tOfY = 0;
+	if(vectPoints.getY() !=0)
+		tOfY -y/vectPoints.getY();
+	cout << tOfY << "y\n";
+	double tOfZ = 0; 
+	if(vectPoints.getZ() != 0)
+		tOfZ = -z/vectPoints.getZ();
+	cout << tOfZ << "d\n";
+	//NOTE this can all be placed in one line...but for simplicity of reading. 
+	if(tOfX == 0 && tOfY == tOfZ){
+		return true;
+	}
+	else if(tOfY == 0 && tOfX == tOfZ){
+		return true;
+	}
+	else if(tOfZ == 0 && tOfX == tOfY){
+		return true;
+	}
+	else if(tOfX == tOfY && tOfX == tOfZ){
 		return true;
 	}
   /*if(mainPoint.getX() == 0 && mainPoint.getY() == 0 && mainPoint.getZ() ==0){

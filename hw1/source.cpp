@@ -85,6 +85,7 @@ int main(){
 	Point cent = centroid(points, 4);
 	cent.print();
 #endif
+#if 0
 	/*Testing line function*/
 	bool isLinePt1Pt2 = pt1.line(pt2);
 	bool isLinePt1Pt3 = pt1.line(pt3);
@@ -100,6 +101,15 @@ int main(){
 	bool isLinePt6Pt5 = pt6.line(pt5);
 	cout << isLinePt6Pt5 << "\n";
 
-	
+	bool isLinePt1Origin = origin.line(origin);
+	cout << isLinePt1Origin << "\n";
+#endif
+	Point p7(1,0,3);
+	Point p8(2,0,6);
+	bool p = p7.line(p8);
+	cout << p << "m\n";
+
+
+
 	return 0;
 }
