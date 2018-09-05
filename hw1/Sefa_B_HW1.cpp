@@ -60,7 +60,7 @@ void Point::origin(){
 }
 /*Time Complexity: 4? One for calling function set and then 3 for get. So O(1)*/
 Point& Point::operator=(Point P){ //assignment function
-	setXYZ(P.getX(), P.getY(), P.getZ());
+	setXYZ(P.x, P.y, P.z);
 	return (*this); //We want to return the current Point object
 	//which now has the assigned values of the other.
 }
@@ -89,7 +89,7 @@ void Point::print(){
  * Post Condition: The distance of the point from the origin is provided in a decimal value
  * Worst Time Complexity:O(1) */
 double Point::distance(){
-	double innerRoot = pow(x,2) + pow(y,2)+pow(z,2); /*Or switch to (x*x)+(y*y)+(z*z)*/
+	double innerRoot = (x*x)+(y*y)+(z*z);
 	double rad = sqrt(innerRoot);
 	return rad;
 }
@@ -113,7 +113,7 @@ bool Point::line(Point secondPoint){
  //We know the origin is 0, 0, 0. First check if mainPoint and origin are the same point. 
  //Becasue then no line exists (technically infinitely many lines)
 
-	Point vectPoints(secondPoint.getX()-x,secondPoint.getY()-y, secondPoint.getZ()-z);
+	Point vectPoints(secondPoint.x-x,secondPoint.y-y, secondPoint.z-z);
 	vectPoints.print();
 	//tOfCoordinate is the variable used to compare each variable for collinearity. 
 	double tOfX = 0;
@@ -156,9 +156,9 @@ bool Point::line(Point secondPoint){
  * Worst Time Complexity: O(1) - constant
  * */
 Point Point::cross(Point secondPoint){
-	double xCross = (y*secondPoint.getZ()) - (secondPoint.getY()*z);
-	double yCross = (z*secondPoint.getX()) - (x*secondPoint.getZ());
-	double zCross = (x*secondPoint.getY()) - (secondPoint.getX()*y);
+	double xCross = (y*secondPoint.z) - (secondPoint.y*z);
+	double yCross = (z*secondPoint.x) - (x*secondPoint.z);
+	double zCross = (x*secondPoint.y) - (secondPoint.x*y);
 	Point crossProduct(xCross, yCross, zCross);
 	return crossProduct; 
 }
@@ -169,6 +169,19 @@ Point Point::cross(Point secondPoint){
  * Post-Condition Returns if the point not in the array is in the plane formed by the 3 points in the array.
  * Worst Time Complexity: O(1) -- constant because its just small function calls?*/
 bool plane(Point* points, int size, Point otherPoint){
+	if(size!=3){
+		return false;
+	}
+	Point u(points[1].getX() - points[0].getX(),points[1].getY() - points[0].getY(),points[1].getZ() - points[0].getZ());
+	Point v(points[2].getX() - points[0].getX(),points[2].getY() - points[0].getY(),points[2].getZ() - points[0].getZ());
+	Point normalVect = u.cross(v);
+	double onPlane = (normalVect.getX()*(otherPoint.getX()-points[0].getX()))
+		+ (normalVect.getY()*(otherPoint.getY()-points[0].getY()))
+		+ (normalVect.getZ()*(otherPoint.getZ()-points[0].getZ()));
+	return (onPlane == 0);
+	
+	
+	
 	return false;
 }
 
@@ -183,6 +196,13 @@ bool plane(Point* points, int size, Point otherPoint){
 bool square(Point* points, int size){
 	
 	for(int i = 0; i < size; i++){
+		for(int j = i+1; j < size-i; j++){
+			for(int k = j+1; k<size-j; k++){
+				for(int l = k+1; l < size-k; l++){
+					
+				}
+			}
+		}
 		//if()
 	}
 	return false;
