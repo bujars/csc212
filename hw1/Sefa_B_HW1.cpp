@@ -105,7 +105,7 @@ double Point::distance(){
 //To determine if three points are on the same line, find the line of the origin and the first point. 
 //Find y = mx+b. DO point slope formula. Then use third point and if statemenst to chack if they equal.
 /* This function determins if three points, one being the orgin, are all collinear.
- * This function works by
+ * This function works by finding a scalar of the x,y,z component between the point that calls the function and secondPoint. The scalars of the x,y,z componenet are then checked to see if they are equal in value. If they are equal in value, true is returned, else false is returned. 
  * Pre-Condition: SecondPoint must be a Point with x,y, and z coord. (Double)/ Point must call the function and a Point must be inputed as a paramter. 
  * Post-Condition: Returns if whether or not the two points and the origin are collinear.
  * Worst Time Complexity: O(1);
@@ -166,8 +166,8 @@ bool Point::line(Point secondPoint){
  * This function works by using the x, y, and z coordinate of the two points 
  * and applying the cross product formula (sample <yz2-y2z,....>). 
  * It returns a new point containing the cross product(Technically a cross product is in the form of a vector). 
- * Pre-Condition:
- * Post-Condition: THe cross product of two points is returned. 
+ * Pre-Condition: secondPoint must be a point.
+ * Post-Condition: The cross product of two points is returned. (A point containing the values of their cross product)
  * Worst Time Complexity: O(1) - constant
  * */
 Point Point::cross(Point secondPoint){
@@ -177,6 +177,52 @@ Point Point::cross(Point secondPoint){
 	Point crossProduct(xCross, yCross, zCross);
 	return crossProduct; 
 }
+
+/* This function produces a new point that is the addition of the components of the two points(pt1 and pt2) being added.
+ * This function works by taking the seperate componenets of each of the two points(pt1,pt2)...ie(pt1.x+pt2.x), 
+ * adding them together, and storing them in a new point that is returned.
+ * Pre-Condition: Two points(pt1 and pt2) must be passed to be added.
+ * Post-Condiiton" A new point is retuned containing the indivually added componenets of the two points(pt1 and pt2). 
+ * Worst Time Complexity: O(1);
+ * */
+Point operator +(const Point& pt1, const Point& pt2){
+	Point added(pt1.getX()+pt2.getX(), pt1.getY()+pt2.getY(), pt1.getZ()+pt2.getZ());
+	return added;
+}
+
+/* This function produces a new point that is the subtraction of the components of the two points(pt1 and pt2) being subtracted.
+ * This function works by taking the seperate componenets of each of the two points(pt1,pt2)...ie(pt1.x-pt2.x), 
+ * subtracting them each, and storing them in a new point that is returned.
+ * Pre-Condition: Two points(pt1 and pt2) must be passed to be subtracted.
+ * Post-Condiiton" A new point is retuned containing the indivually subtracted componenets of the two points(pt1 and pt2). 
+ * Worst Time Complexity: O(1);
+ * */
+Point operator -(const Point& pt1, const Point& pt2){
+	Point added(pt1.getX()-pt2.getX(), pt1.getY()-pt2.getY(), pt1.getZ()-pt2.getZ());
+	return added;
+}
+
+/* This function takes in user input of a point(all three values -- doubles).
+ * This function works by overloading the >> operand by letting users input points directing and storing the values into a point object (which values are then referenced to). \*NOTE this can use some clearning up*\
+ * Pre-Condition: Operand (>>) must be used w/intput to point object. \*NOTE clean up -- follow textbook*\
+ * Post-Condition: The x,y,z coordinates of point p have been read into ins. The return value is the istream of ins.
+ * Worst Time Complexity: O(1);
+ * */
+istream& operator >>(istream& ins, Point& p){ //NOTE friend is only to be wrriten on the prototype not implementation.
+	ins >> p.x >> p.y >> p.z; //is a friend function so can access memeber variables
+	return ins;
+}
+/* This function outputs the point into the output steam. 
+ * This function works by overloading the << operand by letting the point p be outputted onto the output stream outs. Individual components of point p are output one after the other. \*NOTE this can use some clearning up*\
+ * Pre-Condition: Operand (<<) must be used w/output of point object. \*NOTE clean up -- follow textbook*\
+ * Post-Condition: The x,y,z coordinates of point p have been written into outss. The return value is the ostream of outs.
+ * Worst Time Complexity: O(1);
+ * */
+ostream& operator <<(ostream& outs, Point& p){
+	outs << p.getX() << p.getY() << p.getZ();  //note not a member funciton so cant access variables
+}
+
+
 
 /* This function determines if a point is on a plane formed by the other 3 points.
  * Thie function works by
