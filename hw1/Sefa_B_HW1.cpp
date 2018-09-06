@@ -66,9 +66,9 @@ Point& Point::operator=(Point P){ //assignment function -- copies values from on
 	return (*this); //We want to return the current Point object
 	//which now has the assigned values of the other.
 }
-/* Time Complexitiy: 7. One for each <<.  
+/*   
  * This function prints out the x, y, and z coordinate of the Point that calls it. 
- * This function  works by using the cout function to print message, and accesses the Point's x,y,z variables.
+ * This function works by using the cout function to output the Point, in which the Point's x,y,z variables are accessed.
  * Pre-Condition: Object calling the function must be a Point.
  * Post:Condition: The coordinates of the Point are printed. 
  * Worst case complexity, O(1).*/
@@ -83,12 +83,12 @@ void Point::print(){
  * Eitherway, complexity is mesasured as whole, not individual. So O(n).  */
 
 /* This function calculates the distance of a point from the origin. 
- * This function works by sqaureing each x/y/z coordinate, adding them together, 
+ * This function works by sqauring each x/y/z coordinate, adding them together, 
  * and taking the square root to provide a distance. 
  * (NOTE -- Mathematical forumla of distance)
  *
  * Pre-Condition: A point can only call this function (must have 3 double coordinates).
- * Post Condition: The distance of the point from the origin is provided in a decimal value
+ * Post Condition: The distance of the point from the origin is provided in a decimal value. //The distance from the point to the origin is returned in a double value. 
  * Worst Time Complexity:O(1) */
 double Point::distance(){
 	double innerRoot = (x*x)+(y*y)+(z*z);
@@ -106,15 +106,18 @@ double Point::distance(){
 //Find y = mx+b. DO point slope formula. Then use third point and if statemenst to chack if they equal.
 /* This function determins if three points, one being the orgin, are all collinear.
  * This function works by
- * Pre-Condition: 
- * Post-Condition: Returns whether or not the two points and the origin are collinear.
- * Worst Time Complexity: 
+ * Pre-Condition: SecondPoint must be a Point with x,y, and z coord. (Double)/ Point must call the function and a Point must be inputed as a paramter. 
+ * Post-Condition: Returns if whether or not the two points and the origin are collinear.
+ * Worst Time Complexity: O(1);
  * */
 //got rid of mainpoint parameter because a point calls this function as its a memeber function
 bool Point::line(Point secondPoint){
  //We know the origin is 0, 0, 0. First check if mainPoint and origin are the same point. 
  //Becasue then no line exists (technically infinitely many lines)
-
+	if((x==0 && y==0 && z==0)) // || (secondPoint.x==0 && secondPoint.y==0 && secondPoint.z==0)) /*NOTE not sure if point 2 can still be either of those points, i would assume it could because it would still be on the point of the line, ie if point 2 is just the origin again.*/
+		return false;
+#if 0
+	/*NOTE its a member function so get rid of .getX() and use .x*/
 	Point vectPoints(secondPoint.x-x,secondPoint.y-y, secondPoint.z-z);
 	vectPoints.print();
 	//tOfCoordinate is the variable used to compare each variable for collinearity. 
@@ -130,6 +133,16 @@ bool Point::line(Point secondPoint){
 	if(vectPoints.getZ() != 0)
 		tOfZ = -z/vectPoints.getZ();
 	cout << tOfZ << "d\n";
+#endif
+	double tOfX = 0;
+	double tOfY = 0;
+	double tOfZ = 0;
+	if(secondPoint.x != 0)
+		tOfX = x/secondPoint.x;
+	if(secondPoint.y !=0)
+		tOfY = y/secondPoint.y;
+	if(secondPoint.z != 0)
+		tOfZ = z/secondPoint.z;
 	//NOTE this can all be placed in one line...but for simplicity of reading. 
 	if(tOfX == 0 && tOfY == tOfZ){
 		return true;

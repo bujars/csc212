@@ -73,8 +73,13 @@ int main(){
 	Point pt2To3 = pt2.cross(pt3);
 	pt2To3.print();
 	
-	
 #endif
+	pt1.print();
+	pt1 = pt2;
+	pt1.print();
+	pt2.print();
+	
+//#endif
 #if 0
 	/*Testing centroid function*/
 	Point* points = new Point[4];
@@ -85,31 +90,37 @@ int main(){
 	Point cent = centroid(points, 4);
 	cent.print();
 #endif
-#if 0
+
+//#if 0
 	/*Testing line function*/
-	bool isLinePt1Pt2 = pt1.line(pt2);
-	bool isLinePt1Pt3 = pt1.line(pt3);
+	bool isLinePt1Pt2 = pt1.line(pt2); //make line
+	bool isLinePt1Pt3 = pt1.line(pt3); //dont make line
 	cout << isLinePt1Pt2 << "\n";
 	cout << isLinePt1Pt3 << "\n";
 	
 	Point pt4(1.5,1.5,1.5);
 	Point pt5(2.5,2.5,2.5);
-	bool isLinePt4Pt5 = pt4.line(pt5);
+	bool isLinePt4Pt5 = pt4.line(pt5); //make line
 	cout << isLinePt4Pt5 << "\n";
 
-	Point pt6(1.25,1.25,1.25);
+	Point pt6(1.25,1.25,1.25); //make line
 	bool isLinePt6Pt5 = pt6.line(pt5);
 	cout << isLinePt6Pt5 << "\n";
 
-	bool isLinePt1Origin = origin.line(origin);
-	cout << isLinePt1Origin << "\n";
-#endif
+	bool isLinePtOriginOrigin = origin.line(origin);//does not make line
+	cout << isLinePtOriginOrigin << "\n";
+
 	Point p7(1,0,3);
 	Point p8(2,0,6);
-	bool p = p7.line(p8);
-	cout << p << "m\n";
+	bool isLinePt7Pt8 = p7.line(p8);//make line
+	cout << isLinePt7Pt8 << "m\n";
+
+	Point p9(1.2, 0, 3.2);
+	bool isLinePt9Pt8 = p9.line(p8); //dont make line
+	cout << isLinePt9Pt8 << "\n";
 
 
+//#endif
 
 	return 0;
 }
