@@ -54,13 +54,15 @@ void Point::setXYZ(double inX, double inY, double inZ){
 	y = inY;
 	z = inZ;
 }
-/*Time Complexity: O(1)*/
+/*Worst Time Complexity: O(1)*/
 void Point::origin(){
 	setXYZ(0,0,0);
 }
-/*Time Complexity: 4? One for calling function set and then 3 for get. So O(1)*/
-Point& Point::operator=(Point P){ //assignment function
-	setXYZ(P.x, P.y, P.z);
+/*Worst Time Complexity: O(1)*/
+Point& Point::operator=(Point P){ //assignment function -- copies values from one point into the other. 
+	this->x= P.x;
+	this->y = P.y;
+	this->z = P.z;
 	return (*this); //We want to return the current Point object
 	//which now has the assigned values of the other.
 }
