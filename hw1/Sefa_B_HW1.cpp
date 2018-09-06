@@ -218,8 +218,10 @@ istream& operator >>(istream& ins, Point& p){ //NOTE friend is only to be wrrite
  * Post-Condition: The x,y,z coordinates of point p have been written into outss. The return value is the ostream of outs.
  * Worst Time Complexity: O(1);
  * */
-ostream& operator <<(ostream& outs, Point& p){
-	outs << p.getX() << p.getY() << p.getZ();  //note not a member funciton so cant access variables
+ostream& operator <<(ostream& outs, const Point& p){
+	//outs << p.getX() << p.getY() << p.getZ();  //note not a member funciton so cant access variables
+	outs << p.getX() << ", " << p.getY() << ", " << p.getZ() << "\n";
+	return outs;
 }
 
 

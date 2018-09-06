@@ -74,12 +74,14 @@ int main(){
 	pt2To3.print();
 	
 #endif
+#if 0
+	/*Testing assingment operator*/
 	pt1.print();
 	pt1 = pt2;
 	pt1.print();
 	pt2.print();
 	
-//#endif
+#endif
 #if 0
 	/*Testing centroid function*/
 	Point* points = new Point[4];
@@ -121,6 +123,34 @@ int main(){
 
 
 //#endif
+
+
+	/*Testing overloading function*/
+	Point p;
+	/*Addition*/
+	p = pt1+pt2;
+	p.print();
+	p = origin+pt1;
+	p.print();
+	p = pt2+pt3;
+	p.print();
+	p= pt4+pt5;
+	p.print();
+	/*Subtraction*/
+	p = pt1-pt2;
+	p.print();
+	p = origin-pt1;
+	p.print();
+	p = pt2-pt3;
+	p.print();
+	p= pt4-pt5;
+	p.print();
+
+	p = origin;
+	cout << p;
+	cin >> p;
+	cout << p;
+
 
 	return 0;
 }
