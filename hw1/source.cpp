@@ -93,7 +93,7 @@ int main(){
 	cent.print();
 #endif
 
-//#if 0
+#if 0
 	/*Testing line function*/
 	bool isLinePt1Pt2 = pt1.line(pt2); //make line
 	bool isLinePt1Pt3 = pt1.line(pt3); //dont make line
@@ -122,8 +122,37 @@ int main(){
 	cout << isLinePt9Pt8 << "\n";
 
 
-//#endif
+#endif
 
+#if 0	
+	/*Testing CoPlanar Points*/
+	int size = 3;
+	Point points[size]; 
+	Point p1(1,1,1);
+	Point p2(2,2,2);
+	Point p12(2,1,1);
+	Point p21(1,2,2.5);
+	Point p13(-0.5,-0.5,-0.5);
+
+
+	points[0] = p2;
+	points[1] = p12;
+	points[2] = p21; 
+	for(int i = 0; i < size; i++){
+		points[i].print();
+	}
+
+	bool cP = plane(points, size, p1);
+	cout << cP << "\n";
+
+	points[2] = p13;
+	cP = plane(points, size, p1);
+	cout << cP << "\n";
+
+#endif
+	
+
+#if 0
 
 	/*Testing overloading function*/
 	Point p;
@@ -150,7 +179,42 @@ int main(){
 	cout << p;
 	cin >> p;
 	cout << p;
+#endif
 
+#if 0
+	/*Testing distance formula -- with Paramters*/
+	double dis12 = pt1.distance(pt2);
+	double dis13 = pt1.distance(pt3);
+	double dis23 = pt2.distance(pt3);
+	double dis01 = origin.distance(pt1);
+	double dis = pt1.distance();
+	cout << dis12 << "\n";
+	cout << dis13 << "\n";
+	cout << dis23 << "\n";
+	cout << dis01 << "\n";
+	cout << dis << "\n";
+#endif
+
+	/*Testing square function*/
+	int size = 4;
+	Point p1(1,1,1);
+	Point p2(2,1,1);
+	Point p3(1,0,1);
+	Point p4(2,0,1);
+	Point points[size];
+	/*points[0] = pt2;
+	points[1] = p1;
+	points[2] = p2;
+	points[3] = pt2;
+	points[4] = p3;
+	points[5] = p4;*/
+	points[0] = p1;
+	points[1] = p2;
+	points[2] = p3;
+	points[3] = p4;
+	
+	bool sq = square(points, size);
+	cout << sq << "s\n";
 
 	return 0;
 }
