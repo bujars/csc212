@@ -95,6 +95,14 @@ double Point::distance(){
 	double rad = sqrt(innerRoot);
 	return rad;
 }
+
+double Point::distance(Point secondPoint){
+	double innerRoot = ((secondPoint.x - x)*(secondPoint.x-x)) + ((secondPoint.y - y)*(secondPoint.y-y)) + ((secondPoint.z - z)*(secondPoint.z-z));
+	double rad = sqrt(innerRoot);
+	return rad;
+}
+
+
 /*double Point::distance(Point secondPoint){
 	double dis = pow((secondPoint.getX()-x), 2) + pow((secondPoint.getY()-y),2) + pow((secondPoint.getZ()-z), 2);
 	double root = sqrt(dis);
@@ -258,15 +266,46 @@ bool plane(Point* points, int size, Point otherPoint){
  * */
 bool square(Point* points, int size){
 	
-	for(int i = 0; i < size; i++){
-		for(int j = i+1; j < size-i; j++){
-			for(int k = j+1; k<size-j; k++){
-				for(int l = k+1; l < size-k; l++){
-					
+	for(int i = 0; i < size-3; i++){
+		for(int j = i+1; j < size-2; j++){
+			for(int k = j+1; k<size-1; k++){
+				for(int l = k+1; l < size; l++){
+					Point threeOfFourPoints[3];
+					threeOfFourPoints[0] = points[j];
+					threeOfFourPoints[1] = points[k];
+					threeOfFourPoints[2] = points[l];
+					if(plane(threeOfFourPoints, 3, points[i])){
+						double disIToJ = points[i].distance(points[j]);
+						double disIToK = points[i].distance(points[k]);
+						double disIToL = points[i].distance(points[l]);
+						double disJToK = points[j].distance(points[k]);
+						double disJToL = points[j].distance(points[l]);
+						double disKToL = points[k].distance(points[l]);
+						if((disIToJ == disJToK) && (disIToJ == disIToL)){
+							if(disIToJ == disKToL){
+								if(disIToK == disJToL){
+									return true;
+								}
+							}
+						}
+						else if((disIToK == disJToK) && (disIToK == disIToL)){
+							if(disIToK == disJToL){
+								if(disIToJ == disKToL){
+									return true;
+								}
+							}
+						}
+						else if((disIToJ == disIToK) && (disIToJ == disJToL)){
+							if(disIToJ == disKToL){
+								if(disIToL == disJToK){
+									return true;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
-		//if()
 	}
 	return false;
 }

@@ -28,6 +28,7 @@ class Point{
     Point& operator=(Point P); //assignment function
     void print(); //Print function
     double distance(); //Distance function
+	double distance(Point secondPoint); //Overwritten distance function
 	bool line(Point secondPoint); //Functon that checks if points are collinear
 	Point cross(Point secondPoint); //Function that gets cross product of points
 	friend istream& operator >>(istream& ins, Point& p); //NOTE this is a friend function because when inputting we need to access x,y,z. 
