@@ -270,11 +270,12 @@ bool square(Point* points, int size){
 		for(int j = i+1; j < size-2; j++){
 			for(int k = j+1; k<size-1; k++){
 				for(int l = k+1; l < size; l++){
-					Point threeOfFourPoints[3];
+					int threeOfFourPointsSize = 3;
+					Point threeOfFourPoints[threeOfFourPointsSize];
 					threeOfFourPoints[0] = points[j];
 					threeOfFourPoints[1] = points[k];
 					threeOfFourPoints[2] = points[l];
-					if(plane(threeOfFourPoints, 3, points[i])){
+					if(plane(threeOfFourPoints, threeOfFourPointsSize, points[i])){
 						double disIToJ = points[i].distance(points[j]);
 						double disIToK = points[i].distance(points[k]);
 						double disIToL = points[i].distance(points[l]);

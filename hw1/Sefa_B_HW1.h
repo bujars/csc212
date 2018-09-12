@@ -15,7 +15,7 @@ class Point{
     double getX() const;
     double getY() const;
     double getZ() const;
-    void setX(double inX);
+    void setX(double inX); /*NOTE set function paramters might be able to be constant...*/
     void setY(double inY);
     void setZ(double inZ);
     void setXY(double inX, double inY);
