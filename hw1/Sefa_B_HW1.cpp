@@ -252,8 +252,7 @@ bool plane(Point* points, Point otherPoint){ //Got rid of int size since we aren
 	return (onPlane == 0);
 	
 	
-	
-	return false;
+
 }
 
 /*Thought process: Find the centroid of the 4 points(kind of difficult here because our points are all unique and we dont know the size, so how should we check them is the tricky part). Once you have the centroid check the distance from it to each point. If its equal, then we have a square. 
