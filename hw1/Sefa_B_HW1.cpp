@@ -239,10 +239,10 @@ ostream& operator <<(ostream& outs, const Point& p){
  * Pre-Condition: An array of 3 points, its size, and an addition point must be passed.
  * Post-Condition Returns if the point not in the array is in the plane formed by the 3 points in the array.
  * Worst Time Complexity: O(1) -- constant because its just small function calls?*/
-bool plane(Point* points, int size, Point otherPoint){
-	if(size!=3){
+bool plane(Point* points, Point otherPoint){ //Got rid of int size since we aren't given size - Timmy
+	/*if(size!=3){
 		return false;
-	}
+	}*/
 	Point u(points[1].getX() - points[0].getX(),points[1].getY() - points[0].getY(),points[1].getZ() - points[0].getZ());
 	Point v(points[2].getX() - points[0].getX(),points[2].getY() - points[0].getY(),points[2].getZ() - points[0].getZ());
 	Point normalVect = u.cross(v);
@@ -275,7 +275,7 @@ bool square(Point* points, int size){
 					threeOfFourPoints[0] = points[j];
 					threeOfFourPoints[1] = points[k];
 					threeOfFourPoints[2] = points[l];
-					if(plane(threeOfFourPoints, threeOfFourPointsSize, points[i])){
+					if(plane(threeOfFourPoints, points[i])){
 						double disIToJ = points[i].distance(points[j]);
 						double disIToK = points[i].distance(points[k]);
 						double disIToL = points[i].distance(points[l]);

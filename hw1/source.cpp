@@ -124,7 +124,7 @@ int main(){
 
 #endif
 
-#if 0	
+//#if 0	
 	/*Testing CoPlanar Points*/
 	int size = 3;
 	Point points[size]; 
@@ -142,14 +142,14 @@ int main(){
 		points[i].print();
 	}
 
-	bool cP = plane(points, size, p1);
+	bool cP = plane(points, p1);
 	cout << cP << "\n";
 
 	points[2] = p13;
-	cP = plane(points, size, p1);
+	cP = plane(points,  p1);
 	cout << cP << "\n";
 
-#endif
+//#endif
 	
 
 #if 0
@@ -196,6 +196,7 @@ int main(){
 #endif
 
 	/*Testing square function*/
+#if 0
 	int size = 4;
 	Point p1(1,1,1);
 	Point p2(2,1,1);
@@ -215,6 +216,6 @@ int main(){
 	
 	bool sq = square(points, size);
 	cout << sq << "s\n";
-
+#endif
 	return 0;
 }
