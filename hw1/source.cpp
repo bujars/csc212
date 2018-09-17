@@ -82,16 +82,16 @@ int main(){
 	pt2.print();
 	
 #endif
-#if 0
+//#if 0
 	/*Testing centroid function*/
 	Point* points = new Point[4];
 	points[0] = pt1;
 	points[1] = pt2; 
 	points[2] = pt3;
 	points[3] = origin;
-	Point cent = centroid(points, 4);
+	Point cent = centroid(points, 1);
 	cent.print();
-#endif
+//#endif
 
 #if 0
 	/*Testing line function*/
@@ -124,7 +124,7 @@ int main(){
 
 #endif
 
-//#if 0	
+#if 0	
 	/*Testing CoPlanar Points*/
 	int size = 3;
 	Point points[size]; 
@@ -149,7 +149,7 @@ int main(){
 	cP = plane(points,  p1);
 	cout << cP << "\n";
 
-//#endif
+#endif
 	
 
 #if 0
@@ -214,7 +214,7 @@ int main(){
 	points[2] = p3;
 	points[3] = p4;
 	
-	bool sq = square(points, size);
+	bool sq = square(points, 4);
 	cout << sq << "s\n";
 #endif
 	return 0;

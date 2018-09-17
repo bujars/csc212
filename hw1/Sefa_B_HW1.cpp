@@ -265,6 +265,9 @@ bool plane(Point* points, Point otherPoint){ //Got rid of int size since we aren
  * */
 bool square(Point* points, int size){
 	
+	if(size < 4){
+		return false; 
+	}
 	for(int i = 0; i < size-3; i++){
 		for(int j = i+1; j < size-2; j++){
 			for(int k = j+1; k<size-1; k++){
@@ -322,6 +325,10 @@ Point centroid(Point* points, int size){
 	double xSum = 0;
 	double ySum = 0;
 	double zSum = 0;
+	if(size<=0){
+		Point p(0,0,0);
+		return p;
+	}
 	for(int i = 0; i < size; i++){
 		xSum+= points[i].getX();
 		ySum+= points[i].getY();
