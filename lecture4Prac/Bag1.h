@@ -16,7 +16,7 @@ using namespace std;
 			Bag1();
 			void insert(const bagDataType& num);
 			size_t erase(const bagDataType& num);
-			void eraseOne(const bagDataType& num);
+			bool eraseOne(const bagDataType& num);
 			void operator +=(const Bag1& addend);
 			size_t occurances(const bagDataType& num) const;
 			size_t totVals() const;
