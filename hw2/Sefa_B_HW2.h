@@ -12,7 +12,7 @@ static const size_t MAXSIZE = 100;
 
 size_t takeUserInputRetSize(char arr[]);
 size_t highestOccurances(char arr[], size_t size);
-void shiftArray(int position);
+void shiftArray(char arr[], size_t size, int position);
 char* appendAndSort(const char* ar1, const size_t ar1Size, const char* ar2, const size_t ar2Size);
 void mNMatrix();
 void rotateMatrix(int position);

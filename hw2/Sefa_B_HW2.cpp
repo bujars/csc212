@@ -1,6 +1,10 @@
 #include "Sefa_B_HW2.h"
 
 
+/*NOTE you don't necessarily need to he asserts 
+ * in the function besides the one where data is inputted, 
+ * but its good to have if any error may occur.*/
+
 //Fill array with elements
 size_t takeUserInputRetSize(char arr[]){
 	char c ;
@@ -13,16 +17,20 @@ size_t takeUserInputRetSize(char arr[]){
 }
 size_t highestOccurances(char arr[ ], size_t size){
 	//NOTE array is static 
-	assert(size < MAXSIZE && size > 0);
+	assert(size <= MAXSIZE && size > 0);
 	size_t hOccurrance = 0;
 	char letter = '{';
 	size_t countingOccurrance = 0;
 	for(size_t i = 0; i < size; i++){
-		letter = arr[i];
+		countingOccurrance= 0;
+		//letter = arr[i];
+		countingOccurrance++;
 		for(size_t j = i+1; j < size; j++){
 			if(arr[i] == arr[j]){
 				countingOccurrance++;
 				arr[j] = arr[size-1];
+				size--;
+				j--;
 			}
 
 		}
@@ -32,11 +40,49 @@ size_t highestOccurances(char arr[ ], size_t size){
 				hOccurrance = countingOccurrance; 
 			}
 		}
-		countingOccurrance = 0;
+		//countingOccurrance = 0;
 	}
+	cout << letter << endl;
 	return hOccurrance;
 }
-void shiftArray(int position){
+void shiftArray(char arr[], size_t size, int shift){
+	assert(size<=MAXSIZE && size >0 );
+	if(abs(shift)>size){
+		shift = shift%size;
+	}
+	if(abs(shift)==(-shift)){
+		shift = size + shift;
+	}
+	for(size_t i = 0; i < size/2; i++){
+		char temp = arr[i];
+		arr[i] = arr[size-1-i];
+		arr[size-1-i] = temp;
+	}
+	for(int i = 0; i < size; i++){
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+
+	for(size_t i = 0; i <= (shift-1)/2; i++){
+		char temp = arr[i];
+		arr[i] = arr[shift-1-i];
+		arr[shift-1-i] = temp;
+	}
+		for(int i = 0; i < size; i++){
+					cout << arr[i] << " ";
+						}
+			cout << endl;
+	size_t z =1;
+	for(size_t i = shift; i < shift+((size-shift)/2); i++){
+		char temp = arr[i];
+		arr[i] = arr[size-z];
+		arr[size-z] = temp;
+		z++;
+	}
+		for(int i = 0; i < size; i++){
+					cout << arr[i] << " ";
+						}
+			cout << endl;
 }
 
 //NOTE ar1 and ar2 are already pre-sorted. //Precondiiton 
