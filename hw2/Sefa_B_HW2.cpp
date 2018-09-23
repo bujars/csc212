@@ -86,13 +86,82 @@ void shiftArray(char arr[], size_t size, int shift){
 }
 
 //NOTE ar1 and ar2 are already pre-sorted. //Precondiiton 
-char* appendAndSort(const char* ar1, const size_t ar1Size, const char* ar2, const size_t ar2Size){
-	char* arr = new char[MAXSIZE];
-	arr[0] = 1;
+char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, const size_t arr2Size, int& arrSize){
+	assert((arr1Size + arr2Size) <= MAXSIZE);
+	char* arr = new char[arr1Size+arr2Size]; /*NOTE its the size of both^ not necessarily MAXSIZE*/
+	size_t arrI = 0, arr1I = 0, arr2I = 0;
+
+	/*Fill in arr with order form arr1 and arr2. NOTE one of them will max out*/
+	while(arr1I < arr1Size && arr2I < arr2Size){
+		cout << arr1[arr1I] << " and " << arr2[arr2I] << endl;  
+		if((int)arr1[arr1I] < (int)arr2[arr2I] ){
+			arr[arrI++] = arr1[arr1I++];
+			//arrI++;
+			//arr1I++;
+		}
+		else{ //if((int)arr1[arr1I] > (int)arr2[arr2I]){
+			arr[arrI++] = arr2[arr2I++];
+			//arrI++;
+			//arr2I++;
+		}
+		cout << arr[arrI] << " " << arrI << endl;
+	}
+	/*If one of them didn't max out, max it out here*/
+	while(arr1I < arr1Size){
+		arr[arrI++] = arr1[arr1I++];
+		//arrI++;
+		//arr1I++;
+		//cout << arr[arrI] << " " << arrI << endl;
+	}
+	while(arr2I < arr2Size){
+		arr[arrI++] = arr2[arr2I++];
+		//arrI++;
+		//arr2I++;
+	}
+	arrSize = arrI;
+	cout << arrI;
 	return arr;
 }
-void mNMatrix(){
+
+
+
+/*NOTE this function does NOT work. Rewritting below.*/
+#if 0
+//char** mNMatrix(size_t& x, size_t& y){
+void mNMatrix(char** arr, size_t& x, size_t& y){
+	size_t m, n;
+	cin >> m >> n;
+	assert(m <= MAXSIZE && m > 0 && n <= MAXSIZE && n>0 );
+	//char** arr;
+	arr = new char*[m];
+	char c;
+	int i = 0, j=0;
+	for(int a = 0; a < m; a++){
+		arr[a] = new char[n];
+	}
+	
+	//assert(m <= MAXSIZE && m > 0 && n <= MAXSIZE && n>0 ); //NOTE i said greater than 0 because a matirx must have a row/column to put into...
+	/*for(size_t i = 0; i < m; i++){
+		for(int j = 0; j < n; j++ ){
+			cin >> c; 
+			arr [i]
+		}
+	}*/
+	while(i != m){
+		j = 0;
+		while(j != n){ //&& cin >> c){
+			cin >> arr[i][j];
+			j++;
+		}
+		//j = 0;
+		i++;
+	}
+	x = m;
+	y = n;
+	//return arr;
 }
+#endif
+
 void rotateMatrix(int position){
 }
 char**  enlargeMatrix(size_t size){
@@ -101,6 +170,37 @@ char**  enlargeMatrix(size_t size){
 		arr[i] = new char[MAXSIZE];
 	}
 	return arr;
+}
+
+char** mNMatrix(size_t& x, size_t& y){
+	size_t m;
+	size_t n;
+	cin >> m;
+	cin >> n;
+	assert(m <= MAXSIZE && m > 0 && n <= MAXSIZE && n>0 );
+
+	char **matrix;
+	matrix = new char*[m];
+	for(int i = 0; i < m; i++){
+		matrix[i] = new char[n];
+	}
+	int row = 0;
+	int column = 0;
+
+	while(row!=m){
+		column = 0;
+		while(column!=n){
+			cin >> matrix[row][column];
+			column++;
+		}
+		row++;
+	}
+
+	x = m;
+	y = n;
+	return matrix;
+
+
 }
 
 
