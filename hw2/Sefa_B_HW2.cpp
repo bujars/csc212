@@ -6,14 +6,14 @@
  * but its good to have if any error may occur.*/
 
 //Fill array with elements
-size_t takeUserInputRetSize(char arr[]){
+void takeUserInputRetSize(char arr[], size_t& size){
 	char c ;
-	size_t size = 0;
+	size = 0;
 	while(size < MAXSIZE && cin >> c && isalpha(c)){
 		arr[size] = c;
 		size++;
 	}	
-	return size;
+	//return size;
 }
 size_t highestOccurances(char arr[ ], size_t size){
 	//NOTE array is static 
@@ -164,11 +164,14 @@ void mNMatrix(char** arr, size_t& x, size_t& y){
 
 void rotateMatrix(int position){
 }
-char**  enlargeMatrix(size_t size){
-	char** arr = new char*[MAXSIZE];
-	for(size_t i = 0; i <MAXSIZE; i++){
-		arr[i] = new char[MAXSIZE];
+char**  enlargeMatrix(size_t scale, char** c, size_t m, size_t n){
+	/*NOTE check if scale has to be bigger or smaller..*/
+	char** arr = new char*[scale*m];
+	for(size_t i = 0; i <(scale*m); i++){
+		arr[i] = new char[scale*n];
 	}
+	//Assuming bigger...
+
 	return arr;
 }
 
