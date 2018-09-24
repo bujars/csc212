@@ -164,16 +164,70 @@ void mNMatrix(char** arr, size_t& x, size_t& y){
 
 void rotateMatrix(int position){
 }
-char**  enlargeMatrix(size_t scale, char** c, size_t m, size_t n){
+char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, size_t originalColumn){
 	/*NOTE check if scale has to be bigger or smaller..*/
-	char** arr = new char*[scale*m];
-	for(size_t i = 0; i <(scale*m); i++){
-		arr[i] = new char[scale*n];
-	}
-	//Assuming bigger...
+	assert(scale < MAXSIZE); //Should probably be smaller but can't think of something more accurate.
+	size_t enlargedRow = scale*originalRow;
+	size_t enlargedColumn = scale*originalColumn;
 
-	return arr;
+	char** enlargedMatrix = new char*[enlargedRow];
+	for(size_t i = 0; i <(enlargedRow); i++){
+		enlargedMatrix[i] = new char[enlargedColumn];
+	}
+	//Assuming bigger...i
+
+	/*Indicies for enlarged array*/
+	size_t iEnlarged = 0, jEnlarged = 0;
+	/*Indices for keeping track of how much expansion there is*/
+	size_t endR = scale, endC = scale; 
+	/*Indicides for original array*/
+	size_t iOriginal = 0, jOriginal = 0;
+	/*Indicies that keep track of when we switch over to the next character*/
+	size_t a = 0, b = 0; /*Need better naming once I figure out exactly what they do...*/
+
+	while(iOriginal < originalRow && iEnlarged < enlargedRow){
+	
+		while(jOriginal < originalColumn && jEnlarged < enlargedColumn && endC <= enlargedColumn && endR <= enlargedRow){
+			if(a < endC && b < endR){
+				enlargedMatrix[iEnlarged][jEnlarged] = originalMatrix[iOriginal][jOriginal];
+				a++;
+				jOriginal++;
+				jEnlarged++;
+				if(a >= endC){
+					//endC+=scale;
+					if(b>= endR){
+						endR+=scale;
+						endC+=scale;
+					}
+					else{
+						//i++;
+					}
+				}
+			}
+		}
+	
+	}
+
+
+
+
+
+
+	return enlargedMatrix;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 char** mNMatrix(size_t& x, size_t& y){
 	size_t m;
