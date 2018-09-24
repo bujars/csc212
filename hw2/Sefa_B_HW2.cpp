@@ -123,8 +123,6 @@ char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, c
 	return arr;
 }
 
-
-
 /*NOTE this function does NOT work. Rewritting below.*/
 #if 0
 //char** mNMatrix(size_t& x, size_t& y){
@@ -162,9 +160,30 @@ void mNMatrix(char** arr, size_t& x, size_t& y){
 }
 #endif
 
-void rotateMatrix(int position){
+void rotateMatrix(int rotation, char** arr, const size_t& m, const size_t& n){
+		if(m!=n) /*BECAUSE precondition states that the function is square*/
+			return;
+		cin >> rotation;
+		if(abs(rotation)>4){ /*NOTE it is 4 because 90 is 360/4*/
+			rotation = rotation%4;
+							}
+		if(abs(rotation)==(-rotation)){
+			rotation =  4 + rotation;
+		}
+
+		for(int r = 0; r < rotation; r++){
+			for(int i = 0; i < m/2; i++){ /*NOTE the Matrix is a square. You divide by 2 because you rotate all outer bounds and move your way in. You dont want to repeat the same steps */
+				char temp = arr[i][i];
+				arr[i][i] = arr[i][m-1-i];
+				arr[i][m-1-i] = arr[m-1-i][m-1-i];
+				arr[m-1-i][m-1-i] = arr[m-1-i][i];
+				arr[m-1-i][i] = temp;
+			}
+		}
+
 }
 char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, size_t originalColumn, size_t& enlargedRow, size_t& enlargedColumn){
+	cin >> scale;
 	/*NOTE check if scale has to be bigger or smaller..*/
 	assert(scale <= MAXSIZE && scale >0); //Should probably be smaller but can't think of something more accurate.
 	enlargedRow = scale*originalRow;
@@ -296,19 +315,6 @@ char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, s
 	return enlargedMatrix;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 char** mNMatrix(size_t& x, size_t& y){
 	size_t m;
 	size_t n;
@@ -325,9 +331,9 @@ char** mNMatrix(size_t& x, size_t& y){
 	int row = 0;
 	int column = 0;
 
-	while(row!=m){
+	while(row<m){
 		column = 0;
-		while(column!=n && cin>>c && isalpha(c)){ /*Need to figure out hwo to check isalpha*/
+		while(column<n && cin>>c && isalpha(c)){ /*Need to figure out hwo to check isalpha*/
 			//cin >> c;
 			matrix[row][column] = c;
 			column++;
