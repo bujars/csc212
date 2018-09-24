@@ -1,7 +1,7 @@
 #include "Sefa_B_HW2.h"
 
 int main(){
-//#if 0
+#if 0
 	//char* arr;
 	size_t size = 0;
 	static char arr[MAXSIZE]; 
@@ -14,7 +14,7 @@ int main(){
 	cout << endl;
 
 	
-#if 0
+//#if 0
 	int count = highestOccurances(arr, size); //highestOccurrances(arr, size);
 	cout << count << endl;
 	
@@ -43,17 +43,25 @@ int main(){
 
 	char** b;
 	//char b[][MAXSIZE];
-	size_t m = 100;
-	size_t n = 100;
+	size_t m = 2;
+	size_t n = 2;
 	//mNMatrix(b,m,n);
-	b = mNMatrix(m,n);
+	//b = mNMatrix(m,n);
+	b = new char*[m];
 	for(int i = 0; i < m; i++){
-		for(int j = 0; j < n; j++){
+		b[i] = new char[n];
+		/*for(int j = 0; j < n; j++){
+			b[i][j] = 'a';
 			cout << b[i][j] << " ";
 		}
 		cout << endl;
+	*/
 	}
-
+	b[0][0]= 'a';
+	b[0][1]= 'b';
+	b[1][0] = 'c';
+	b[1][1] = 'd';
+ 	//cout << m << " " << n << endl ;
 	/*size_t m = 0;
 	size_t n = 0;
 	b = setMatrix(m,n);
@@ -65,6 +73,23 @@ int main(){
 	}
 	*/
 	
+	
+	size_t x  = 100;
+	size_t y = 100;
+	size_t scale = 2;
+	char** biggerMatrix = enlargeMatrix(scale, b, m, n, x, y);
+	
+	cout << x << " " << y << endl;
+	for(int i = 0; i < x; i++){
+		for(int j = 0; j < y; j++){
+			cout << biggerMatrix[i][j] << " ";
+		}
+			cout << endl;
+	}
+
+	
+
+
 	return 0;
 }
 

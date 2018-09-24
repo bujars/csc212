@@ -164,11 +164,11 @@ void mNMatrix(char** arr, size_t& x, size_t& y){
 
 void rotateMatrix(int position){
 }
-char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, size_t originalColumn){
+char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, size_t originalColumn, size_t& enlargedRow, size_t& enlargedColumn){
 	/*NOTE check if scale has to be bigger or smaller..*/
-	assert(scale < MAXSIZE); //Should probably be smaller but can't think of something more accurate.
-	size_t enlargedRow = scale*originalRow;
-	size_t enlargedColumn = scale*originalColumn;
+	assert(scale <= MAXSIZE && scale >0); //Should probably be smaller but can't think of something more accurate.
+	enlargedRow = scale*originalRow;
+	enlargedColumn = scale*originalColumn;
 
 	char** enlargedMatrix = new char*[enlargedRow];
 	for(size_t i = 0; i <(enlargedRow); i++){
@@ -179,39 +179,119 @@ char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, s
 	/*Indicies for enlarged array*/
 	size_t iEnlarged = 0, jEnlarged = 0;
 	/*Indices for keeping track of how much expansion there is*/
-	size_t endR = scale, endC = scale; 
+	size_t endR = scale; 
+	size_t endC = scale; 
 	/*Indicides for original array*/
 	size_t iOriginal = 0, jOriginal = 0;
 	/*Indicies that keep track of when we switch over to the next character*/
-	size_t a = 0, b = 0; /*Need better naming once I figure out exactly what they do...*/
+	//size_t a = 0, b = 0; /*Need better naming once I figure out exactly what they do...*/
 
+	#if 0
+	char d = 'd';
 	while(iOriginal < originalRow && iEnlarged < enlargedRow){
 	
 		while(jOriginal < originalColumn && jEnlarged < enlargedColumn && endC <= enlargedColumn && endR <= enlargedRow){
+			if(d!='d') break;
+			cout << originalMatrix[iOriginal][jOriginal] << "Here"<<  endl;
+			cout << (a < endC)  << endl;
+			cout << (b < endR) << endl;
+			//break;
 			if(a < endC && b < endR){
+				cout << "andHere" << endl;
 				enlargedMatrix[iEnlarged][jEnlarged] = originalMatrix[iOriginal][jOriginal];
+				cout << enlargedMatrix[iEnlarged][jEnlarged] << " good" << endl;
 				a++;
-				jOriginal++;
+				//jOriginal++;
 				jEnlarged++;
+				cout << originalMatrix[iOriginal][jOriginal];
+				//break;
+				cout << "O" << endl;
+				cout << enlargedMatrix[iEnlarged][jEnlarged] << "N" <<endl;
 				if(a >= endC){
+					cout << "in here" << endl;
 					//endC+=scale;
 					if(b>= endR){
 						endR+=scale;
 						endC+=scale;
+						jOriginal++;
+						iOriginal++;
 					}
 					else{
-						//i++;
+						iEnlarged++;
 					}
 				}
 			}
+			cout << "never" << endl;
+			//d = 'c';
 		}
 	
 	}
+	#endif
+
+	for(int i = 0; i < originalRow; i++){
+		//for(int j = 0; j < originalColumn; j++){
+			int j = 0;
+
+			for(int a = 0; a < scale; a++){
+				for(int b = 0; b < enlargedColumn; b++){
+					if(iEnlarged < enlargedRow && jEnlarged < enlargedColumn){
+						enlargedMatrix[iEnlarged][jEnlarged] = originalMatrix[i][j];
+						cout << "I: " << i << " J: " << j << " EI: "<< iEnlarged << " EJ: "<< jEnlarged << " and "  << enlargedMatrix[iEnlarged][jEnlarged] << "\n";
+						jEnlarged++;
+						if((b+1)%scale==0){
+							j++; //change j to the next letter. 
+						}
+					} //jEnlarged-=enlargedColumn;
+				}
+				//j++;
+				j-=(originalColumn);//scale;//enlargedColumn;//originalColumn;
+				//j = 0;
+				//cout << j << " A\n" << jEnlarged << " Q\n";
+				
+				jEnlarged-=enlargedColumn;
+				//cout << jEnlarged << " B\n"; 
+				iEnlarged++;	
+				//cout << iEnlarged << " C\n";
+				//cout << i << " D\n";
+			}
+
+			//iEnlarged++;
+			//iEnlarged++;
 
 
+		#if 0
+			for(a; a < endR; a++){ /*Values of a and b get reset here.*/
+				for(b; b < endC; b++){
+					
+					if(iEnlarged < enlargedRow && jEnlarged < enlargedColumn && endC <= enlargedColumn && endR <= enlargedRow){
+						enlargedMatrix[iEnlarged][jEnlarged] = originalMatrix[i][j];
+						jEnlarged++;
+						cout << jEnlarged << " P: \n";
+						iEnlarged++; /*HERE is the error... We keep shifting i...*/
+						cout << iEnlarged << " :L " << jEnlarged << " ;O\n";
+						jEnlarged= 0;
+						cout << jEnlarged << " :D\n";
+					}
+				}
+				/*iEnlarged++; //HERE is the error... We keep shifting i...//
+				cout << iEnlarged << " :L " << jEnlarged << " ;O\n";
+				jEnlarged= 0;
+				cout << jEnlarged << " :D\n";*/
+			}
+			//a = endR;
+			//endR+=scale;
+//#if 0
+			b = endC; /*And error at these scales.*/
+			jEnlarged = endC; /*Because now we want to shift c back.*/
+			endC+=scale;
+			iEnlarged-=a;
+#endif
+		//}
+		/*This isn't doing anything right now. */
+		//a = endR;
+		//	endR+=scale;
 
-
-
+	}
 
 	return enlargedMatrix;
 }
@@ -234,6 +314,7 @@ char** mNMatrix(size_t& x, size_t& y){
 	size_t n;
 	cin >> m;
 	cin >> n;
+	char c;
 	assert(m <= MAXSIZE && m > 0 && n <= MAXSIZE && n>0 );
 
 	char **matrix;
@@ -246,9 +327,17 @@ char** mNMatrix(size_t& x, size_t& y){
 
 	while(row!=m){
 		column = 0;
-		while(column!=n){
-			cin >> matrix[row][column];
+		while(column!=n && cin>>c && isalpha(c)){ /*Need to figure out hwo to check isalpha*/
+			//cin >> c;
+			matrix[row][column] = c;
 			column++;
+			/*if(isalpha(c)){
+				matrix[row][column] = c;
+				column++;
+				else{
+					return matrix;
+				}
+			}*/
 		}
 		row++;
 	}
