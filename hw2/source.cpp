@@ -1,7 +1,9 @@
 #include "Sefa_B_HW2.h"
 
 int main(){
-#if 0
+//#if 0
+	
+	cout << "Testing inputArray" << endl;
 	//char* arr;
 	size_t size = 0;
 	static char arr[MAXSIZE]; 
@@ -15,9 +17,13 @@ int main(){
 
 	
 //#if 0
+//
+
 	int count = highestOccurances(arr, size); //highestOccurrances(arr, size);
-	cout << count << endl;
+	cout << "Testing highest occurance    " << count << endl;
 	
+
+	cout << "Testing shift array" << endl;
 	shiftArray(arr, size, 2);
 	for(int i = 0; i < size; i++){
 		cout << arr[i] << " "; 
@@ -25,20 +31,22 @@ int main(){
 	cout << endl;
 //#endif
 	static char arr2[MAXSIZE];
-	int size2 = takeUserInputRetSize(arr2);
+	cout << "Getting a second regular array\n";
+	size_t size2 = 2;
+	takeUserInputRetSize(arr2, size2);
 	for(int i = 0; i < size2; i++){
-		cout << arr[i] << " "; 
+		cout << arr2[i] << " "; 
 	}
 	cout << endl;
 	char *a;
 	int sizeA = MAXSIZE;
 	a = appendAndSort(arr, size, arr2, size2, sizeA);
-	
+	cout << "appending and sorting two arrays.\n";
 	for(int i = 0; i < sizeA; i++){
 		cout << a[i] << " "; 
 	}
 	cout << endl;
-#endif
+//#endif
 
 
 	char** b;
@@ -46,6 +54,7 @@ int main(){
 	size_t m = 2;
 	size_t n = 2;
 	//mNMatrix(b,m,n);
+	cout << "Making 2D matrix\n";
 	b = mNMatrix(m,n);
 	/*b = new char*[m];
 	for(int i = 0; i < m; i++){
@@ -71,7 +80,7 @@ int main(){
 		}
 		cout << endl;
 	}
-	
+	cout << "Rotating matrix\n";
 	int position = 0;
 	rotateMatrix(position, b, m,n);
 	//cout << x << " " << y << endl;
@@ -88,9 +97,10 @@ int main(){
 	size_t x  = 100;
 	size_t y = 100;
 	size_t scale = 2;
+	cout << "Enlaarging Matrix " << endl;
 	char** biggerMatrix = enlargeMatrix(scale, b, m, n, x, y);
 	
-	cout << x << " " << y << endl;
+	//cout << "Enlaarging Matrix " << x << " " << y << endl;
 	for(int i = 0; i < x; i++){
 		for(int j = 0; j < y; j++){
 			cout << biggerMatrix[i][j] << " ";

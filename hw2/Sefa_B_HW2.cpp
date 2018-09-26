@@ -42,11 +42,12 @@ size_t highestOccurances(char arr[ ], size_t size){
 		}
 		//countingOccurrance = 0;
 	}
-	cout << letter << endl;
+	//cout << letter << endl;
 	return hOccurrance;
 }
 void shiftArray(char arr[], size_t size, int shift){
 	assert(size<=MAXSIZE && size >0 );
+	cin >> shift; 
 	if(abs(shift)>size){
 		shift = shift%size;
 	}
@@ -58,20 +59,20 @@ void shiftArray(char arr[], size_t size, int shift){
 		arr[i] = arr[size-1-i];
 		arr[size-1-i] = temp;
 	}
-	for(int i = 0; i < size; i++){
+	/*for(int i = 0; i < size; i++){
 		cout << arr[i] << " ";
 	}
-	cout << endl;
+	cout << endl;*/
 
 	for(size_t i = 0; i <= (shift-1)/2; i++){
 		char temp = arr[i];
 		arr[i] = arr[shift-1-i];
 		arr[shift-1-i] = temp;
 	}
-		for(int i = 0; i < size; i++){
+		/*for(int i = 0; i < size; i++){
 					cout << arr[i] << " ";
 						}
-			cout << endl;
+			cout << endl;*/
 	size_t z =1;
 	for(size_t i = shift; i < shift+((size-shift)/2); i++){
 		char temp = arr[i];
@@ -79,11 +80,11 @@ void shiftArray(char arr[], size_t size, int shift){
 		arr[size-z] = temp;
 		z++;
 	}
-		for(int i = 0; i < size; i++){
+		/*for(int i = 0; i < size; i++){
 					cout << arr[i] << " ";
 						}
-			cout << endl;
-}
+			cout << endl;*/
+	}
 
 //NOTE ar1 and ar2 are already pre-sorted. //Precondiiton 
 char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, const size_t arr2Size, int& arrSize){
@@ -93,7 +94,7 @@ char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, c
 
 	/*Fill in arr with order form arr1 and arr2. NOTE one of them will max out*/
 	while(arr1I < arr1Size && arr2I < arr2Size){
-		cout << arr1[arr1I] << " and " << arr2[arr2I] << endl;  
+		//cout << arr1[arr1I] << " and " << arr2[arr2I] << endl;  
 		if((int)arr1[arr1I] < (int)arr2[arr2I] ){
 			arr[arrI++] = arr1[arr1I++];
 			//arrI++;
@@ -104,7 +105,7 @@ char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, c
 			//arrI++;
 			//arr2I++;
 		}
-		cout << arr[arrI] << " " << arrI << endl;
+		//cout << arr[arrI] << " " << arrI << endl;
 	}
 	/*If one of them didn't max out, max it out here*/
 	while(arr1I < arr1Size){
@@ -119,7 +120,7 @@ char* appendAndSort(const char* arr1, const size_t arr1Size, const char* arr2, c
 		//arr2I++;
 	}
 	arrSize = arrI;
-	cout << arrI;
+	//cout << arrI;
 	return arr;
 }
 
@@ -255,7 +256,7 @@ char**  enlargeMatrix(size_t scale, char** originalMatrix, size_t originalRow, s
 				for(int b = 0; b < enlargedColumn; b++){
 					if(iEnlarged < enlargedRow && jEnlarged < enlargedColumn){
 						enlargedMatrix[iEnlarged][jEnlarged] = originalMatrix[i][j];
-						cout << "I: " << i << " J: " << j << " EI: "<< iEnlarged << " EJ: "<< jEnlarged << " and "  << enlargedMatrix[iEnlarged][jEnlarged] << "\n";
+						//cout << "I: " << i << " J: " << j << " EI: "<< iEnlarged << " EJ: "<< jEnlarged << " and "  << enlargedMatrix[iEnlarged][jEnlarged] << "\n";
 						jEnlarged++;
 						if((b+1)%scale==0){
 							j++; //change j to the next letter. 
