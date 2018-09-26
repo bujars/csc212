@@ -334,7 +334,7 @@ char** mNMatrix(size_t& x, size_t& y){
 
 	while(row<m){
 		column = 0;
-		while(column<n && cin>>c && isalpha(c)){ /*Need to figure out hwo to check isalpha*/
+		while(column<n && cin>>c){// && isalpha(c)){ /*Need to figure out hwo to check isalpha*/
 			//cin >> c;
 			matrix[row][column] = c;
 			column++;
