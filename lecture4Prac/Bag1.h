@@ -12,7 +12,7 @@ using namespace std;
 	class Bag1{
 		public:
 			typedef int bagDataType;
-			static const size_t SIZE = 100;
+			static const std::size_t SIZE = 100;
 			Bag1();
 			void insert(const bagDataType& num);
 			size_t erase(const bagDataType& num);

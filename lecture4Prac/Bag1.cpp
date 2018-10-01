@@ -1,15 +1,17 @@
 #include "Bag1.h"
 #ifndef __BAG1_CPP__
 #define __BAG1_CPP__
-
+#if 0
 #include <iostream>
 #include <cassert> /*For assert*/
 #include <cstdlib> /*For size_t*/
 using namespace std;
 
 	typedef int bagDataType; /*This is just used to rename int*/
-	const size_t SIZE = 100; /*NOTE the use of size_t will allow us to make sure we never have a negative size.*/
-
+#endif
+	//const size_t SIZE = 100; /*NOTE the use of size_t will allow us to make sure we never have a negative size.*/
+//#endif
+	//const std::size_t SIZE;
 	Bag1::Bag1(){
 		used = 0;
 	}
@@ -62,7 +64,7 @@ using namespace std;
 		return used;
 	}
 	Bag1 operator +(const Bag1& b1, const Bag1& b2){
-		assert((b1.totVals()+ b2.totVals()) <= SIZE);
+		assert((b1.totVals()+ b2.totVals()) <= Bag1::SIZE);
 		Bag1 Bag; //This is how a bag is declared/ 
 		/*for(size_t i = 0; i < b1.totVals(); i++){
 			bag.data[i] = b1.data[i];
