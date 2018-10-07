@@ -2,6 +2,7 @@
 
 int main(){
 
+	list_head_insert(NULL, 2);
 	node *head_ptr = new node(); //Initialize head_pointer to nothing.
 	cout << "LENGTH: " << list_length(head_ptr) << endl;
 	//node *second = new node(2, NULL);
@@ -21,6 +22,11 @@ int main(){
 	cout << fot->data() << endl;
 	list_print(head_ptr);
 	cout << "LENGTH: " << list_length(head_ptr) << endl;
+
+	node * found = list_locate(head_ptr, 4);
+	cout << "ISFOUND: "<< found->data() << endl;
+	found = list_locate(head_ptr, 1);
+	cout << "ISFOUND: " << found->data() << endl;
 	
 	
 	list_head_remove(head_ptr);

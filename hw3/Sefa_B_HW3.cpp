@@ -34,9 +34,10 @@
 	node* list_locate(node * head_ptr, const size_t& position){
 		node * ret = NULL;
 		node * cursor = head_ptr;
-		if(position >= list_length(head_ptr)){
+		assert(0 < position); //&& !(position < list_length(head_ptr)));
+		/*if(position >= list_length(head_ptr)){
 			return ret;
-		}
+		}*/
 		size_t i = 1; /*NOTE start from 1 because thats where head_ptr starts.*/
 		while(cursor!=NULL){
 			if(i==position){
