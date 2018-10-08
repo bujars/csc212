@@ -27,9 +27,12 @@ class node{
 	void list_clear(node*& head_ptr); /* NOTE *&   tells us that we want to be able to change the location of head_ptr, ie what it points to. */
 	void list_head_insert(node*& head_ptr, const node::nodeDataType& data);
 	void list_insert(node* previous_ptr, const node::nodeDataType& data);
+	void list_end_insert(node *& head_ptr, const node::nodeDataType& entry);
 	size_t list_length(const node* head_ptr);
 	void list_remove(node* previous_ptr);
 	void list_head_remove(node*& head_ptr);
+	void list_end_remove(node*& head_ptr);
+	void list_ith_remove(node* head_ptr, const size_t& i);
 	void list_copy(const node* source_ptr, node *& head_ptr, node *& tail_ptr);
 	//const nodeDataType (const node*)
 	node * list_locate(node* head_ptr, const size_t& position);
