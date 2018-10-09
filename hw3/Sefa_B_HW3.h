@@ -43,7 +43,7 @@ class node{
 	void list_tail_remove(node* ptr); /*NOT sure which pointer would be entered here.*/
 	void list_print(const node* head_ptr);
 	bool list_cycle(const node* head_ptr);
-	void list_swap_next(node* i_ptr, const std::size_t& i);
+	void list_swap_next(node*& head_ptr, const std::size_t& i_pos);
 	void list_swap_IJ(node * ptr, const std::size_t& i, const std::size_t& j);
 	void list_reverse(node* head_ptr);
 

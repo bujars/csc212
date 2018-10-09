@@ -17,12 +17,14 @@
 		delete remove_ptr; /*delete current*/
 	}
 
-	/*NOTE: Question, originally have pos - i for list_locate, but then read piazza comment where it said if pos is 3, it gives fourht node. Just incase I was orgininally right, I made this last switch because of mis understanding.*/
+	/*NOTE: Question, originally have pos - i for list_locate, 
+	 * but then read piazza comment where it said if pos is 3, it gives fourht node. 
+	 * Just incase I was orgininally right, I made this last switch because of mis understanding.*/
 	void list_ith_remove(node* head_ptr, const size_t& i){
 		/*First check if i is actually in the list*/
 		/*if(!(i < list_length(head_ptr)))
 			return;*/
-		assert(i > 0); /*Must give a position greater than 0 as head points to 1*/
+		//assert(i > 0); /*Must give a position greater than 0 as head points to 1*/ /*NOTE GOT RID OF THIS because pos starts at 0*/
 		size_t pos = i; /*Renaming pos to i so that we can set i to last since its const*/
 		/*for(node * cursor = head_ptr)*/
 		/*NOTE use list_locate to get the previous node!!*/
@@ -33,7 +35,7 @@
 		}
 		if(head_ptr == NULL)
 			return;
-		if(pos == 1){ /*Because head_ptr is at first position*/
+		 if(pos == 0){ //Because head_ptr is at first position / /NOTE: This might need to be updated now since head is 0 and ifrst is 1, so wouldnt want to place in 0th. changed position to 0 instead.../
 			list_remove(head_ptr);
 			return;
 		}
@@ -68,7 +70,10 @@
 		
 		node * end = head_ptr;
 		node * cursor = head_ptr;
-		for(cursor; cursor->link()!=NULL; cursor = cursor->link()){ /*NOTE how we check if the next one is not null, this is because we are moving the pointer twice to hit null with one, and save the previous, or last pointer that is to be removed.*/
+		for(cursor; cursor->link()!=NULL; cursor = cursor->link()){ 
+			/*NOTE how we check if the next one is not null, 
+			 * this is because we are moving the pointer twice to hit null with one, 
+			 * and save the previous, or last pointer that is to be removed.*/
 			end = cursor; 
 		}
 		end->set_link(NULL);/*Set previos to NULL*/
@@ -78,7 +83,8 @@
 	}
 
 	void list_insert(node* previous_ptr, const node::nodeDataType& entry){
-		/*assert(previous_ptr->link() != NULL);*/ /*Cannot use this if first node is head node....but not sure why it wont work if you just pass null in. */
+		/*assert(previous_ptr->link() != NULL);*/ /*Cannot use this if first node is head node....
+		 but not sure why it wont work if you just pass null in. */
 		/*//cout << previous_ptr->data() << " " << previous_ptr->link() << endl;
 		//cout << entry << endl;*/
 		/*Im assuming if its null, just call head pointer???*/
@@ -106,10 +112,10 @@
 	}
 	/*Note *& incase someone wants to insert at head.*/
 	void list_ith_insert(node *& head_ptr, const node::nodeDataType& entry, const size_t& pos){
-		assert(pos > 0); /*Because first node starts at position 1 --> as seen in  locate function*/
+		//assert(pos > 0); /*Because first node starts at position 1 --> as seen in  locate function*/
 		size_t len = list_length(head_ptr);
 		size_t i = pos;
-		if(head_ptr == NULL || pos ==1){
+		if(head_ptr == NULL || pos ==0){
 			list_head_insert(head_ptr, entry);
 			return;
 		}
@@ -162,7 +168,6 @@
 		/*for(const node* cursor = head_ptr->link(); cursor!=NULL; cursor = cursor->link()){
 			cout << cursor->data() << endl;
 		}*/
-	
 		/*Not sure which version is right*/
 		for(const node* cursor = head_ptr; cursor!=NULL; cursor = cursor->link()){
 			cout << cursor->data() << endl; 
@@ -191,7 +196,11 @@
 			}
 		return NULL;	
 	}
-	/*Have two nodes, one that moves by 1 link, the other that moves by two links, as long as none are null, keep going around. First think to check is that head actually points to soemthing, and that first and second ones aren't null. If thats the case, no cycle. then keep going until both nodes are at the same spot which form a cycle - Liu*/
+
+
+	/* Have two nodes, one that moves by 1 link, the other that moves by two links, as long as none are null, keep going around.
+	 * First think to check is that head actually points to soemthing, and that first and second ones aren't null. 
+	 * If thats the case, no cycle. then keep going until both nodes are at the same spot which form a cycle - Liu*/
 	bool list_cycle(const node* head_ptr){
 		if(head_ptr == NULL || head_ptr->link() == NULL || head_ptr->link()->link() == NULL){
 			return false;
@@ -210,6 +219,12 @@
 		}
 		/*cout << "here? " << endl;*/
 		return false;
+	}
+
+
+	void list_swap_next(node*& head_ptr, const std::size_t& i_pos){
+
+
 	}
 
 

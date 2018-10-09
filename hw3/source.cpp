@@ -132,11 +132,11 @@ int main(){
 	list_print(newH);
 #endif
 	cout << endl<<endl<<"Adding using position add" << endl;
-	list_ith_insert(newH, 100, 1);
+	list_ith_insert(newH, 100, 0);
 	list_ith_insert(newH, 99, 10);
 	list_ith_insert(newH, 87, 4);
 	list_ith_insert(newH, 22, 3);
-	list_ith_remove(newH, 3);
+	//list_ith_remove(newH, 0);
 	list_print(newH);
 	cout << "LENGTH" << list_length(newH) << endl;
 	cout << endl<< endl << "TESTING search: " << endl;
