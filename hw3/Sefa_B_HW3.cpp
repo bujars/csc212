@@ -152,7 +152,16 @@
 	}
 
 	const node* list_locate(const node* head_ptr, const size_t& position){
-		return head_ptr;
+		const node * cursor = head_ptr;
+		assert(0 < position); //&& position > list_length(head_ptr)); /*//&& !(position < list_length(head_ptr)));*/
+		/*if(position >= list_length(head_ptr)){
+		 * 			return ret;
+		 * 					}*/
+		size_t i = 1; /*NOTE start from 1 because thats where head_ptr starts.*/
+		for(i; i< position && cursor!=NULL; i++){
+			cursor=cursor->link();
+		}
+		return cursor;
 	}
 
 	void list_clear(node*& head_ptr){
