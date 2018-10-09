@@ -1,8 +1,11 @@
 #include "Sefa_B_HW3.h"
 
 int main(){
-
-	//	list_head_insert(NULL, 2);
+	
+	node * bit = NULL;
+	list_head_insert(bit, 2);
+	cout  << bit->link();
+	cout << bit->data();
 	node *head = new node();
 
 	//list_end_insert(head , 7);
@@ -103,8 +106,8 @@ int main(){
 
 
 	cout << "Starting new list for other functions " << endl;
-	node * newH = new node();
-	list_insert(newH, 1);
+	node * newH = new node();//new node();
+	list_ith_insert(newH, 1, 1);
 	node * f = newH->link();
 	list_insert(f, 2);
 	node * s = f->link();
@@ -116,9 +119,55 @@ int main(){
 	node * e = r->link();
 	cout << "Printing List" << endl;
 	list_print(newH);
+	cout << "LENGHT: " << list_length(newH) << endl;
+#if 0 
 	list_ith_remove(newH, 1);
 	list_print(newH);
+	list_ith_remove(newH, 5);
+	list_print(newH);
+	list_ith_remove(newH, 10);
+	list_print(newH);
+#endif
+	cout << endl<<endl<<"Adding using position add" << endl;
+	list_ith_insert(newH, 100, 1);
+	list_ith_insert(newH, 99, 10);
+	list_ith_insert(newH, 87, 4);
+	list_print(newH);
+
+	cout << endl<< endl << "TESTING search: " << endl;
+	int tar = 101;
+	node * ser= list_search(newH, tar);
+	//cout << ser->data() << endl;
+	/*Is going to give an error because out of bounds...*/
+	//list_head_insert(newH, 15);
+	//list_print(newH);
+
+
+
+
 	//#endif
+	
+	cout << "MAKING A CYCLE" << endl;
+	node * start = new node();
+	list_end_insert(start, 1);
+
+	node * f1 = start->link();
+	list_end_insert(start, 2);
+	node * b1 = f1->link();//new node(2, f1);
+	list_end_insert(start, 3);
+	node * c1 = b1->link();//new node(3, b1);
+	list_end_insert(start, 4);
+	node* d1 = c1->link();//new node(4, c1);
+	list_end_insert(start, 5);
+	node * e1 = d1->link();//new node(5, d1);
+	list_print(start);
+	e1->set_link(f1);
+	//list_print(start);
+	cout << "HERE??!" << endl;
+	bool isCycle = list_cycle(start);
+	cout << endl << endl << endl << "CYCLE IS: " << isCycle << endl;
+
+
 	
 	return 0;
 }

@@ -28,6 +28,7 @@ class node{
 	void list_head_insert(node*& head_ptr, const node::nodeDataType& data);
 	void list_insert(node* previous_ptr, const node::nodeDataType& data);
 	void list_end_insert(node *& head_ptr, const node::nodeDataType& entry);
+	void list_ith_insert(node *& head_ptr, const node::nodeDataType& entry, const size_t& pos);
 	size_t list_length(const node* head_ptr);
 	void list_remove(node* previous_ptr);
 	void list_head_remove(node*& head_ptr);
