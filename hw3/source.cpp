@@ -102,6 +102,11 @@ int main(){
 	list_end_remove(head_ptr);
 	list_print(head_ptr);
 
+
+	cout << endl << endl << "TESTING SWAP I I+1 past position. SHouldn't do anything." << endl;
+	list_swap_next(head_ptr, 10);
+	list_print(head_ptr);
+
 	cout << endl << "CLEARING: " << endl;
 	list_clear(head_ptr);
 	list_print(head_ptr);
@@ -166,9 +171,20 @@ int main(){
 	list_end_insert(start, 5);
 	node * e1 = d1->link();//new node(5, d1);
 	list_print(start);
+
+	
+
+	cout << endl << endl << "TESTING SWAP I I+1 past position. SHouldn't do anything." << endl;
+	list_swap_next(start, 5);
+	list_print(start);
+
+	
+	cout << "errror here" << endl;	
+	
 	e1->set_link(f1);
 	//list_print(start);
 	/*cout << "HERE??!" << endl;*/
+	cout << "errrrrrrrrr" << endl;
 	bool isCycle = list_cycle(start);
 	cout << endl << endl << endl << "CYCLE IS: " << isCycle << endl;
 

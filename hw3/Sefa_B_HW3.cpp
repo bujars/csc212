@@ -171,6 +171,7 @@
 		/*Not sure which version is right*/
 		for(const node* cursor = head_ptr; cursor!=NULL; cursor = cursor->link()){
 			cout << cursor->data() << endl; 
+			cout << cursor->link() << endl;
 		}							
 	}
 	
@@ -205,31 +206,40 @@
 		if(head_ptr == NULL || head_ptr->link() == NULL || head_ptr->link()->link() == NULL){
 			return false;
 		}
-		/*cout << "deonte" << endl;*/
+		cout << "deonte" << endl;
 		const node * firstCursor = head_ptr;
 		const node * secondCursor = head_ptr->link();
 		secondCursor = secondCursor->link(); /*Could have started these before*/
 		while(secondCursor != NULL && firstCursor != NULL){
-			/*cout << "jjj" << endl;*/
+			cout << "jjj" << endl;
 			if(secondCursor == firstCursor)
 				return true;
 			secondCursor = secondCursor->link();
+			if(secondCursor ==NULL)
+				return false;
 			secondCursor= secondCursor->link();
 			firstCursor = firstCursor->link();
 		}
-		/*cout << "here? " << endl;*/
+		cout << "here? " << endl;
 		return false;
 	}
 
 
 	void list_swap_next(node*& head_ptr, const std::size_t& i_pos){
 		size_t len = list_length(head_ptr); /*O(n)*/
-		if(i_pos+1>len || len < 2)/*Becuase I am checking if we have i and next spot*/
-						return;
+		if(i_pos+1>len-1 || len < 2)/*Becuase I am checking if we have i and next spot*/
+			return;
 		if(head_ptr == NULL || head_ptr->link() == NULL){ /*This means list is less than len 1*/
 			return;
 		}
-		node * i_previous = list_locate(head_ptr, i_pos-1);/*Locate node before because we need the link.*/
+		if(i_pos == 0){
+			node * iNext = head_ptr->link();
+			head_ptr->set_link(iNext->link());
+			list_head_insert(head_ptr, iNext->data());
+			delete iNext; 
+			return;
+		}
+		node * i_previous = list_locate(head_ptr, i_pos);/*Locate node before because we need the link. CHANGE THE i-1.... Not sure why but i think its cause had is at 0 yet is still finds that first val*/
 		node * i_node = i_previous->link();
 		if(i_previous->link() == NULL || i_node->link()==NULL)
 			return; /*Dont have sufficent nodes. NOTE this check might be repetative since we already checked pos+1 len... sooo might not need.*/
@@ -238,8 +248,6 @@
 		i_previous->set_link(i_next);
 		i_node->set_link(i_next->link());
 		i_next->set_link(temp);
-
-
 	}
 
 
