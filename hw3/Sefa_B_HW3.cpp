@@ -206,21 +206,21 @@
 		if(head_ptr == NULL || head_ptr->link() == NULL || head_ptr->link()->link() == NULL){
 			return false;
 		}
-		cout << "deonte" << endl;
+		/*cout << "deonte" << endl;*/
 		const node * firstCursor = head_ptr;
 		const node * secondCursor = head_ptr->link();
 		secondCursor = secondCursor->link(); /*Could have started these before*/
 		while(secondCursor != NULL && firstCursor != NULL){
-			cout << "jjj" << endl;
+			/*cout << "jjj" << endl;*/
 			if(secondCursor == firstCursor)
 				return true;
 			secondCursor = secondCursor->link();
-			if(secondCursor ==NULL)
+			if(secondCursor == NULL) /*Because doing two links might just make it null overall.*/
 				return false;
 			secondCursor= secondCursor->link();
 			firstCursor = firstCursor->link();
 		}
-		cout << "here? " << endl;
+		/*cout << "here? " << endl;*/
 		return false;
 	}
 
@@ -249,6 +249,18 @@
 		i_node->set_link(i_next->link());
 		i_next->set_link(temp);
 	}
+
+
+		void list_reverse(node*& head_ptr){
+			node* reversed = NULL;
+			for(node*cursor = head_ptr; cursor!=NULL; cursor=cursor->link())
+				list_head_insert(reversed, cursor->data());
+			/*After all is reversed, set head to start*/
+			head_ptr = reversed;
+		}
+
+
+
 
 
 

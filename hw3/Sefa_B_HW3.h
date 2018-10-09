@@ -45,7 +45,7 @@ class node{
 	bool list_cycle(const node* head_ptr);
 	void list_swap_next(node*& head_ptr, const std::size_t& i_pos);
 	void list_swap_IJ(node * ptr, const std::size_t& i, const std::size_t& j);
-	void list_reverse(node* head_ptr);
+	void list_reverse(node*& head_ptr);
 
 #endif
 

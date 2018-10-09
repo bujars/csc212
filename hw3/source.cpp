@@ -179,15 +179,19 @@ int main(){
 	list_print(start);
 
 	
-	cout << "errror here" << endl;	
+	/*cout << "errror here" << endl;	*/
 	
-	e1->set_link(f1);
+	//e1->set_link(f1);
 	//list_print(start);
 	/*cout << "HERE??!" << endl;*/
-	cout << "errrrrrrrrr" << endl;
+	/*cout << "errrrrrrrrr" << endl;*/
 	bool isCycle = list_cycle(start);
 	cout << endl << endl << endl << "CYCLE IS: " << isCycle << endl;
 
+	cout << endl << endl << "Testing reverse" << endl;
+	list_clear(start);
+	list_reverse(start);
+	list_print(start);
 
 	
 	return 0;
