@@ -223,6 +223,21 @@
 
 
 	void list_swap_next(node*& head_ptr, const std::size_t& i_pos){
+		size_t len = list_length(head_ptr); /*O(n)*/
+		if(i_pos+1>len || len < 2)/*Becuase I am checking if we have i and next spot*/
+						return;
+		if(head_ptr == NULL || head_ptr->link() == NULL){ /*This means list is less than len 1*/
+			return;
+		}
+		node * i_previous = list_locate(head_ptr, i_pos-1);/*Locate node before because we need the link.*/
+		node * i_node = i_previous->link();
+		if(i_previous->link() == NULL || i_node->link()==NULL)
+			return; /*Dont have sufficent nodes. NOTE this check might be repetative since we already checked pos+1 len... sooo might not need.*/
+		node * i_next = i_node->link();
+		node * temp = i_node;
+		i_previous->set_link(i_next);
+		i_node->set_link(i_next->link());
+		i_next->set_link(temp);
 
 
 	}
