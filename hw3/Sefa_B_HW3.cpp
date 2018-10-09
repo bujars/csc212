@@ -17,7 +17,7 @@
 		delete remove_ptr; /*delete current*/
 	}
 
-
+	/*NOTE: Question, originally have pos - i for list_locate, but then read piazza comment where it said if pos is 3, it gives fourht node. Just incase I was orgininally right, I made this last switch because of mis understanding.*/
 	void list_ith_remove(node* head_ptr, const size_t& i){
 		/*First check if i is actually in the list*/
 		/*if(!(i < list_length(head_ptr)))
@@ -37,7 +37,7 @@
 			list_remove(head_ptr);
 			return;
 		}
-		node * beforeIth = list_locate(head_ptr, pos-1);/*NOT sure if its i or i-1 since head is usually 1? I think it is 1 because locate says head_ptr starts at 1...*/
+		node * beforeIth = list_locate(head_ptr, pos);/*NOT sure if its i or i-1 since head is usually 1? I think it is 1 because locate says head_ptr starts at 1...*/
 		if(beforeIth != NULL) /*Not sure if I need this check?*/
 			list_remove(beforeIth);
 										 
@@ -155,6 +155,7 @@
 		}
 	}
 
+	/*Not clear at all on how head_ptr should be printed or not.*/
 	void list_print(const node* head_ptr){
 		if(head_ptr == NULL)
 			return;
@@ -195,19 +196,19 @@
 		if(head_ptr == NULL || head_ptr->link() == NULL || head_ptr->link()->link() == NULL){
 			return false;
 		}
-		cout << "deonte" << endl;
+		/*cout << "deonte" << endl;*/
 		const node * firstCursor = head_ptr;
 		const node * secondCursor = head_ptr->link();
 		secondCursor = secondCursor->link(); /*Could have started these before*/
 		while(secondCursor != NULL && firstCursor != NULL){
-			cout << "jjj" << endl;
+			/*cout << "jjj" << endl;*/
 			if(secondCursor == firstCursor)
 				return true;
 			secondCursor = secondCursor->link();
 			secondCursor= secondCursor->link();
 			firstCursor = firstCursor->link();
 		}
-		cout << "here? " << endl;
+		/*cout << "here? " << endl;*/
 		return false;
 	}
 

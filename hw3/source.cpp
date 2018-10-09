@@ -82,6 +82,7 @@ int main(){
 	list_head_remove(head_ptr);
 	cout << "Head removed: " << endl;
 	list_print(head_ptr);
+	cout << endl << endl << endl;
 	//cout << fot->data() << endl;
 	cout <<endl << endl << "removing thr " << endl;
 	list_remove(thr); /*NOTE this actually fails if you provide the very last pointer? Segmutation dumped?*/
@@ -89,7 +90,9 @@ int main(){
 	//cout << fot->link() << endl;
 	
 	list_print(head_ptr);
-	
+
+
+
 
 	cout << endl << endl << endl << "Adding new last item 5" << endl;
 	list_insert(thr, 5); /*NOTE fot is forever lost since it was removed. */
@@ -132,8 +135,10 @@ int main(){
 	list_ith_insert(newH, 100, 1);
 	list_ith_insert(newH, 99, 10);
 	list_ith_insert(newH, 87, 4);
+	list_ith_insert(newH, 22, 3);
+	list_ith_remove(newH, 3);
 	list_print(newH);
-
+	cout << "LENGTH" << list_length(newH) << endl;
 	cout << endl<< endl << "TESTING search: " << endl;
 	int tar = 101;
 	node * ser= list_search(newH, tar);
@@ -163,7 +168,7 @@ int main(){
 	list_print(start);
 	e1->set_link(f1);
 	//list_print(start);
-	cout << "HERE??!" << endl;
+	/*cout << "HERE??!" << endl;*/
 	bool isCycle = list_cycle(start);
 	cout << endl << endl << endl << "CYCLE IS: " << isCycle << endl;
 
