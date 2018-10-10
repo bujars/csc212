@@ -26,9 +26,12 @@ class node{
 	
 	void list_clear(node*& head_ptr); /* NOTE *&   tells us that we want to be able to change the location of head_ptr, ie what it points to. */
 	void list_head_insert(node*& head_ptr, const node::nodeDataType& data);
+	void list_head_insert(node*& head_ptr, node * new_head);
 	void list_insert(node* previous_ptr, const node::nodeDataType& data);
 	void list_end_insert(node *& head_ptr, const node::nodeDataType& entry);
+	void list_end_insert(node*& head_ptr, node * new_tail);
 	void list_ith_insert(node *& head_ptr, const node::nodeDataType& entry, const size_t& pos);
+	void list_ith_insert(node *& head_ptr, node* new_ptr, const size_t& pos);
 	size_t list_length(const node* head_ptr);
 	void list_remove(node* previous_ptr);
 	void list_head_remove(node*& head_ptr);
@@ -44,7 +47,7 @@ class node{
 	void list_print(const node* head_ptr);
 	bool list_cycle(const node* head_ptr);
 	void list_swap_next(node*& head_ptr, const std::size_t& i_pos);
-	void list_swap_IJ(node * head_ptr, const std::size_t& i_pos, const std::size_t& j_pos);
+	void list_swap_IJ(node *& head_ptr, const std::size_t& i_pos, const std::size_t& j_pos);
 	void list_reverse(node*& head_ptr);
 
 #endif

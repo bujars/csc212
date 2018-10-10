@@ -175,7 +175,7 @@ int main(){
 	
 
 	cout << endl << endl << "TESTING SWAP I I+1 past position. SHouldn't do anything." << endl;
-	list_swap_next(start, 5);
+	//list_swap_next(start, 3);
 	list_print(start);
 
 	
@@ -188,11 +188,25 @@ int main(){
 	bool isCycle = list_cycle(start);
 	cout << endl << endl << endl << "CYCLE IS: " << isCycle << endl;
 
-	cout << endl << endl << "Testing reverse" << endl;
+	/*cout << endl << endl << "Testing reverse" << endl;
 	list_clear(start);
 	list_reverse(start);
+	list_print(start);*/
+		
+	cout << endl << endl << "TESTING SWAP I J" << endl;
+	list_swap_IJ(start, 3, 5);
 	list_print(start);
+	cout << endl << endl;
+
 
 	
+	cout << "TESTING OVERLOADING" << endl;
+	node *bj = new node(99, NULL);
+	list_head_insert(start, bj);
+	list_print(start);
+	list_end_insert(start, bj);
+	list_ith_insert(start, bj, 9);
+	cout << endl << endl;
+	list_print(start);
 	return 0;
 }

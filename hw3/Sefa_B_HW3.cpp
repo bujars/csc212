@@ -48,11 +48,17 @@
 
 
 	void list_head_insert(node*& head_ptr, const node::nodeDataType& entry){
-		
-
 		/*cout << "here2"<<endl;*/
 		head_ptr = new node(entry, head_ptr);
 	}
+
+	void list_head_insert(node*& head_ptr, node* new_head){
+		/*cout << "here2"<<endl;*/
+		if(new_head ==NULL)
+			return;
+		head_ptr = new node(new_head->data(), head_ptr);
+	}
+	
 
 
 	/*NOT SURE IF IT WORKS*/
@@ -110,6 +116,13 @@
 		/*cout << "HERE" << endl;*/
 	
 	}
+	void list_end_insert(node *& head_ptr, node* new_end){
+		if(new_end == NULL)
+			return;
+		list_end_insert(head_ptr, new_end->data()); /*Checks if head is null*/
+	}
+	
+
 	/*Note *& incase someone wants to insert at head.*/
 	void list_ith_insert(node *& head_ptr, const node::nodeDataType& entry, const size_t& pos){
 		//assert(pos > 0); /*Because first node starts at position 1 --> as seen in  locate function*/
@@ -126,7 +139,11 @@
 		list_insert(add, entry);
 	}
 
-
+	void list_ith_insert(node *& head_ptr, node* new_ptr, const size_t& pos){
+		if(new_ptr == NULL)
+			return;
+		list_ith_insert(head_ptr, new_ptr->data(), pos);
+	}
 
 
 	/*NOTE: Head_ptr is technically counted as the first node!*/
@@ -180,7 +197,7 @@
 		/*Not sure which version is right*/
 		for(const node* cursor = head_ptr; cursor!=NULL; cursor = cursor->link()){
 			cout << cursor->data() << endl; 
-			cout << cursor->link() << endl;
+			/*cout << cursor->link() << endl;*/
 		}							
 	}
 	
@@ -268,6 +285,80 @@
 			head_ptr = reversed;
 		}
 
+
+	void list_swap_IJ(node *& head_ptr, const std::size_t& i_pos, const std::size_t& j_pos){
+		size_t len = list_length(head_ptr);
+		if(j_pos> len || i_pos > len) /*If trying to swap with something out of bounds*/
+			return;
+		if(head_ptr == NULL) /*If no list, return*/
+			return;
+		if(i_pos==j_pos)/*If they are the pointing to the same pointer*/
+			return;
+		if((j_pos>i_pos) && ((j_pos-i_pos) == 1)){ /*If they are next to each other call swap next*/
+			list_swap_next(head_ptr, i_pos);
+			return;
+		}
+		if((i_pos>j_pos) && ((i_pos-j_pos)==1)){ /*If they are next to each other call swap_next*/
+			list_swap_next(head_ptr, j_pos);
+			return;
+		}
+#if 0 
+		if(i_pos == 0){/*check if we are given a head*/
+			node * j_prev = list_locate(head_ptr, j_pos);
+			//cout << "got j " << endl;
+			//cout << j_prev->data() << endl;
+			node * j_ptr = j_prev->link();
+			//cout << j_ptr-> data() << endl;
+			node * j_next = j_ptr->link();
+			//cout << j_next << endl << endl;
+			//cout << j_next->data() <<endl;
+			node * iNext = head_ptr;
+			//cout << iNext->data() << endl;
+			list_head_insert(head_ptr, j_ptr->data());
+			head_ptr->set_link(iNext->link());
+			iNext = iNext->link();
+			j_prev->set_link(iNext->link());
+			iNext->set_link(j_next);
+			list_print(head_ptr);
+			//list_head_insert(head_ptr, j_ptr->data());
+			//cout << 2<< endl;
+			//list_print(head_ptr);
+			//head_ptr->set_link(j_next);
+			//j_prev->set_link(head_ptr);
+			delete j_ptr;
+			delete iNext;
+			return;
+		}
+#endif
+		/*No need to swap links if only switching head with any position.*/
+		if(i_pos ==0){
+			node* j_prev = list_locate(head_ptr, j_pos);
+			node * j_ptr = j_prev->link();
+			node::nodeDataType temp = j_ptr->data();
+			j_ptr->set_data(head_ptr->data());
+			head_ptr->set_data(temp);
+			return;
+		}
+		if(j_pos ==0){
+			node* i_prev = list_locate(head_ptr, i_pos);
+			node * i_ptr = i_prev->link();
+			node::nodeDataType temp = i_ptr->data();
+			i_ptr->set_data(head_ptr->data());
+			head_ptr->set_data(temp);
+			return;
+		}
+		node * i_prev = list_locate(head_ptr, i_pos);
+		node * i_ptr = i_prev->link();
+		node * i_next = i_ptr->link();
+		node * j_prev = list_locate(head_ptr, j_pos);
+		node * j_ptr = j_prev->link();
+		node * j_next = j_ptr->link();
+		j_prev->set_link(i_ptr);
+		j_ptr->set_link(i_next);
+		i_ptr->set_link(j_next);
+		i_prev->set_link(j_ptr);
+
+	}
 
 
 
