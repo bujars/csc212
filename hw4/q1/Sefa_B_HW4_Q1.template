@@ -1,0 +1,23 @@
+
+template<class Item>
+void stack<Item>::pop(){
+	assert(!isEmpty());
+	used--;
+}
+
+template<class Item>
+void stack<Item>::push(const Item& entry){
+
+	data[used] = entry;
+
+}
+
+
+template<class Item>
+void stack<Item>::print(){
+	while(!isEmpty()){
+		std::cout << data[used--] << std::endl;
+	}
+}
+
+
