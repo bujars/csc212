@@ -1,3 +1,9 @@
+#ifndef __STACK_CPP__
+#define __STACK_CPP__
+
+#include "Sefa_B_HW4_Q1.h"
+
+
 
 template<class Item>
 void stack<Item>::pop(){
@@ -7,17 +13,18 @@ void stack<Item>::pop(){
 
 template<class Item>
 void stack<Item>::push(const Item& entry){
-
-	data[used] = entry;
-
+		data[used] = entry;
 }
 
 
 template<class Item>
 void stack<Item>::print(){
 	while(!isEmpty()){
-		std::cout << data[used--] << std::endl;
+		cout << data[used--] << endl;
 	}
 }
+
+
+#endif
 
 
