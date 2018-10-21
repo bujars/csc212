@@ -161,6 +161,22 @@ void swapStacks(stack<Item>& stack1, stack<Item>& stack2){
 }
 
 
+/*
+ * What: This function returns the size of the stack.
+ * How: This funtion returns the variable used, which is the variable that keeps track of the number of items in the stack. 
+ * Precondition: N/A 
+ * Postcondition: The size of the stack is returned. 
+ * Worst Time Complexity: O(1)
+ */
+template<class Item>
+size_t stack<Item>::size() const{
+	return used; /*Just return the last one in the list.*/
+}
+
+
+
+
+
 /*template<class Item>
 void stack<Item>::swapStacks(stack& secondStack){
 	this = secondStack;

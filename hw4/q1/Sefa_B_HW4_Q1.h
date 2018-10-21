@@ -9,6 +9,14 @@ using namespace std;
 template<class Item>
 class stack{
 	public:
+		
+		/*
+		 * What: This function/constructor creates a stack.
+		 * How: This funtion/constructor initialized all the member vaiables of the stack, creates a dynamic array for data, sets inital capacity, and used = 0.
+		 * Precondition: N/A.
+		 * Postcondition: A stack is created. 
+		 * Worst Time Complexity: O(1)
+		 */
 		stack(int init_capacity = 30){
 			capacity = init_capacity;
 			used = 0;
@@ -17,7 +25,7 @@ class stack{
 		~stack();
 		void print() const;
 		void push(const Item& entry);
-		size_t size() const{ return used;} /*Implemented here.*/
+		size_t size() const;
 		bool isEmpty() const;
 		void pop();
 		stack(const stack& source);
