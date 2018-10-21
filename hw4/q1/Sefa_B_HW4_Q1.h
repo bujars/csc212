@@ -1,39 +1,39 @@
 #ifndef __STACK_H__
 #define __STACK_H__
+
+#include <iostream>
 #include <cassert>
 #include <cstdlib>
-#include <iostream>
+using namespace std;
 
-template <class Item>
+template<class Item>
 class stack{
 	public:
-		stack(size_t init_capacity = 30){
+		stack(int init_capacity = 30){
 			capacity = init_capacity;
 			used = 0;
 			data = new Item[capacity];
 		}
-		//~stack();
-		stack(const stack<Item>& source);
-		void operator =(const stack<Item>& source);
-		void pop(); /*remove top item in stack*/
-		void push(const Item& entry); /*Insert an item to top of stack*/
-		bool isEmpty() const{ return used == 0;} /*Check if the stack is empty*/
-		size_t size() const{ return used;} /*Return the number of items in the stack*/
-		Item top() const; /*Get the top item*/
-		void print();
-	
+		~stack();
+		void print() const;
+		void push(const Item& entry);
+		size_t size() const{ return used;} /*Implemented here.*/
+		bool isEmpty() const;
+		void pop();
+		stack(const stack& source);
+		void operator=(const stack& source);
+		Item top() const; 
+		/*void swapStacks(stack& secondStack);*//*Note one paramter since its a member function and member must call it.*/
 	private:
-		size_t capacity;
+		Item * data;
 		size_t used;
-		Item * data; 
+		size_t capacity;
 
 };
 
+template<class Item>
+void swapStacks(stack<Item>& stack1, stack<Item>& stack2);
 
 
-
-
-/*#include "Sefa_B_HW4_Q1.template"*/
-
-
+#include "Sefa_B_HW4_Q1.cpp"
 #endif
