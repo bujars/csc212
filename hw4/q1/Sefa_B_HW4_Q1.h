@@ -31,7 +31,7 @@ class stack{
 		stack(const stack& source);
 		void operator=(const stack& source);
 		Item top() const; 
-		/*void swapStacks(stack& secondStack);*//*Note one paramter since its a member function and member must call it.*/
+		void swapStacks(stack& source);/*Note one paramter since its a member function and member must call it.*/
 	private:
 		Item * data;
 		size_t used;

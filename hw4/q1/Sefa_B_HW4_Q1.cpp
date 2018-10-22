@@ -161,6 +161,31 @@ void swapStacks(stack<Item>& stack1, stack<Item>& stack2){
 }
 
 
+template<class Item>
+void stack<Item>::swapStacks(stack<Item>& source){
+	if(this == &source)/*If they are the same stacks, dont do anything*/
+		return;
+	stack<Item> tempThis(capacity);
+	/*Might be able to use copy constructor and say this stack... and then just do assignments between the two.*/	
+	tempThis.used = used;
+	for(size_t i = 0; i < used; i++){
+		tempThis.data[i] = data[i];
+	}
+	delete [] data; 
+	data = new Item[capacity];
+	used = source.used;
+	capacity = source.capacity;
+	for(size_t i = 0; i < used; i++){
+		data[i] = source.data[i];
+	}
+	source = tempThis;
+	
+}
+
+
+
+
+
 /*
  * What: This function returns the size of the stack.
  * How: This funtion returns the variable used, which is the variable that keeps track of the number of items in the stack. 
