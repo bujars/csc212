@@ -47,8 +47,21 @@ Item queue<Item>::front() const {
 	return data[front];
 }
 
-//template<class Item>
+template<class Item>
+void queue<Item>::push(const Item& entry){
 
+	last = next_index(last);
+	data[last] = entry;
+}
+
+template<class Item>
+void queue<Item>::print(){
+	size_t i = first;
+	while(i != last){
+		cout << data[i];
+		i=next_index(i);
+	}
+}
 
 
 #endif

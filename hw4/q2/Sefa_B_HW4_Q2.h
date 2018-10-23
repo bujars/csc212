@@ -20,7 +20,8 @@ class queue{
 		bool empty() const;
 		/* TO IMPLEMENT LATER */
 		void swapQueues(queue<Item>& source);
-	
+		void print();
+
 	private:
 		Item * data;
 		size_t first;
