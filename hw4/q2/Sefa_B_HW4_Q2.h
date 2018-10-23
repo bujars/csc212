@@ -28,7 +28,7 @@ class queue{
 		size_t count;
 		size_t capacity;
 		/* Helper Method */
-		bool next_index(size_t i){ return (i+1)%capacity;}
+		size_t next_index(size_t i){ return (i+1)%capacity;}
 		
 };
 
