@@ -16,6 +16,12 @@ int main(){
 	//b = a;
 	//b.print();
 	
+	queue<int> d;
+
+	b = d;
+	//d = b;
+	b.print();
+
 	//cout << endl;
 	return 0;
 }

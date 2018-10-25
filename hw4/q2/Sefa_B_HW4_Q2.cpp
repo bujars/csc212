@@ -27,13 +27,46 @@ queue<Item>::queue(const queue<Item>& source){
 	count = source.count;
 	first = source.first;
 	last = source.last;
-	size_t i = first;
+	/*size_t i = first;
 	data = new Item[count];
 	while(i!=last+1){
 		data[i] = source.data[i];
 		i = next_index(i);
+	}*/
+
+	/*NOTE it does not matter whats first/last....here we are just copying over the array....its the same thing*/
+	for(size_t i =0; i < capacity; i++){
+		data[i] = source.data[i];
 	}
 }
+
+template<class Item>
+void queue<Item>::operator=(const queue<Item>& source){
+	if(this == &source)
+		return;
+	delete [] data;
+	capacity = source.capacity;
+	data = new Item[capacity];
+	first= source.first;
+	last = source.last;
+	count = source.count;
+	size_t i = first;
+	cout << i << endl;
+	cout << capacity << endl;
+	cout << last+1 << endl;
+	/*while(i !=(last) && i<capacity){ //ISSUE IS ITS GOING PAST CAPACITY//
+		//return;
+		//cout << "Here" << endl;
+		data[i] = source.data[i];
+		i = next_index(i);
+		cout << i << endl;
+	}*/
+
+	for(size_t i =0; i < capacity; i++){
+		data[i] = source.data[i];
+	}
+}
+
 
 template<class Item>
 bool queue<Item>::empty() const{
@@ -64,7 +97,7 @@ size_t queue<Item>::size() const{
 template<class Item>
 void queue<Item>::print(){
 	size_t i = first;
-	while(i != last+1){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
+	while(i != (last+1)){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
 		cout << data[i] << endl;
 		i=next_index(i);
 	}
