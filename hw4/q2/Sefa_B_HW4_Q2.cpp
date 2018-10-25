@@ -9,10 +9,8 @@ queue<Item>::queue(size_t init_cap){
 	data = new Item[capacity];
 	count = 0;
 	first = 0;
-	last = -1;/*Because next indext gets the first index when want to start*/
-	
+	last = capacity-1;/*Because next indext gets the first index when want to start*/	
 }
-
 
 template<class Item>
 queue<Item>::~queue(){
@@ -30,7 +28,8 @@ queue<Item>::queue(const queue<Item>& source){
 	first = source.first;
 	last = source.last;
 	size_t i = first;
-	while(i!=last){
+	data = new Item[count];
+	while(i!=last+1){
 		data[i] = source.data[i];
 		i = next_index(i);
 	}
@@ -44,7 +43,7 @@ bool queue<Item>::empty() const{
 template<class Item>
 Item queue<Item>::front() const {
 	assert(!empty());
-	return data[front];
+	return data[first];
 }
 
 template<class Item>
@@ -52,16 +51,25 @@ void queue<Item>::push(const Item& entry){
 
 	last = next_index(last);
 	data[last] = entry;
+	count++;
 }
+
+template<class Item>
+size_t queue<Item>::size() const{
+	return count;
+}
+
+
 
 template<class Item>
 void queue<Item>::print(){
 	size_t i = first;
-	while(i != last){
-		cout << data[i];
+	while(i != last+1){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
+		cout << data[i] << endl;
 		i=next_index(i);
 	}
 }
+
 
 
 #endif
