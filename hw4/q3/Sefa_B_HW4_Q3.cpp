@@ -129,5 +129,39 @@ void priority_queue<Item>::push(const Item& entry, const int& prior){
 	count++;
 }
 
+/*NOTE this stays the same as queue because first holds the place with the most priority. */
+template<class Item>
+void priority_queue<Item>::pop(){
+	/*Check if queue is empty*/
+	assert(!empty());
+	/*THIS IS FIFO, thus, must get rid of first, NOT LAST*/
+	first = next_index(first);
+	count--;
+	/*Do i need to check if first becomes last?? Does it matter? No?*/
+
+}
+
+template<class Item>
+size_t priority_queue<Item>::size() const{
+		return count;
+}
+
+
+
+
+template<class Item>
+void priority_queue<Item>::print(){
+	size_t index = 0;
+	for(size_t i = 0; i < capacity; i++){
+		
+		cout << "Printing entry then priority" << endl;
+		cout << data[i] << " " << priority[i] <<endl;
+	}
+}
+
+
+
+
+
 
 #endif
