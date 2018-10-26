@@ -83,10 +83,32 @@ Item queue<Item>::front() const {
 
 template<class Item>
 void queue<Item>::push(const Item& entry){
-
+	/*Remember this is a circular array, so stuff goes in the front if its empty. But we also need to check if count is filled, if that is the case, we need to create a new array which shifts everything over and it is resized. */
+	if(count >= capacity){ /*NOTE CANNOT USE size() or it will fail because size==count at start.*/
+		Item * bigger = new Item[++capacity]; /*New array. NOTE capacity was also incremented here.*/
+		for(size_t i = 0; i < count; i++){ /*Transferring everything over...*/
+			bigger[i] = data[i];
+		}
+		delete [] data;
+		data = bigger;
+	}
+	/*THIS CODE IS THE SAME FOR ALL CASES: APPEND TO THE END SINCE FIFO. */
+	cout << "CAP " << capacity  << endl << endl<< "LAST " << last << endl;
+	//cout << (last+1) % capacity << endl;
 	last = next_index(last);
+	cout << "NEW LAST " << last << endl;
+	cout << "ENTRY " << entry << endl << endl << endl;
+	cout << "BEFORE ADD " << data[last] << endl;
 	data[last] = entry;
+	cout << "WHAT SHOULD BE: " << data[last] << endl;	
 	count++;
+	/*I beleive I handled all cases...*/
+
+	for(int i = 0; i < count; i++){
+		cout << data[i] << " ";
+	}
+	cout << endl;
+
 }
 
 template<class Item>
@@ -99,6 +121,8 @@ size_t queue<Item>::size() const{
 template<class Item>
 void queue<Item>::print(){
 	size_t index = 0;
+	
+	cout << "COUNT " << count << endl;
 	for(size_t i = 0; i < count; i++){
 		index = next_index(first+i) -1; 
 		cout << data[index] << endl;

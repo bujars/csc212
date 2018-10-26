@@ -9,7 +9,7 @@ using namespace std;
 template<class Item>
 class queue{
 	public:
-		queue(size_t init_cap= 30);
+		queue(size_t init_cap= 5); /*NOTE decreased capacity to smaller testable value. change back to 30*/
 		~queue();
 		queue(const queue<Item>& source);
 		void operator=(const queue<Item>& source);
