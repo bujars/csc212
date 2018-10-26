@@ -27,17 +27,19 @@ queue<Item>::queue(const queue<Item>& source){
 	count = source.count;
 	first = source.first;
 	last = source.last;
-	/*size_t i = first;
-	data = new Item[count];
-	while(i!=last+1){
+	/*size_t i = first;*/
+	data = new Item[capacity];
+	/*while(i!=last+1){
 		data[i] = source.data[i];
 		i = next_index(i);
 	}*/
-
+	/*cout << "error here" << endl;*/
 	/*NOTE it does not matter whats first/last....here we are just copying over the array....its the same thing*/
-	for(size_t i =0; i < capacity; i++){
+	/*UPDATE I might be wrong with the above, because our array has just giberish in it. Not sure why it wont copy ovr but its giving me an error to unwanted stuff.*/
+	for(size_t i = 0; i < capacity; i++){
 		data[i] = source.data[i];
 	}
+	cout << "error passed" << endl;
 }
 
 template<class Item>
@@ -51,9 +53,9 @@ void queue<Item>::operator=(const queue<Item>& source){
 	last = source.last;
 	count = source.count;
 	size_t i = first;
-	cout << i << endl;
-	cout << capacity << endl;
-	cout << last+1 << endl;
+	//cout << i << endl;
+	//cout << capacity << endl;
+	//cout << last+1 << endl;
 	/*while(i !=(last) && i<capacity){ //ISSUE IS ITS GOING PAST CAPACITY//
 		//return;
 		//cout << "Here" << endl;
@@ -96,11 +98,22 @@ size_t queue<Item>::size() const{
 
 template<class Item>
 void queue<Item>::print(){
-	size_t i = first;
-	while(i != (last+1)){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
+	size_t index = 0;
+	for(size_t i = 0; i < count; i++){
+		index = next_index(first+i) -1; 
+		cout << data[index] << endl;
+	}
+#if 0
+	while(i <= (last)){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
 		cout << data[i] << endl;
 		i=next_index(i);
 	}
+#endif
+
+	/*NOTE: This function was taken from mycodeschool github file. 
+	 * Was having trouble with infinite loop and resorted to trying 
+	 * someone elses code just for testing purposes. All credit for print function given to them.*/
+
 }
 
 

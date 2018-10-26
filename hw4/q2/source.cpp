@@ -12,12 +12,12 @@ int main(){
 	cout << a.front() << endl;
 	queue<int>b(a);
 	cout << endl;
-	b.print();
-	//b = a;
 	//b.print();
+	//b = a;
+	b.print();
 	
 	queue<int> d;
-
+	cout << endl << endl << "what's this?" << endl;
 	b = d;
 	//d = b;
 	b.print();
