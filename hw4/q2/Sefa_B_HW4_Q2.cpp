@@ -39,7 +39,7 @@ queue<Item>::queue(const queue<Item>& source){
 	for(size_t i = 0; i < capacity; i++){
 		data[i] = source.data[i];
 	}
-	cout << "error passed" << endl;
+	/*cout << "error passed" << endl;*/
 }
 
 template<class Item>
@@ -90,26 +90,43 @@ void queue<Item>::push(const Item& entry){
 			bigger[i] = data[i];
 		}
 		delete [] data;
-		data = bigger;
+		this->data = bigger;
 	}
 	/*THIS CODE IS THE SAME FOR ALL CASES: APPEND TO THE END SINCE FIFO. */
-	cout << "CAP " << capacity  << endl << endl<< "LAST " << last << endl;
-	//cout << (last+1) % capacity << endl;
+	/*cout << "CAP " << capacity  << endl << endl<< "LAST " << last << endl;
+	cout << (last+1) % capacity << endl;*/
 	last = next_index(last);
-	cout << "NEW LAST " << last << endl;
+	/*cout << "NEW LAST " << last << endl;
 	cout << "ENTRY " << entry << endl << endl << endl;
-	cout << "BEFORE ADD " << data[last] << endl;
+	cout << "BEFORE ADD " << data[last] << endl;*/
 	data[last] = entry;
-	cout << "WHAT SHOULD BE: " << data[last] << endl;	
 	count++;
+#if 0
+	
+	cout << "WHAT SHOULD BE: " << data[last] << endl;	
+	/*count++;*/
 	/*I beleive I handled all cases...*/
-
 	for(int i = 0; i < count; i++){
 		cout << data[i] << " ";
 	}
 	cout << endl;
 
+#endif
 }
+
+template<class Item>
+void queue<Item>::pop(){
+/*Check if queue is empty*/
+	assert(!empty());
+	/*THIS IS FIFO, thus, must get rid of first, NOT LAST*/
+	first = next_index(first);
+	count--;
+	/*Do i need to check if first becomes last?? Does it matter? No?*/
+
+}
+
+
+
 
 template<class Item>
 size_t queue<Item>::size() const{
@@ -122,23 +139,59 @@ template<class Item>
 void queue<Item>::print(){
 	size_t index = 0;
 	
-	cout << "COUNT " << count << endl;
+	/*cout << "COUNT " << count << endl;
 	for(size_t i = 0; i < count; i++){
-		index = next_index(first+i) -1; 
-		cout << data[index] << endl;
+		index = next_index(first+i) -1;
+		cout << "INDEX: " <<index << endl;
+		cout << this->data[index] << endl;
 	}
+*/
+	for(size_t i = 0; i < size(); i++){
+		cout << data[i] << endl;
+	}
+
+
+
 #if 0
 	while(i <= (last)){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
 		cout << data[i] << endl;
 		i=next_index(i);
 	}
-#endif
+//#endif
 
 	/*NOTE: This function was taken from mycodeschool github file. 
 	 * Was having trouble with infinite loop and resorted to trying 
 	 * someone elses code just for testing purposes. All credit for print function given to them.*/
-
+#endif
 }
+
+
+template<class Item>
+void queue<Item>::swapQueues(queue<Item>& source){
+	if(this == &source)/*If they are the same stacks, dont do anything*/
+		return;
+	queue<Item> tempThis(capacity);
+	/*Might be able to use copy constructor and say this queue... and then just do assignments between the two.*/
+	/*NOTE keep having trouble with index of first/last so will just trasnfer every single element, even though this is not efficent at all.*/
+	for(size_t i = 0; i < capacity; i++){
+		tempThis.data[i] = data[i];
+	}
+	tempThis.first = first;
+	tempThis.last = last;
+	tempThis.count = count;
+	delete [] data; 
+	capacity = source.capacity;
+	data = new Item[capacity];
+	first = source.first;
+	last = source.last;
+	count = source.count;
+	for(size_t i = 0; i < capacity; i++){
+		data[i] = source.data[i];
+	}
+	source = tempThis;
+}
+
+
 
 
 
