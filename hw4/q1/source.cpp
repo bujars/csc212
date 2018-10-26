@@ -75,7 +75,7 @@ int main(){
 	cout << "Printing A" << endl;
 	a.print(); 
 	cout << endl; 
-	s.swapStacks(s);
+	s.swapStacks(a);
 	cout << "Printing S" << endl;
 	s.print();
 	cout << endl;

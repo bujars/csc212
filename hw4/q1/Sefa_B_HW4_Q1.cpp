@@ -172,14 +172,13 @@ void stack<Item>::swapStacks(stack<Item>& source){
 		tempThis.data[i] = data[i];
 	}
 	delete [] data; 
-	data = new Item[capacity];
 	used = source.used;
 	capacity = source.capacity;
+	data = new Item[capacity];
 	for(size_t i = 0; i < used; i++){
 		data[i] = source.data[i];
 	}
 	source = tempThis;
-	
 }
 
 
