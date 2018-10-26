@@ -82,6 +82,52 @@ void priority_queue<Item>::operator=(const priority_queue<Item>& source){
 }
 
 
+template<class Item>
+bool priority_queue<Item>::empty() const{
+	return count == 0;
+}
+
+/*NOTE plays the same role since we order them with prioirty.*/
+template<class Item>
+Item priority_queue<Item>::top() const {
+	assert(!empty());
+	return data[first];
+}
+
+template<class Item>
+void priority_queue<Item>::push(const Item& entry, const int& prior){
+	/*Remember this is a circular array, 
+	 * so stuff goes in the front if its empty. 
+	 * But we also need to check if count is filled, 
+	 * if that is the case, we need to create a new 
+	 * array which shifts everything over and it is resized. */
+	if(count >= capacity){ /*NOTE CANNOT USE size() or it 
+							 will fail because size==count at start.*/
+		Item * biggerData = new Item[++capacity]; /*New array. 
+											NOTE capacity was also incremented 
+											here.*/
+		int * biggerPriority = new int[capacity]; /*BC capacity was incremented*/
+		for(size_t i = 0; i < count; i++){ /*Transferring everything over...*/
+			biggerData[i] = data[i];
+			biggerPriority[i] = priority[i];
+		}
+		delete [] data;
+		delete [] priority;
+		this->data = biggerData;
+		this->priority = biggerPriority;
+	}
+	/*THIS CODE IS THE SAME FOR ALL CASES: APPEND TO THE END SINCE FIFO. */
+	/*cout << "CAP " << capacity  << endl << endl<< "LAST " << last << endl;
+	 * 	cout << (last+1) % capacity << endl;*/
+	/*NOTE, we need to shift everything accordingly to prority*/
+	last = next_index(last);
+	/*cout << "NEW LAST " << last << endl;
+	 * 	cout << "ENTRY " << entry << endl << endl << endl;
+	 * 		cout << "BEFORE ADD " << data[last] << endl;*/
+	data[last] = entry;
+	priority[last] = prior;
+	count++;
+}
 
 
 #endif
