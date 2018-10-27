@@ -150,7 +150,15 @@ void queue<Item>::print(){
 		cout << data[i] << endl;
 	}
 
-
+	/*priting in order trial*/
+/*	cout << "TRYING TO PRINT IN ORDER:" << endl;
+	size_t next_last = next_index(last);
+	size_t i = first;
+	while(i != last){
+		cout << data [i] << " ";
+	}
+	cout << "DONE" << endl;
+*/
 
 #if 0
 	while(i <= (last)){ /*Has to be last+1 becasue last holds the last item, is not necessarily the size. Or can do <=last but then that would work if say last was in the fron and i/first was in the back.*/
