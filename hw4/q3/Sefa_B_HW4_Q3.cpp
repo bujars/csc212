@@ -94,6 +94,9 @@ Item priority_queue<Item>::top() const {
 	return data[first];
 }
 
+
+
+/* NOTE the approach i took is to always keep the array in order. First and last dont have much meaning/context.  */
 template<class Item>
 void priority_queue<Item>::push(const Item& entry, const int& prior){
 	/*Remember this is a circular array, 
@@ -101,9 +104,11 @@ void priority_queue<Item>::push(const Item& entry, const int& prior){
 	 * But we also need to check if count is filled, 
 	 * if that is the case, we need to create a new 
 	 * array which shifts everything over and it is resized. */
+	/*cout << "fail 1 " << endl;*/
 	if(count >= capacity){ /*NOTE CANNOT USE size() or it 
 							 will fail because size==count at start.*/
-		Item * biggerData = new Item[++capacity]; /*New array. 
+		capacity++;
+		Item * biggerData = new Item[capacity]; /*New array. 
 											NOTE capacity was also incremented 
 											here.*/
 		int * biggerPriority = new int[capacity]; /*BC capacity was incremented*/
@@ -113,23 +118,76 @@ void priority_queue<Item>::push(const Item& entry, const int& prior){
 		}
 		delete [] data;
 		delete [] priority;
-		this->data = biggerData;
-		this->priority = biggerPriority;
+		data = biggerData;
+		priority = biggerPriority;
+	/*cout << "fail 2 " << endl;*/
 	}
 	/*THIS CODE IS THE SAME FOR ALL CASES: APPEND TO THE END SINCE FIFO. */
 	/*cout << "CAP " << capacity  << endl << endl<< "LAST " << last << endl;
 	 * 	cout << (last+1) % capacity << endl;*/
 	/*NOTE, we need to shift everything accordingly to prority*/
-	last = next_index(last);
+	/*last = next_index(last);*/
 	/*cout << "NEW LAST " << last << endl;
 	 * 	cout << "ENTRY " << entry << endl << endl << endl;
 	 * 		cout << "BEFORE ADD " << data[last] << endl;*/
-	data[last] = entry;
-	priority[last] = prior;
-	count++;
+	/*cout << "fail 3 " << endl;*/
+	last = next_index(last);
+	size_t placeVal = last;/*To place in the spot after last. 
+										 And increase last because we know 
+										 its going to need to shift over.*/
+	/*cout << "PLACEVAL Start: " << placeVal << endl; */
+	bool foundIndex = false;
+	/*cout << "fail 4 " << endl;*/
+#if 0
+	for(size_t i = 0; (i < placeVal) && !foundIndex; i++){
+		if(prior > priority[i]){
+			placeVal = i;
+			foundIndex = true;
+		}
+	}
+#endif
+	for(size_t i = first; (i != placeVal) && !foundIndex; i = next_index(i)){
+		if(prior > priority[i]){
+			placeVal = i;
+			foundIndex = true;
+		}
+	}
+	/*cout << "PLACEVAL New: " << placeVal << endl;
+	cout << "fail 5 " << endl;
+	*/
+#if 0
+	for(size_t i = last; i > placeVal; i--){
+		data[i] = data[i-1];
+		priority[i]=priority[i-1];
+	}
+#endif
+	for(size_t i = last; i !=  placeVal; i = (capacity+i-1)%capacity){
+		data[i] = data[(capacity+i-1)%capacity];
+		priority[i]=priority[(capacity+i-1)%capacity];
+	}
+	/*cout << "Printing array before insertion " << endl;
+	for(size_t i = 0; i < last+1; i++){
+		cout << data[i] << " "; 
+	}
+	cout << endl;
+
+	cout << "fail 6 " << endl;
+
+	cout << "data before " << data[placeVal] << "priority before " << priority[placeVal]<<endl; */
+	data[placeVal] = entry;
+	priority[placeVal] = prior;
+	/*cout << "data new " << data[placeVal] << " prioirty new " << priority[placeVal]<<endl;*/
+	count++; /*incremembet count for adding one. Do not change first since it will always point to highest prioirty.*/
+
+	/*NOTE s--> for shifting/adding in priority, make sure priority goes down the list. And it needs to be in order at which is was added, meaning if two have same priority, which ever was first is in front of the priorirty.*/
+
+	/*while(first!=last){i
+	
+	}
+	*/
 }
 
-/*NOTE this stays the same as queue because first holds the place with the most priority. */
+/*NOTE this stays the same as queue because first holds the place with the most priority. And theres no need to change any of the arrays, since we just ignore it all. */
 template<class Item>
 void priority_queue<Item>::pop(){
 	/*Check if queue is empty*/
@@ -157,8 +215,11 @@ void priority_queue<Item>::print(){
 		cout << "Printing entry then priority" << endl;
 		cout << data[i] << " " << priority[i] <<endl;
 	}
-}
 
+	/*for(size_t i = first; i !=last; i = next_index(i))
+		cout << data[i] << endl;
+	cout << data[last];*/
+}
 
 
 
