@@ -1,0 +1,53 @@
+#ifndef __QUEUE_CPP__
+#define __QUEUE_CPP__
+
+#include "Sefa_B_HW4_Q4.h"
+
+
+template<class Item>
+queue<Item>::queue(size_t init_cap){
+	queueHolder = new stack<Item>(init_cap);
+	queueTemp = new stack<Item>(init_cap);
+}
+
+template<class Item>
+queue<Item>::~queue(){
+	delete queueHolder;
+	delete queueTemp;
+}
+
+
+template<class Item>
+void queue<Item>::pop(){
+	/*NOTE stack's verion of pop also checks assertion, but can just do it here.*/
+	assert(!empty());
+	/*Since stack was ordered to be in reverse, or in a way the queue would be ordered, to remove first, just remove top!*/
+	queueHolder.pop();
+}
+
+template<class Item>
+void queue<Item>::push(const Item& entry){
+	/*Move everything from stack 1 into stack to so that order remains same*/
+	while(!(queueHolder.isEmpty())){
+		queueTemp.push(queueHolder.top());
+		queueHolder.pop();
+	}
+	/*Add new entry to top of stack (where everything is reversed)*/
+	queueTemp.push(entry);
+	/*Re-reverse everything from stack 2 into stack 1 so that order is back.*/
+	while(!queueTemp.empty()){
+		queueHolder.push(queueTemp.top());
+		queueTemp.pop();
+	}
+
+}
+
+template<class Item>
+size_t queue<Item>::size() const{
+	return queueHolder.size();
+}
+
+
+	
+
+#endif
