@@ -19,7 +19,8 @@ class queue{
 		size_t size() const;
 		bool empty() const;
 		Item front() const;
-		void swapQueues(queue<Item>& source);
+		/*void swapQueues(queue<Item>& source);*/ /*Not required for thisquesiton. You can ust use stack version if needed.*/
+		void print();
 	private:
 		/*Item * data;
 		size_t first;
