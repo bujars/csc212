@@ -23,9 +23,11 @@ int main(){
 	b.push(14);
 	b.push(15);
 #if 0
-	//a = b;
+	a = b;
 	cout << endl;
-	b.print();
+	a.print();
+
+//#if 0
 	queue<int>c(a);
 	cout << endl << endl;
 	c.print();

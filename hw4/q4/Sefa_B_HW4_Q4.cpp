@@ -72,17 +72,21 @@ void queue<Item>::operator=(const queue<Item>& source){
 	if(this == &source){
 		return;
 	}
-	//delete queueHolder;
-	queueHolder=source.queueHolder;
+	//cout << queueHolder->top() << endl;
+
+	delete queueHolder;
+	//queueHolder=source.queueHolder;
 	//delete queueTemp;
-	queueTemp = source.queueTemp;
+	//queueTemp = source.queueTemp;
 }
 
+
+//#if 0
 template<class Item>
 queue<Item>::queue(const queue<Item>& source){
 	queueHolder = new stack(source.queueHolder);
 	queueTemp = new stack(source.queueTemp);
-}
-#endif
+} 
+#endif 
 
 #endif
