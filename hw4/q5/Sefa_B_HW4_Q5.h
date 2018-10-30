@@ -13,7 +13,7 @@ using namespace std;
 template<class Item>
 class stack{
 	public:
-		stack();
+		stack(size_t init_cap = 5);
 		~stack();
 		stack(const stack<Item>& source);
 		void operator=(const stack<Item>& source);
@@ -21,10 +21,12 @@ class stack{
 		void pop();
 		bool isEmpty() const;
 		size_t size() const;
-		Item top() const;
+		Item top();
+		void print();
 	private:
-		queue<Item> * stackHolder;
-		queue<Item> * stackTemp;
+		/*NOTE changed from pointers to standard to avoid having to write copy constructor/assignment operator.*/
+		queue<Item> stackHolder;/* * stackHolder;*/
+		queue<Item> stackTemp;/* * stackTemp;*/
 
 
 };
