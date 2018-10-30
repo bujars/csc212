@@ -28,6 +28,9 @@ void queue<Item>::pop(){
 	queueHolder.pop();
 }
 //#if 0
+
+/*NOTE queueHOLDER holds the queue in the way it should, meaning that using pop/top gives it its order.*/
+
 template<class Item>
 void queue<Item>::push(const Item& entry){
 	/*Move everything from stack 1 into stack to so that order remains same*/
@@ -52,7 +55,20 @@ size_t queue<Item>::size() const{
 
 template<class Item>
 void queue<Item>::print(){
+	cout << "STACK WAY:" << endl;
 	queueHolder.print();
+	cout << endl << endl << "QUEUE WAY" << endl;
+	while(!queueHolder.isEmpty()){
+		cout << queueHolder.top() << endl;
+		queueTemp.push(queueHolder.top());
+		queueHolder.pop();
+	}
+	/*Put everything back.*/
+	while(!queueTemp.isEmpty()){
+		/*cout << queueHolder.top() << endl;*/
+		queueHolder.push(queueTemp.top());
+		queueTemp.pop();
+	}
 }
 
 template<class Item>
@@ -90,8 +106,8 @@ void queue<Item>::operator=(const queue<Item>& source){
 //#if 0
 template<class Item>
 queue<Item>::queue(const queue<Item>& source){
-	queueHolder = stack<Item>::stack(source.queueHolder);
-	queueTemp = stack<Item>::stack(source.queueTemp);
+	queueHolder = stack<Item>(source.queueHolder);
+	queueTemp = stack<Item>(source.queueTemp);
 } 
 //#endif 
 //#endif

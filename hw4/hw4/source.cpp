@@ -14,6 +14,10 @@ int main(){
 	a.push(5);
 	a.push(6);
 	a.pop();
+	a.push(7);
+	a.pop();
+	a.push(8);
+	a.pop();
 	cout << a.front() << endl << endl;
 	a.print();	
 	cout << endl<< a.size() << endl;
@@ -25,19 +29,26 @@ int main(){
 	b.push(14);
 	b.push(15);
 	b.print();
-	
+	queue<int>d;
+	d=a;
 	//#endif
 //#if 0
 	a = b;
-	cout << endl << endl;
+	b=b;
+	
+	cout << "should be 11 12 13 14 15   "<<endl << endl;
 	a.print();
-
-#if 0
-	queue<int>c(a);
+	cout << "should be 11 12 13 14 15    "<<endl << endl;
+	b.print();
+	cout << "should be 4 5 6 7 8    "<<endl << endl;
+	d.print();
+	cout << endl << endl;
+//#if 0
+	queue<int>c(d);
 	cout << endl << endl;
 	c.print();
 	cout << endl;
-#endif
+//#endif
 
 	return 0;
 }
