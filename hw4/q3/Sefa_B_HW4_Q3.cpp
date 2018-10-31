@@ -130,12 +130,13 @@ void priority_queue<Item>::push(const Item& entry, const int& prior){
 	priority[indexPrior] = prior;
 	last++;
 	count++;
-
+#if 0
 	cout << "TESTING IN PUSH" << endl;
 	for(int i = first; i < last; i++){
 		cout << "DATA " << data[i] << " PRIOR " << priority[i] << endl;
 	}
 	cout << "END" << endl << endl;
+#endif
 }
 
 
@@ -279,7 +280,7 @@ void priority_queue<Item>::pop(){
 	last--;
 	//last = next_index(last -1);
 	/*Do i need to check if first becomes last?? Does it matter? No?*/
-
+#if 0
 	cout << "first: " << first << " " << "last: " << last << endl;
 	cout << "testing testing testing " << endl;
 	for(size_t i = first; i != last; i = next_index(i)){
@@ -288,7 +289,7 @@ void priority_queue<Item>::pop(){
 		cout << "i" << i  << " i next:" << next_index(i) << endl;
 	}
 	//cout << data[last] << endl;*/
-
+#endif
 
 
 
