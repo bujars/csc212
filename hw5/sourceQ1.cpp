@@ -23,6 +23,12 @@ int main(){
 	cout << endl << endl << endl;
 	cout << "Attempting to make tree that i saw online, the image look in notes." << endl;
 	/*Root*/
+	
+	btNode<int> * root = NULL;
+	root = &b;
+	//print(root);
+
+//#if 0	
 	btNode<int>a(25);
 	/*Left subtree*/
 	btNode<int>a1(15);
@@ -68,6 +74,8 @@ int main(){
 	cout << endl << endl << "BACKWARD " << endl;
 	backWardInOrderTraversal(&a,print<int>);
 	cout << endl << endl;
+	//clearbT(root);
+//#endif
 
 	return 0;
 }

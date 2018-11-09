@@ -12,24 +12,44 @@ btNode<Item>::btNode( const Item& init_data,
 }
 
 template<class Item>
+btNode<Item>::btNode(const btNode<Item>* source){
+	/*NOTE source is a root pointer, so we would want to utalize copy() which would go in and copy every single field....but how???*/
+	
+	/* data_field = source.data_field;
+	 * left_ptr = source.left_ptr;
+	 * right_ptr =source.right_ptr; */
+
+}
+
+template<class Item>
+void btNode<Item>::operator =(const btNode<Item>* source){
+	if(this==source) return;
+}
+
+
+
+
+//#if 0
+template<class Item>
 btNode<Item>::~btNode(){
 
 /*NOTE deconstructor is not working. Not exactly sure why.*/
 
-#if 0
+//#if 0
 	/*Should essentially call list clear????? --> Not sure how unless the argument or ptr is this? */
-	delete left_ptr;
-	delete right_ptr;
+	//delete left_ptr;
+	//delete right_ptr;
 	data_field = 0;
-	left_ptr = NULL;
-	right_ptr = NULL;
+	//left_ptr = NULL;
+	//right_ptr = NULL;
 	/*delete this;
 	data_field = 0;
 	left_ptr = NULL;
 	right_ptr = NULL;*/
-#endif
+//#endif
 }
 
+//#endif
 
 /*NOTE this function is called in the traversal ones. Only the current node is printed because the traversal ones recursively go through the list calling this specific function. */
 template<class Item>
@@ -125,7 +145,20 @@ void backWardInOrderTraversal(const btNode<Item>* root_ptr, Process f){
 
 }
 
-
+template<class Item>
+void clearbT(btNode<Item>*& root_ptr){
+	/*If the current pointer is null, do nothing*/
+	if(root_ptr == NULL) return;
+	/*Iterate down to every single leaf and delete that pointer and reset it to null, and set its data to 0.*/
+	btNode<Item>* child;
+	child = root_ptr->left();
+	clearbT(child); /*go all the way to left.*/
+	child = root_ptr->right();
+	clearbT(child); /*go all the way to the right.*/
+	//root_ptr->set_data(0);
+	delete root_ptr;
+	//root_ptr = NULL;
+}
 
 
 
