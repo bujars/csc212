@@ -51,7 +51,7 @@ size_t numNodesbT(const btNode<Item>* root_ptr){
 	size_t count = 1;
 	count = count + numNodesbT(root_ptr->left()); /*Keep track of current count in the recursive call, and then the count = 1 is alays set to 1 in each call but still kept track of. This is so we add 1 each time we find a node.*/
 	count = count + numNodesbT(root_ptr->right());
-	cout << "DAAATAAA " << root_ptr->data() << endl;
+	/*cout << "DAAATAAA " << root_ptr->data() << endl;*/
 	return count;
 //#endif
 //return 1 + numNodesbT(root_ptr->left()) + numNodesbT(root_ptr->right());
@@ -65,7 +65,7 @@ size_t heightbT(const btNode<Item>* root_ptr){
 		return 0;
 		
 	}
-	cout << "DATA" << root_ptr->data() << endl;
+	/*cout << "DATA" << root_ptr->data() << endl;*/
 	size_t leftCount = 0;
 	size_t rightCount = 0;
 	leftCount = leftCount + 1 + heightbT(root_ptr->left());
@@ -76,6 +76,57 @@ size_t heightbT(const btNode<Item>* root_ptr){
 		return leftCount;
 	return rightCount;
 }
+
+/* NOTE: (left) Root (right) */
+template<class Item, class Process>
+void inOrderTraversal(const btNode<Item>* root_ptr, Process f){
+	if(root_ptr == NULL){
+		return;
+	}
+	/* Go through left side first. */
+	inOrderTraversal(root_ptr->left(), f);
+	f(root_ptr);
+	inOrderTraversal(root_ptr->right(),f);
+
+}
+
+template<class Item, class Process>
+void preOrderTraversal(const btNode<Item>* root_ptr, Process f){
+	if(root_ptr == NULL){
+		return;
+	}
+	/* Go through root first. */
+	f(root_ptr);
+	preOrderTraversal(root_ptr->left(), f);
+	preOrderTraversal(root_ptr->right(),f);
+
+}
+
+template<class Item, class Process>
+void postOrderTraversal(const btNode<Item>* root_ptr, Process f){
+	if(root_ptr == NULL){
+		return;
+	}
+	/* Go through left side first. */
+	postOrderTraversal(root_ptr->left(), f);
+	postOrderTraversal(root_ptr->right(),f);
+	f(root_ptr);
+}
+
+template<class Item, class Process>
+void backWardInOrderTraversal(const btNode<Item>* root_ptr, Process f){
+	if(root_ptr == NULL){
+		return;
+	}
+	/* Go through right side first. */
+	backWardInOrderTraversal(root_ptr->right(), f);
+	f(root_ptr);
+	backWardInOrderTraversal(root_ptr->left(),f);
+
+}
+
+
+
 
 
 #endif

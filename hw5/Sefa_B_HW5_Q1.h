@@ -18,7 +18,7 @@ class btNode{
 		~btNode(); /*Deconstructor*/
 		void operator=(const btNode<Item>* root_ptr);/*Assignment operator since non-static memory*/
 		void set_data(const Item& entry){ data_field = entry;}
-		void set_left_ptr(btNode<Item> * new_left){left_ptr = new_left;}
+		void set_left_ptr(btNode<Item>* new_left){left_ptr = new_left;}
 		void set_right_ptr(btNode<Item>* new_right){right_ptr = new_right;}
 		void set_parent(); /*Again implement this only if deciding to use parent*/
 		bool isLeaf() const{
