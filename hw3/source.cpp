@@ -2,18 +2,19 @@
 
 int main(){
 	
-	node * bit = NULL;
-	list_head_insert(bit, 2);
-	cout  << bit->link();
-	cout << bit->data();
-	node *head = new node();
+	//node * bit = NULL;
+	//list_head_insert(bit, 2);
+	node * bit;
+	//cout  << bit->link();
+	//cout << bit->data();
+	node *head = NULL;//new node();
 
-	//list_end_insert(head , 7);
-	list_head_insert(head, 7);
+	list_head_insert(head , 7);
+	//list_head_insert(bit, 7);
 	cout << "PRINT" << endl;
 	list_print(head);
 	
-	
+//#if 0 	
 	cout << endl;
 	list_end_insert(head, 8);
 	list_print(head);
@@ -208,5 +209,6 @@ int main(){
 	list_ith_insert(start, bj, 9);
 	cout << endl << endl;
 	list_print(start);
+//#endif
 	return 0;
 }
