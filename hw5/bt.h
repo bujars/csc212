@@ -59,7 +59,7 @@ template <class Item>
 
     template <class Item>
     std::size_t tree_size(const binary_tree_node<Item>* node_ptr);
-}
+
 
 #include "bintree.template"
 #endif
