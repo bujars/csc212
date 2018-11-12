@@ -1,5 +1,6 @@
 #include "Sefa_B_HW5_Q1.h"
 
+//#if 0
 int main(){
 	btNode<int> b(3);
 	btNode<int> b2(1);
@@ -73,9 +74,33 @@ int main(){
 	postOrderTraversal(&a, print<int>);
 	cout << endl << endl << "BACKWARD " << endl;
 	backWardInOrderTraversal(&a,print<int>);
-	cout << endl << endl;
-	//clearbT(root);
+	cout << endl << endl<< "BEFORE" << endl;
+	print(&a);
+	cout << "AFTER" << endl;
+	//clearbT(a);
+	
+	print(&a);
+	cout << "ENDL" << endl<< endl;
 //#endif
 
+	btNode<int> * root_ptr = NULL;
+	//root_ptr = &a;
+	clearbT(root_ptr);
+
+
+	/*Testing creating nodes the way copy does*/
+	btNode<int> * r = new btNode<int>; /*Make a root with nothing.*/
+	btNode<int> * r1L = new btNode<int>(1);
+	btNode<int> * r1R = new btNode<int>(2);
+	r->set_left_ptr(r1L);
+	r->set_right_ptr(r1R);
+	print(r->right());
+	btNode<int> * cop = copybT(r);
+	print(cop->right());
+	clearbT(r);/*Works.*/
+	print(r->left());
 	return 0;
 }
+
+
+//#endif

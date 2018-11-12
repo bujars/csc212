@@ -160,7 +160,21 @@ void clearbT(btNode<Item>*& root_ptr){
 	//root_ptr = NULL;
 }
 
+template<class Item>
+btNode<Item>* copybT(btNode<Item>* root_ptr){
+ /*Must copy everything from leaf working way up.*/
+	/*Base case is always if ptr is null.*/
+	if(root_ptr == NULL){
+		return NULL; /*Since our return type is a pointer we must return null*/
+	}
+	/*When copying a tree, start with leafs. Luckily, can utalize the constructors*/
+	btNode<Item> * left_ptr; /*Declare the nodes that will be used as links for the new root.*/
+	btNode<Item> * right_ptr;
+	left_ptr = copybT(root_ptr->left()); /*Note we must always save the left becasue copybT returns a ptr*/
+	right_ptr = copybT(root_ptr->right());
+	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr); /*Return a new node of this item.*/
 
+}
 
 #endif
 
