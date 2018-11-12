@@ -63,7 +63,7 @@ void print(const btNode<Item>* root_ptr){
 template<class Item>
 size_t numNodesbT(const btNode<Item>* root_ptr){
 	/*Recursively go down the left, and then the right and everytime we hit a leaf, return 0. Sum up each recursive call.*/
-	if(root_ptr == NULL){
+	if(root_ptr == NULL){ /*NOT sure if I would need to assert here and just halt program. */
 		return 0;
 	}
 //#if 0
