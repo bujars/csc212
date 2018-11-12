@@ -35,13 +35,39 @@ binaryTree<Item>::binaryTree(const binaryTree& source){
 
 template<class Item>
 void binaryTree<Item>::createFirstNode(const Item& entry){
-	//root_ptr = 
+	//root_ptr =
+	currentNode = new btNode<Item>(entry);
+	/*
+	 * rootNode = currentNode;
+	 * parentNode = currentNode; //NOTE I think this remains NULL until a child is added. 
+	 * */
+}
+
+template<class Item>
+bool binaryTree<Item>::hasParent() const{
+	return (parentNode == NULL); /*Parent node is initalized to the pointer above current. But when the fist node is inserted, parent remains as null. Parent only changes when we move left or right. */
+}
+
+template<class Item>
+bool binaryTree<Item>::hasLeft() const {
+	return (currentNode->left() == NULL);
+}
+
+template<class Item>
+bool binaryTree<Item>::hasRight() const{
+	return (currentNode->right() == NULL);
 }
 
 
 template<class Item>
 size_t binaryTree<Item>::size() const{
-	return currentNode.numOfNodes();
+	return numNodesbT(currentNode);
+}
+
+template<class Item>
+void binaryTree<Item>::print(){
+	cout << currentNode->data() << endl;
+	//cout << currentNode->left()->data();
 }
 
 #endif

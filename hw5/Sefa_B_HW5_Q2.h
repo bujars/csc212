@@ -114,7 +114,8 @@ public:
     Item retrieve( ) const;
     bool hasParent( ) const;
     bool hasLeft( ) const;
-    bool hasRight( ) const;    
+    bool hasRight( ) const;
+	void print(); 
 private:
     // TODO
 	btNode<Item> * currentNode;

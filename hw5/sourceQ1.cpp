@@ -1,3 +1,28 @@
+//if 0
+#include "Sefa_B_HW5_Q2.h"
+int main(){
+	binaryTree<int> * b = new binaryTree<int>;
+	b->createFirstNode(2);
+	b->print();
+	cout << b ->size() << endl;
+	cout << b->hasParent() << endl;
+	cout << b->hasLeft() << endl;
+	cout << b->hasRight() << endl;
+	return 0;
+}
+
+
+
+
+//endif
+
+
+
+
+
+
+
+#if 0
 #include "Sefa_B_HW5_Q1.h"
 
 //#if 0
@@ -101,6 +126,10 @@ int main(){
 	print(r->left());
 	return 0;
 }
+#endif
 
 
-//#endif
+
+
+
+
