@@ -31,7 +31,7 @@ class btNode{
 		const btNode<Item>* left() const { return left_ptr;}
 		const btNode<Item>* right() const { return right_ptr;}
 		/*Self added this function just to return count.*/
-		size_t numNodesbT() const{ return count;} /*NOTE we need a non-member funciton for num_of_nodes*/
+		/*size_t numNodesbT() const{ return count;}*/ /*NOTE we need a non-member funciton for num_of_nodes*/
 	private:
 		/*Every binary tree points to its left and right child*/
 		btNode<Item>* left_ptr; 
