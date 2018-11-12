@@ -8,6 +8,10 @@ int main(){
 	cout << b->hasParent() << endl;
 	cout << b->hasLeft() << endl;
 	cout << b->hasRight() << endl;
+	cout << b->retrieve() << endl;
+	b->addRight(3);
+	cout << b->hasRight() << endl;
+
 	return 0;
 }
 

@@ -115,12 +115,12 @@ public:
     bool hasParent( ) const;
     bool hasLeft( ) const;
     bool hasRight( ) const;
-	void print(); 
+	void print(); /*Function I added just to test that everything is okay.*/ 
 private:
     // TODO
 	btNode<Item> * currentNode;
 	btNode<Item> * rootNode; 
-	btNode<Item> * parentNode;
+	/*btNode<Item> * parentNode;*/
 	/*NOTE my intial thoughts are we 
 	 * have one node that maintains the current, 
 	 * and one parent node. We can easily get the children 
@@ -137,6 +137,16 @@ private:
 	 * Going to actually include a parent node too.... For now. 
 	 * Another thought that just occured is maybe each parent 
 	 * will hold a node to its parent? Like backwards linking? Idk tbh. 
+	 *
+	 * */
+
+	/* NOTE according to Timmy we only need rootNode and currentNode. 
+	 * Just use rootNode to iteratre to the parent node, 
+	 * or the node before the child. 
+	 * This to me is just a bit confusing because its redundant recursiveness. 
+	 * Like having to go through. But timmy said the challenge of holding parent 
+	 * is that youll have to keep track of multiple pointers, 
+	 * and its harder that way.
 	 *
 	 * */
 };
