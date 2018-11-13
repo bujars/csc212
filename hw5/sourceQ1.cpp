@@ -26,6 +26,8 @@ int main(){
 	cout << "HASBLEFT " << b->hasLeft() << endl;
 	b->shiftRight();
 	cout <<  "BLEFTRIGHT " << b->retrieve() << endl;
+	b->change(18);
+	cout <<  "BLEFTRIGHTChange " << b->retrieve() << endl;
 	return 0;
 }
 

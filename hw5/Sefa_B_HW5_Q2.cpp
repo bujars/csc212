@@ -116,7 +116,12 @@ void binaryTree<Item>::shiftRight(){
 	currentNode = currentNode->right();
 }
 
+template<class Item>
+void binaryTree<Item>::change(const Item& entry){
+	assert(currentNode !=NULL); /*Make sure we have a currentNode*/
+	currentNode->set_data(entry); /*Change entry as needed.*/
 
+}
 
 template<class Item>
 void binaryTree<Item>::print(){
