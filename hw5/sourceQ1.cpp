@@ -34,6 +34,8 @@ int main(){
 	cout <<  "BLEFTRIGHT " << b->retrieve() << endl;
 	b->change(18);
 	cout <<  "BLEFTRIGHTChange " << b->retrieve() << endl;
+	b->shiftToRoot();
+	cout << "BR " << b->retrieve() << endl;
 	
 	
 	

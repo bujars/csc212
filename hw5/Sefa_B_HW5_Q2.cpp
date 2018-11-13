@@ -145,6 +145,15 @@ void binaryTree<Item>::change(const Item& entry){
 }
 
 template<class Item>
+void binaryTree<Item>::shiftToRoot(){
+	assert(size()>0);
+	currentNode = rootNode;
+}
+
+
+
+
+template<class Item>
 void binaryTree<Item>::shiftUp(){
 /*Make sure we have a root ptr, make sure it isnt == to current, make sure hasPrent is true....recursively iterate until we find the pointer in which its child is == to current, then return that pointer*/
 	assert((size() > 0) && hasParent());
