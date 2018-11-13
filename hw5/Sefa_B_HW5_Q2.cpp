@@ -129,6 +129,7 @@ void binaryTree<Item>::change(const Item& entry){
 
 template<class Item>
 void binaryTree<Item>::print(){
+	assert(currentNode!=NULL);
 	cout << currentNode->data() << endl;
 	//cout << currentNode->left()->data();
 }
