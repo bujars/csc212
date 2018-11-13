@@ -120,7 +120,7 @@ private:
     // TODO
 	btNode<Item> * currentNode;
 	btNode<Item> * rootNode;
-
+	size_t count;
 	/*NOTE == Textbook says to use a count variable to keep track of number of nodes... I can either incorperate this and just addjust it in createNode and addLeft/Right, or I can just continue to use numNodes => Note this would take N time...*/
 
 

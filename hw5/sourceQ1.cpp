@@ -7,7 +7,7 @@ int main(){
 	/*b->addLeft(2);*/
 	b->createFirstNode(2);
 	b->print();
-	cout << b ->size() << endl;
+	cout << "SIZE " <<b ->size() << endl;
 	cout << "HAS PARENT " << b->hasParent() << endl;
 	cout << "HAS LEFT " <<b->hasLeft() << endl;
 	cout << "HAS RIGHT "<<b->hasRight() << endl;

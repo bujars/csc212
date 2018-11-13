@@ -9,6 +9,7 @@ template<class Item>
 binaryTree<Item>::binaryTree(){
 	currentNode = NULL;
 	rootNode = NULL;
+	count = 0;
 	/*parentNode = NULL;*/
 }
 
@@ -23,6 +24,7 @@ binaryTree<Item>::~binaryTree(){
 	/*Just get rid of current next.*/
 	delete currentNode;
 	currentNode = NULL;
+	count = 0;
 	//rootNode = NULL;
 	/*parentNode = NULL;*/
 }
@@ -34,6 +36,7 @@ binaryTree<Item>::binaryTree(const binaryTree& source){
 
 	/*Set it to rootNode or the intial. Must change somehow to be the current/parnet if user tries to make a copy from somewhere down in the list.. Not sure how I can iterate through and then set those specfic nodes. But its something needed to be done--> hecne why im writing these thoughts down. */
 	currentNode = rootNode;
+	count = 0;
 	/*parentNode = rootNode;*/ 
 }
 
@@ -43,7 +46,9 @@ void binaryTree<Item>::createFirstNode(const Item& entry){
 	assert((currentNode == NULL) && (rootNode == NULL));
 	currentNode = new btNode<Item>(entry);
 	rootNode = currentNode;
+	count = 1;
 	/*
+	 *
 	 * rootNode = currentNode;
 	 * parentNode = currentNode; //NOTE I think this remains NULL until a child is added. 
 	 * */
@@ -82,10 +87,12 @@ bool binaryTree<Item>::hasRight() const{
 
 
 template<class Item>
-size_t binaryTree<Item>::size() const{
+size_t binaryTree<Item>::size() 
+	const{
 	/*NOT sure if I was to assert here, as numNodesbT should handle empty case.*/
-	assert(rootNode != NULL);
-	return numNodesbT(rootNode); 
+	/*assert(rootNode != NULL);*//*THIS line is handled by count*/
+	return count;
+	/*numNodesbT(rootNode); */
 	/*NOTE want in the tree. Current node can be somewhere down in the tree.*/
 		/*numNodesbT(currentNode);*/
 }
@@ -102,6 +109,7 @@ void binaryTree<Item>::addRight(const Item& entry){
 	assert((size() >0) && (!hasRight()));
 	btNode<Item> * newRight = new btNode<Item>(entry);
 	currentNode->set_right_ptr(newRight);
+	count++;
 }
 
 template<class Item>
@@ -110,6 +118,7 @@ void binaryTree<Item>::addLeft(const Item& entry){
 	/*NOTE like addRight, might need to change to if.*/
 	btNode<Item> * newLeft = new btNode<Item>(entry);
 	currentNode->set_left_ptr(newLeft);
+	count++;
 }
 
 /*template<class Item>
@@ -134,6 +143,30 @@ void binaryTree<Item>::change(const Item& entry){
 	currentNode->set_data(entry); /*Change entry as needed.*/
 
 }
+
+template<class Item>
+void binaryTree<Item>::shiftUp(){
+/*Make sure we have a root ptr, make sure it isnt == to current, make sure hasPrent is true....recursively iterate until we find the pointer in which its child is == to current, then return that pointer*/
+	assert((size() > 0) && hasParent());
+	binaryTree<Item> * parent; 
+	binaryTree<Item> * root = rootNode; 
+	binaryTree<Item>* rootLeft = rootNode;
+	binaryTree<Item>* rootRight = rootNode;
+	if(rootNode->hasLeft()){
+		rootLeft->shiftLeft(); 
+	}
+	if(rootLeft == currentNode){
+		
+	}
+	if(rootNode->hasRight()){
+		rootRight->shiftRight();
+	}
+	
+	
+
+
+}
+
 
 template<class Item>
 void binaryTree<Item>::print(){
