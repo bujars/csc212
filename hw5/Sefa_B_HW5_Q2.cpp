@@ -40,6 +40,7 @@ binaryTree<Item>::binaryTree(const binaryTree& source){
 template<class Item>
 void binaryTree<Item>::createFirstNode(const Item& entry){
 	//root_ptr =
+	assert((currentNode == NULL) && (rootNode == NULL));
 	currentNode = new btNode<Item>(entry);
 	rootNode = currentNode;
 	/*
@@ -50,8 +51,9 @@ void binaryTree<Item>::createFirstNode(const Item& entry){
 
 template<class Item>
 bool binaryTree<Item>::hasParent() const{
-	if(rootNode == NULL || currentNode==rootNode)
-		return false;		
+	if(rootNode == NULL || currentNode==rootNode || !(size() >0)){ /*The side part may be redundant*/
+		return false;
+	}
 	return true;
 
 	/*OLD::Parent node is initalized to the pointer above current. 
@@ -68,12 +70,14 @@ bool binaryTree<Item>::hasParent() const{
 /*originally had left==NULL which would mean no child. Had to change this.*/
 template<class Item>
 bool binaryTree<Item>::hasLeft() const {
-	return (currentNode->left() != NULL);
+	/*assert(size() > 0);*/
+	return ((currentNode->left() != NULL) && (size()>0));
 }
 
 template<class Item>
 bool binaryTree<Item>::hasRight() const{
-	return (currentNode->right() != NULL);
+	/*assert(size() > 0);*/
+	return ((currentNode->right() != NULL) && (size() > 0));
 }
 
 
@@ -95,41 +99,45 @@ Item binaryTree<Item>::retrieve() const{
 template<class Item>
 void binaryTree<Item>::addRight(const Item& entry){
 	/*NOTE this could be done using an if statement and just return. But I would rather it halt the program so that the user can know that they cannot perform this command and must change it*/
-	assert(size() >0 && (currentNode->right() == NULL));
+	assert((size() >0) && (!hasRight()));
 	btNode<Item> * newRight = new btNode<Item>(entry);
 	currentNode->set_right_ptr(newRight);
 }
 
 template<class Item>
 void binaryTree<Item>::addLeft(const Item& entry){
-	assert(size()>0 && (currentNode->left() == NULL)); 
+	assert((size()>0) && (!hasLeft())); 
 	/*NOTE like addRight, might need to change to if.*/
 	btNode<Item> * newLeft = new btNode<Item>(entry);
 	currentNode->set_left_ptr(newLeft);
 }
 
+/*template<class Item>
+void binaryTree<Item>
+
+*/
 template<class Item>
 void binaryTree<Item>::shiftLeft(){
-	assert(hasLeft());/*Make sure we have a left child to move to. Again asserting just to be safe.*/
+	assert(hasLeft() && (size()>0));/*Make sure we have a left child to move to. Again asserting just to be safe.*/
 	currentNode = currentNode->left();
 }
 
 template<class Item>
 void binaryTree<Item>::shiftRight(){
-	assert(hasRight());
+	assert(hasRight() && (size() > 0));
 	currentNode = currentNode->right();
 }
 
 template<class Item>
 void binaryTree<Item>::change(const Item& entry){
-	assert(currentNode !=NULL); /*Make sure we have a currentNode*/
+	assert((currentNode !=NULL) && (size() > 0)); /*Make sure we have a currentNode*/
 	currentNode->set_data(entry); /*Change entry as needed.*/
 
 }
 
 template<class Item>
 void binaryTree<Item>::print(){
-	assert(currentNode!=NULL);
+	assert(currentNode!=NULL && size()>0);
 	cout << currentNode->data() << endl;
 	//cout << currentNode->left()->data();
 }
