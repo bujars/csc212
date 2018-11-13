@@ -14,12 +14,16 @@ binaryTree<Item>::binaryTree(){
 
 template<class Item>
 binaryTree<Item>::~binaryTree(){
-	delete currentNode;
-	delete rootNode;
+	//delete currentNode;
+	//delete rootNode;
 	/*delete parentNode;*/
 	/*Delete all and reset to NULL*/
+	/*Must go through the list and remove everything. Notice clearbT sets rootNode to NULL, so no need to worry about it.*/
+	clearbT(rootNode);
+	/*Just get rid of current next.*/
+	delete currentNode;
 	currentNode = NULL;
-	rootNode = NULL;
+	//rootNode = NULL;
 	/*parentNode = NULL;*/
 }
 
