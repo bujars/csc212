@@ -2,16 +2,30 @@
 #include "Sefa_B_HW5_Q2.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
+	/*b->addLeft(2);*/
 	b->createFirstNode(2);
 	b->print();
 	cout << b ->size() << endl;
-	cout << b->hasParent() << endl;
-	cout << b->hasLeft() << endl;
-	cout << b->hasRight() << endl;
-	cout << b->retrieve() << endl;
+	cout << "HAS PARENT " << b->hasParent() << endl;
+	cout << "HAS LEFT " <<b->hasLeft() << endl;
+	cout << "HAS RIGHT "<<b->hasRight() << endl;
+	cout << "RETRIEVE " <<b->retrieve() << endl;
 	b->addRight(3);
-	cout << b->hasRight() << endl;
-
+	cout << "HAS RIGHT " <<b->hasRight() << endl;
+	b->addLeft(10);
+	cout << "HAS LEFT " << b->hasLeft()<<endl;
+	//binaryTree<int> * bLeft = b->left();
+	/*b->addLeft(5); //Works for the case of assertion. */
+	
+	/*I think to add, we must shift and then add? Not exactly sure but with the methods we have, thats the only thing we can do.*/
+	b->shiftLeft();
+	cout<< "BLEFT " << b->retrieve() << endl;
+	cout << "HASBLEFT " << b->hasLeft() << endl;
+	b->addLeft(13);
+	b->addRight(16);
+	cout << "HASBLEFT " << b->hasLeft() << endl;
+	b->shiftRight();
+	cout <<  "BLEFTRIGHT " << b->retrieve() << endl;
 	return 0;
 }
 

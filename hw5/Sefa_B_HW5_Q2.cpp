@@ -96,6 +96,27 @@ void binaryTree<Item>::addRight(const Item& entry){
 	currentNode->set_right_ptr(newRight);
 }
 
+template<class Item>
+void binaryTree<Item>::addLeft(const Item& entry){
+	assert(size()>0 && (currentNode->left() == NULL)); 
+	/*NOTE like addRight, might need to change to if.*/
+	btNode<Item> * newLeft = new btNode<Item>(entry);
+	currentNode->set_left_ptr(newLeft);
+}
+
+template<class Item>
+void binaryTree<Item>::shiftLeft(){
+	assert(hasLeft());/*Make sure we have a left child to move to. Again asserting just to be safe.*/
+	currentNode = currentNode->left();
+}
+
+template<class Item>
+void binaryTree<Item>::shiftRight(){
+	assert(hasRight());
+	currentNode = currentNode->right();
+}
+
+
 
 template<class Item>
 void binaryTree<Item>::print(){
