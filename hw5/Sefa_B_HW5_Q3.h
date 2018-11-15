@@ -97,7 +97,7 @@ class binaryTree
 {
 public:
     // CONSTRUCTORS and DESTRUCTOR
-    binaryTree( );
+    binaryTree(size_t init_cap = 30);
     binaryTree(const binaryTree& source);
     ~binaryTree( );
     // MODIFICATION MEMBER FUNCTIONS

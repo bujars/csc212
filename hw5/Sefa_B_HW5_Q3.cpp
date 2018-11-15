@@ -5,8 +5,8 @@
 #include "Sefa_B_HW5_Q3.h"
 
 template<class Item>
-binaryTree<Item>::binaryTree( ){
-	CAPACITY = 30;
+binaryTree<Item>::binaryTree(size_t init_cap){
+	CAPACITY = init_cap;
 	/*count = 0;*/ /*Set this in createFirstNode*/
 	treeData = new Item[CAPACITY];
 	/*If need to set currentIndex = -1 because don't want user to access*/
