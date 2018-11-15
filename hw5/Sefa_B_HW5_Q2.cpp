@@ -87,8 +87,7 @@ bool binaryTree<Item>::hasRight() const{
 
 
 template<class Item>
-size_t binaryTree<Item>::size() 
-	const{
+size_t binaryTree<Item>::size() const{
 	/*NOT sure if I was to assert here, as numNodesbT should handle empty case.*/
 	/*assert(rootNode != NULL);*//*THIS line is handled by count*/
 	return count;
@@ -150,9 +149,6 @@ void binaryTree<Item>::shiftToRoot(){
 	currentNode = rootNode;
 }
 
-
-
-
 template<class Item>
 void binaryTree<Item>::shiftUp(){
 /*Make sure we have a root ptr, make sure it isnt == to current, make sure hasPrent is true....recursively iterate until we find the pointer in which its child is == to current, then return that pointer*/
@@ -170,7 +166,9 @@ void binaryTree<Item>::shiftUp(){
 	if(rootNode->hasRight()){
 		rootRight->shiftRight();
 	}
-	
+
+	/*while(shift->left!=curent while shiftRight != current)
+		call function again */
 	
 
 

@@ -1,4 +1,52 @@
-//if 0
+//#if 0 
+
+#include "Sefa_B_HW5_Q3.h"
+
+int main(){
+	
+	/*NOTE, WHEN TESTING MUST MAKE SURE ITS A COMPLETE BINARY TREE OR YOU WILL GET ERRORS AS YOU ALREADY HAVE. */
+	
+	binaryTree<int> * b = new binaryTree<int>;
+	b->createFirstNode(2);
+	cout << "HAS PARENT " << b->hasParent() << endl;	
+	cout << "DATA: " << b->retrieve() << endl;
+	cout << "HASL " << b->hasLeft() << endl;
+	cout << "HASR " << b-> hasRight() << endl;
+	b->shiftToRoot(); 
+	cout << "DATA: " << b->retrieve() << endl;
+	/*b->shiftUp();*/ /*Works because of assertion of has parent.*/
+	/*b->shiftLeft();
+	b->shiftRight();*/
+	b->addLeft(3);
+	/** NOTE NOTE NOTE Added left here. Must make sure to add right so that its complete...thats becaue im shifting. If it was the end not requried to add right unless want full   **/	
+	b->addRight(6);
+	cout << "HASL " << b->hasLeft() << endl;
+	cout << "HASR " << b-> hasRight() << endl;
+	b->shiftLeft();
+	cout << "HASL " << b->hasLeft() << endl;
+	cout << "DATA: " << b->retrieve() << endl;
+	cout << "HASR " << b-> hasRight() << endl;
+	/*NOTE MUST HAD LEFT THEN RIGHT*/
+	b->addLeft(7);
+	b->addRight(5);
+	cout << "HASL " << b->hasLeft() << endl;
+	cout << "DATA: " << b->retrieve() << endl;
+	cout << "HASR " << b-> hasRight() << endl;
+	b->shiftRight();
+	cout << "HASL " << b->hasLeft() << endl;
+	cout << "DATA: " << b->retrieve() << endl;
+	cout << "HASR " << b-> hasRight() << endl;
+	return 0;
+}
+
+
+
+//#endif
+
+
+
+
+#if 0
 #include "Sefa_B_HW5_Q2.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
@@ -45,8 +93,7 @@ int main(){
 
 
 
-
-//endif
+#endif
 
 
 
