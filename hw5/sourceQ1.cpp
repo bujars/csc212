@@ -1,5 +1,30 @@
 //#if 0 
 
+#include "Sefa_B_HW5_Q4.h"
+
+int main(){
+	binarySearchTree<int> * b = new binarySearchTree<int>(2);
+	//b->addNode(3);
+	binarySearchTree<int> * c = b->searchNode(3);
+	//cout << c == NULL << endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+//#endif
+
+
+
+
+#if 0 
+
 #include "Sefa_B_HW5_Q3.h"
 
 int main(){
@@ -41,7 +66,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 
