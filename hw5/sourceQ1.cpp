@@ -5,9 +5,21 @@
 int main(){
 	binarySearchTree<int> * b = new binarySearchTree<int>(2);
 	//b->addNode(3);
-	binarySearchTree<int> * c = b->searchNode(3);
+	//b->addNode(3);
+	/*btNode<int> * c = b->searchNode(3);*/
 	//cout << c == NULL << endl;
+	binarySearchTree<int> * c = NULL;
+	//c->addNode(2);
+	b->addNode(5);
+	//b->printT();
+	b->addNode(6);
+	//b->printT();
+	b->addNode(1);
+	b->addNode(4);
+	b->printT();
 	return 0;
+
+
 }
 
 
@@ -61,6 +73,8 @@ int main(){
 	cout << "HASL " << b->hasLeft() << endl;
 	cout << "DATA: " << b->retrieve() << endl;
 	cout << "HASR " << b-> hasRight() << endl;
+	cout << (b == NULL);
+	binaryTree<int> c();
 	return 0;
 }
 
@@ -111,8 +125,10 @@ int main(){
 	cout << "BR " << b->retrieve() << endl;
 	
 	
-	
-	
+	cout << (bP == NULL) << endl;
+	binaryTree<int> bD;
+	//	cout << (bD == NULL) << endl;
+
 	return 0;
 }
 

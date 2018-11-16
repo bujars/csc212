@@ -12,13 +12,14 @@ class binarySearchTree{
 		void addNode(const Item& entry);
 		void removeNode(const Item& entry);
 		/*bool searchNode(const Item& target) const;*/
-		binarySearchTree<Item>* searchNode(const Item& target); /*Slides say to return node pointing to the element we want.. */
+		btNode<Item>* searchNode(const Item& target); /*Slides say to return node pointing to the element we want.. */
 		/*These two just return the min/max node in the list.*/
 		size_t minimum() const;
 		size_t maximum() const;
 		void operator=(const binarySearchTree<Item>& source);
+		void printT();
 	private:
-		binaryTree<Item> * tree_ptr;
+		binaryTree<Item> tree_ptr;
 		/*Don't need this, but going to add it just to have here*/
 		size_t count; 
 

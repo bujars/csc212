@@ -166,6 +166,9 @@ void binaryTree<Item>::shiftUp(){
 	if(rootNode->hasRight()){
 		rootRight->shiftRight();
 	}
+	
+//	btNode<Item> * parent;
+	
 
 	/*while(shift->left!=curent while shiftRight != current)
 		call function again */
@@ -177,9 +180,20 @@ void binaryTree<Item>::shiftUp(){
 
 template<class Item>
 void binaryTree<Item>::print(){
-	assert(currentNode!=NULL && size()>0);
+	assert(currentNode!=NULL);
+	/*if(currentNode != NULL){*/
 	cout << currentNode->data() << endl;
-	//cout << currentNode->left()->data();
+	//cout << currentNode->left()->data();*/
+#if 0
+	/*if(root_ptr == NULL){
+			return;
+						}*/
+			/* Go through left side first. */
+		print(currentNode->left());
+		cout << currentNode->data << endl;
+		print(currentNode->right());
+	}*/
+#endif
 }
 
 #endif
