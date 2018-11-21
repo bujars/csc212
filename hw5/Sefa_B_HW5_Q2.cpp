@@ -56,11 +56,12 @@ void binaryTree<Item>::createFirstNode(const Item& entry){
 
 template<class Item>
 bool binaryTree<Item>::hasParent() const{
+#if 0
 	if(rootNode == NULL || currentNode==rootNode || !(size() >0)){ /*The side part may be redundant*/
 		return false;
 	}
 	return true;
-
+#endif
 	/*OLD::Parent node is initalized to the pointer above current. 
 	 * But when the fist node is inserted, parent remains as null. 
 	 * Parent only changes when we move left or right. */
@@ -69,6 +70,9 @@ bool binaryTree<Item>::hasParent() const{
 	 * They way I did it was if the root isn't NULL (meaning we have a root), 
 	 * and if the currentNode is not the same as the root, so it's somewhere down
 	 * the line, then it must have a parent.*/
+	cout <<"UGHHHH " << rootNode->data() << endl;
+	cout << "FUCCCCCCCCK      "<<rootNode->parent() << endl;
+	return (currentNode->parent() != NULL);
 
 }
 
@@ -103,10 +107,19 @@ Item binaryTree<Item>::retrieve() const{
 }
 
 template<class Item>
+btNode<Item>* binaryTree<Item>::retrieveNode(){
+	assert(this->size()>0 && hasParent());
+	return currentNode->parent();
+}
+
+
+
+template<class Item>
 void binaryTree<Item>::addRight(const Item& entry){
 	/*NOTE this could be done using an if statement and just return. But I would rather it halt the program so that the user can know that they cannot perform this command and must change it*/
 	assert((size() >0) && (!hasRight()));
-	btNode<Item> * newRight = new btNode<Item>(entry);
+	btNode<Item> *root = rootNode;
+	btNode<Item> * newRight = new btNode<Item>(entry, NULL, NULL, root);
 	currentNode->set_right_ptr(newRight);
 	count++;
 }
@@ -115,7 +128,8 @@ template<class Item>
 void binaryTree<Item>::addLeft(const Item& entry){
 	assert((size()>0) && (!hasLeft())); 
 	/*NOTE like addRight, might need to change to if.*/
-	btNode<Item> * newLeft = new btNode<Item>(entry);
+	/*NOTE NOTE NOTE NOTE NOTE  here is where I added the parentNode to each new child......... Origianlly had in shift..see comments tehe*/
+	btNode<Item> * newLeft = new btNode<Item>(entry,NULL,NULL, currentNode);
 	currentNode->set_left_ptr(newLeft);
 	count++;
 }
@@ -127,13 +141,22 @@ void binaryTree<Item>
 template<class Item>
 void binaryTree<Item>::shiftLeft(){
 	assert(hasLeft() && (size()>0));/*Make sure we have a left child to move to. Again asserting just to be safe.*/
+	
+	
+	/*NOTE NOTE NOTE I for some reason thought of adding parent here but why would i add parent when I move...just add the parent when you create the child in the constructor duh...*/
+
+
+	/*btNode<Item> * currPos = currentNode;*/
 	currentNode = currentNode->left();
+	/*currentNode->setParent(currPos);*/
 }
 
 template<class Item>
 void binaryTree<Item>::shiftRight(){
 	assert(hasRight() && (size() > 0));
+	/*btNode<Item> * currPos = currentNode;*/
 	currentNode = currentNode->right();
+	/*currentNode->setParent(currPos);*/
 }
 
 template<class Item>
