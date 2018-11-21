@@ -13,14 +13,15 @@ class btNode{
 		/*NOTE must add parent pointer if decide to use it.*/
 		btNode( const Item& init_data = Item(),
 				btNode<Item>* init_left = NULL, 
-				btNode<Item>* init_right = NULL);
+				btNode<Item>* init_right = NULL,
+				btNode<Item>* init_parent = NULL);
 		btNode(const btNode<Item>* root_Ptr); /*Construcut a copy tree. Call list copy*/
 		~btNode(); /*Deconstructor*/
 		void operator=(const btNode<Item>* root_ptr);/*Assignment operator since non-static memory*/
 		void set_data(const Item& entry){ data_field = entry;}
 		void set_left_ptr(btNode<Item>* new_left){left_ptr = new_left;}
 		void set_right_ptr(btNode<Item>* new_right){right_ptr = new_right;}
-		void set_parent(); /*Again implement this only if deciding to use parent*/
+		void set_parent(btNode<Item>* new_parent){parent_ptr = new_parent;} /*Again implement this only if deciding to use parent*/
 		bool isLeaf() const{
 			return (left_ptr == NULL) && (right_ptr == NULL);
 		}/*returns if left_ptr and right_ptr == NULL. Must check if there is a pointer though? If we pass a root?*/
@@ -28,21 +29,26 @@ class btNode{
 		const Item data() const{return data_field;}/*Constant get Data function for constant trees.*/
 		btNode<Item>* left() { return left_ptr;}
 		btNode<Item>* right() { return right_ptr;}
+		btNode<Item>* parent() { return parent_ptr;}
 		const btNode<Item>* left() const { return left_ptr;}
 		const btNode<Item>* right() const { return right_ptr;}
+		const btNode<Item>* parent() const {return parent_ptr;}
+
 		/*Self added this function just to return count.*/
 		/*size_t numNodesbT() const{ return count;}*/ /*NOTE we need a non-member funciton for num_of_nodes*/
 	private:
 		/*Every binary tree points to its left and right child*/
+		btNode<Item>* parent_ptr;
 		btNode<Item>* left_ptr; 
 		btNode<Item>* right_ptr;
 		/*To keep track of the data*/
 		Item data_field; 
-		/*TO Keep track of the number of nodes in the binary tree.Not necessarily needed but can help.*/
+		/*TO Keep track of the number of nodes in the binary tree.
+		 * Not necessarily needed but can help.*/
 		size_t count;
-
-		/*Note sure if I will use this, but may be helpful for Binary Search Tree Q3.*/
-		btNode<Item>* parent;
+		/*Note sure if I will use this, 
+		 * but may be helpful for Binary Search Tree Q3.*/
+		/*btNode<Item>* parent_ptr;*/
 };
 
 #if 0

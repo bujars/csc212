@@ -112,6 +112,7 @@ public:
     // CONSTANT MEMBER FUNCTIONS
     size_t size( ) const;
     Item retrieve( ) const;
+	btNode<Item>* retrieveNode(); /* retrieve pointer to currentNode.*/
     bool hasParent( ) const;
     bool hasLeft( ) const;
     bool hasRight( ) const;

@@ -5,10 +5,12 @@
 template<class Item>
 btNode<Item>::btNode( const Item& init_data,
 					  btNode<Item> * init_left, 
-					  btNode<Item> * init_right){
+					  btNode<Item> * init_right,
+					  btNode<Item> * init_parent){
 	data_field = init_data;
 	left_ptr = init_left;
 	right_ptr = init_right;
+	parent_ptr = init_parent;
 }
 
 template<class Item>
@@ -151,13 +153,20 @@ void clearbT(btNode<Item>*& root_ptr){
 	if(root_ptr == NULL) return;
 	/*Iterate down to every single leaf and delete that pointer and reset it to null, and set its data to 0.*/
 	btNode<Item>* child;
+	btNode<Item>* parent;
 	child = root_ptr->left();
 	clearbT(child); /*go all the way to left.*/
 	child = root_ptr->right();
 	clearbT(child); /*go all the way to the right.*/
+	parent = root_ptr->parent();
+	clearbT(parent);
+
+	
 	//root_ptr->set_data(0);
 	delete root_ptr;
 	//root_ptr = NULL;
+	//delete parent_ptr;
+	//parent_ptr = NULL;
 }
 
 template<class Item>
@@ -170,10 +179,12 @@ btNode<Item>* copybT(btNode<Item>* root_ptr){
 	/*When copying a tree, start with leafs. Luckily, can utalize the constructors*/
 	btNode<Item> * left_ptr; /*Declare the nodes that will be used as links for the new root.*/
 	btNode<Item> * right_ptr;
+	btNode<Item> * parent_ptr;
 	left_ptr = copybT(root_ptr->left()); /*Note we must always save the left becasue copybT returns a ptr*/
 	right_ptr = copybT(root_ptr->right());
-	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr); /*Return a new node of this item.*/
-
+	parent_ptr = copybT(root_ptr->parent());
+	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr, parent_ptr); /*Return a new node of this item.*/
+	//parent_ptr = root_ptr->parent();
 }
 
 #endif
