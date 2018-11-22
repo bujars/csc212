@@ -108,8 +108,8 @@ Item binaryTree<Item>::retrieve() const{
 
 template<class Item>
 btNode<Item>* binaryTree<Item>::retrieveNode(){
-	assert(this->size()>0 && hasParent());
-	return currentNode->parent();
+	assert(this->size()>0); //&& hasParent());
+	return currentNode;/*currentNode->parent();*/ /*NOTE not sure why I had parent here....Hope it doesn't mess any function. Changing because need current for q4. */
 }
 
 
@@ -200,7 +200,7 @@ void binaryTree<Item>::shiftUp(){
 
 	/* NOTE adding parent node simplifies the function. */
 	assert(size()>0 && hasParent());
-	currentNode= currentNode->parent(); /*set the currentNode to the parent of the node. If its the root, or nothing, it does nothing. */
+	currentNode = currentNode->parent(); /*set the currentNode to the parent of the node. If its the root, or nothing, it does nothing. */
 
 
 }

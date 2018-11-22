@@ -1,4 +1,4 @@
-#if 0 
+//#if 0 
 
 #include "Sefa_B_HW5_Q4.h"
 
@@ -6,9 +6,14 @@ int main(){
 	binarySearchTree<int> * b = new binarySearchTree<int>(2);
 	//b->addNode(3);
 	//b->addNode(3);
-	/*btNode<int> * c = b->searchNode(3);*/
+
+	/*NOTE not really sure how searchNode will be tested honeslty. It is a btNode not really a binary tree so we cant do much with it. Like shift left or stuff like that.*/
+	btNode<int> * c = b->searchNode(2);
+	cout << "PRINTING C " << endl;
+	cout << c->data();
+	cout << endl << endl;
 	//cout << c == NULL << endl;
-	binarySearchTree<int> * c = NULL;
+	//binarySearchTree<int> * c = NULL;
 	//c->addNode(2);
 	b->addNode(5);
 	//b->printT();
@@ -30,12 +35,12 @@ int main(){
 
 
 
-#endif
+//#endif
 
 
 
 
-//#if 0 
+#if 0 
 
 #include "Sefa_B_HW5_Q3.h"
 
@@ -80,7 +85,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 
