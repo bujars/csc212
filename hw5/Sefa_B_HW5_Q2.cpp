@@ -70,9 +70,9 @@ bool binaryTree<Item>::hasParent() const{
 	 * They way I did it was if the root isn't NULL (meaning we have a root), 
 	 * and if the currentNode is not the same as the root, so it's somewhere down
 	 * the line, then it must have a parent.*/
-	cout <<"UGHHHH " << rootNode->data() << endl;
-	cout << "FUCCCCCCCCK      "<<rootNode->parent() << endl;
-	return (currentNode->parent() != NULL);
+	/*cout <<"UGHHHH " << rootNode->data() << endl;
+	cout << "FUCCCCCCCCK      "<<rootNode->parent() << endl;*/
+	return (currentNode->parent() != NULL) && size()>0;
 
 }
 
@@ -118,8 +118,8 @@ template<class Item>
 void binaryTree<Item>::addRight(const Item& entry){
 	/*NOTE this could be done using an if statement and just return. But I would rather it halt the program so that the user can know that they cannot perform this command and must change it*/
 	assert((size() >0) && (!hasRight()));
-	btNode<Item> *root = rootNode;
-	btNode<Item> * newRight = new btNode<Item>(entry, NULL, NULL, root);
+	/*btNode<Item> *root = rootNode;*/
+	btNode<Item> * newRight = new btNode<Item>(entry, NULL, NULL, currentNode);
 	currentNode->set_right_ptr(newRight);
 	count++;
 }
@@ -174,6 +174,7 @@ void binaryTree<Item>::shiftToRoot(){
 
 template<class Item>
 void binaryTree<Item>::shiftUp(){
+#if 0
 /*Make sure we have a root ptr, make sure it isnt == to current, make sure hasPrent is true....recursively iterate until we find the pointer in which its child is == to current, then return that pointer*/
 	assert((size() > 0) && hasParent());
 	binaryTree<Item> * parent; 
@@ -195,7 +196,11 @@ void binaryTree<Item>::shiftUp(){
 
 	/*while(shift->left!=curent while shiftRight != current)
 		call function again */
-	
+#endif
+
+	/* NOTE adding parent node simplifies the function. */
+	assert(size()>0 && hasParent());
+	currentNode= currentNode->parent(); /*set the currentNode to the parent of the node. If its the root, or nothing, it does nothing. */
 
 
 }

@@ -160,6 +160,7 @@ void clearbT(btNode<Item>*& root_ptr){
 	clearbT(child); /*go all the way to the right.*/
 	parent = root_ptr->parent();
 	clearbT(parent);
+	/* I am not sure if the parent is supposed to be cleared, but doesn't seem to present any issues. */
 
 	
 	//root_ptr->set_data(0);
@@ -182,7 +183,7 @@ btNode<Item>* copybT(btNode<Item>* root_ptr){
 	btNode<Item> * parent_ptr;
 	left_ptr = copybT(root_ptr->left()); /*Note we must always save the left becasue copybT returns a ptr*/
 	right_ptr = copybT(root_ptr->right());
-	parent_ptr = copybT(root_ptr->parent());
+	parent_ptr = copybT(root_ptr->parent()); /*NOT really sure what this is supposed to do, if it even does anything at all.*/
 	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr, parent_ptr); /*Return a new node of this item.*/
 	//parent_ptr = root_ptr->parent();
 }

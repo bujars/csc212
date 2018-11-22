@@ -114,9 +114,11 @@ int main(){
 	b->shiftLeft();
 	cout<< "BLEFT " << b->retrieve() << endl;
 	cout << "HASBLEFT " << b->hasLeft() << endl;
+	cout <<endl << endl <<"BRPARENT...T?... " << b->hasParent() << endl;
 	b->addLeft(13);
 	b->addRight(16);
 	cout << "HASBLEFT " << b->hasLeft() << endl;
+	//cout <<  "BLEFTRIGHT Before chainge" << b->retrieve() << endl
 	b->shiftRight();
 	cout <<  "BLEFTRIGHT " << b->retrieve() << endl;
 	b->change(18);
@@ -128,6 +130,16 @@ int main(){
 	//cout << (bP == NULL) << endl;
 	//binaryTree<int> bD;
 	//	cout << (bD == NULL) << endl;
+
+	/*Attemping shiftingUp*/
+	cout << endl << endl << "SHIFTING UP" << endl;
+	b->shiftUp();
+	cout << "HAS PARENT " << b->hasParent() << endl;
+	cout << "HAS LEFT " <<b->hasLeft() << endl;
+	cout << "HAS RIGHT "<<b->hasRight() << endl;
+	cout << "RETRIEVE " <<b->retrieve() << endl;
+
+
 
 	return 0;
 }
