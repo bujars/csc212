@@ -35,7 +35,7 @@ int main(){
 
 
 
-#if 0 
+//#if 0 
 
 #include "Sefa_B_HW5_Q3.h"
 
@@ -73,19 +73,19 @@ int main(){
 	cout << "HASL " << b->hasLeft() << endl;
 	cout << "DATA: " << b->retrieve() << endl;
 	cout << "HASR " << b-> hasRight() << endl;
-	cout << (b == NULL);
+	cout << (b == NULL) << endl;
 	binaryTree<int> c();
 	return 0;
 }
 
 
 
-#endif
+//#endif
 
 
 
 
-//#if 0
+#if 0
 #include "Sefa_B_HW5_Q2.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
@@ -138,7 +138,18 @@ int main(){
 	cout << "HAS LEFT " <<b->hasLeft() << endl;
 	cout << "HAS RIGHT "<<b->hasRight() << endl;
 	cout << "RETRIEVE " <<b->retrieve() << endl;
-
+	b->shiftUp();
+	cout << "HAS PARENT " << b->hasParent() << endl;
+	cout << "HAS LEFT " <<b->hasLeft() << endl;
+	cout << "HAS RIGHT "<<b->hasRight() << endl;
+	cout << "RETRIEVE " <<b->retrieve() << endl;
+	/*
+ 	b->shiftUp();
+	cout << "HAS PARENT " << b->hasParent() << endl;
+	cout << "HAS LEFT " <<b->hasLeft() << endl;
+	cout << "HAS RIGHT "<<b->hasRight() << endl;
+	cout << "RETRIEVE " <<b->retrieve() << endl;
+	*/
 
 
 	return 0;
@@ -146,7 +157,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 

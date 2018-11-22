@@ -102,17 +102,23 @@ void binaryTree<Item>::shiftRight(){
 
 template<class Item>
 void binaryTree<Item>::addLeft(const Item& entry){
-	assert((size() > 0 && !hasLeft()) && (size() < CAPACITY));
+	assert((size() > 0 && !hasLeft())); //&& (size() < CAPACITY));
+	if(!(size()<CAPACITY)){
+		resize(CAPACITY*2);
+	}
 	treeData[(2*currentIndex+1)] = entry;
 	count++;
 }
 
 template<class Item>
 void binaryTree<Item>::addRight(const Item& entry){
-	assert((size() > 0 && !hasRight()) && (size() <CAPACITY));
+	assert((size() > 0 && !hasRight()));//&& (size() <CAPACITY));
+	if(!(size()<CAPACITY)){
+		resize(CAPACITY*2);
+	}
 	treeData[(2*currentIndex+2)] = entry;
 	count++;
-	cout << "HERE";
+	/*cout << "HERE";*/
 }
 
 template<class Item>
@@ -120,6 +126,25 @@ void binaryTree<Item>::change(const Item& new_entry){
 	assert(size() > 0);
 	treeData[currentIndex] = new_entry;
 }
+
+
+template<class Item>
+void binaryTree<Item>::resize(const size_t& new_size){
+	if(new_size == CAPACITY)
+		return; /*This is saying, if what we want is already the same, dont do anything.*/
+	if(new_size < count)
+		return; /*This is saying that if we want something smaller than the entries, dont do it becuase we cant lose stuff.*/
+	Item * newTree = new Item[new_size];
+	for(size_t i = 0; i < count; i++){
+		newTree[i] = treeData[i];
+	}
+	delete treeData;
+	CAPACITY = new_size;
+	treeData = newTree;
+}
+
+
+
 
 
 /*Use size/count to see if you have already added a child or parent there........ Like if 2i+1/2 whatever is > count then dont do shit. */

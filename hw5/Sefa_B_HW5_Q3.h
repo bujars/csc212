@@ -97,7 +97,7 @@ class binaryTree
 {
 public:
     // CONSTRUCTORS and DESTRUCTOR
-    binaryTree(size_t init_cap = 30);
+    binaryTree(size_t init_cap = 2);
     binaryTree(const binaryTree& source);
     ~binaryTree( );
     // MODIFICATION MEMBER FUNCTIONS
@@ -114,13 +114,15 @@ public:
     Item retrieve( ) const;
     bool hasParent( ) const;
     bool hasLeft( ) const;
-    bool hasRight( ) const;    
+    bool hasRight( ) const;   
+	void resize(const size_t& newSize);
 private:
     // TODO
 	Item* treeData;
 	size_t CAPACITY;
 	size_t count;
 	size_t currentIndex;
+	/*NOTE not sure if its really needed to keep track of the parent like in Q2 but just as a thought its here.*/
 };
 
 #include "Sefa_B_HW5_Q3.cpp" // TODO
