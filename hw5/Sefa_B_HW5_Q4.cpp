@@ -10,8 +10,6 @@ binarySearchTree<Item>::binarySearchTree(const Item& entry){
 	count = 1; /*Incase I do decide to use this...but it will be redundant because binaryTree aleady does it.*/
 }
 
-
-
 /*NOTE professo timmy said to return a btNode pointer... Not sure why but okay? I would much rather return something like a binaryTreePointer which keeps track of everything like parent, left right etc..... Lets see because this poitner is just pointing to that node, not necessarily the node itself.*/
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
@@ -45,13 +43,6 @@ btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
  	tree_ptr.shiftToRoot();
 	return retNode;
 }
-
-
-
-
-
-
-
 
 template<class Item>
 void binarySearchTree<Item>::addNode(const Item& entry){
@@ -136,18 +127,12 @@ void binarySearchTree<Item>::printT(){
 	tree_ptr.shiftRight();
 	tree_ptr.print();
 
-
-
-
 	/*Send it all the way back up or it will mess everything up.*/
 	tree_ptr.shiftToRoot();
 }
 
 
-
-
 /*Doesn't work*/
-
 #if 0
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
@@ -158,7 +143,7 @@ btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
 	 * 2. Target is to the left of the tree, and we have a left there.
 	 * 3. Target is to the right of the tree, and we hav e a right there.
 	 * 4. Else nothing is possible and return false
-	 * */
+	 * */:
 	while(!found){
 		if(tree_ptr.retrieve() < target && tree_ptr.hasRight()){
 			tree_ptr.shiftRight();

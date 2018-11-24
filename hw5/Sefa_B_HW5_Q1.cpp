@@ -158,9 +158,10 @@ void clearbT(btNode<Item>*& root_ptr){
 	clearbT(child); /*go all the way to left.*/
 	child = root_ptr->right();
 	clearbT(child); /*go all the way to the right.*/
-	parent = root_ptr->parent();
-	clearbT(parent);
-	/* I am not sure if the parent is supposed to be cleared, but doesn't seem to present any issues. */
+	/*parent = root_ptr->parent();
+	clearbT(parent);*/
+	/* I am not sure if the parent is supposed to be cleared, but doesn't seem to present any issues. 
+	 * 11/22/18 --> got rid of because not want to risk deleteing. deleting leaves on its way up clears parent.*/
 
 	
 	//root_ptr->set_data(0);
