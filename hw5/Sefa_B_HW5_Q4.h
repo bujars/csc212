@@ -14,8 +14,11 @@ class binarySearchTree{
 		/*bool searchNode(const Item& target) const;*/
 		btNode<Item>* searchNode(const Item& target); /*Slides say to return node pointing to the element we want.. */
 		/*These two just return the min/max node in the list.*/
-		size_t minimum() const;
-		size_t maximum() const;
+		/*size_t minimum() const;
+		size_t maximum() const;*/
+
+		btNode<Item>* minimum();
+		btNode<Item>* maximum();
 		void operator=(const binarySearchTree<Item>& source);
 		void printT();
 	private:

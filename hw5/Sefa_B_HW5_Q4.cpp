@@ -113,6 +113,40 @@ void binarySearchTree<Item>::addNode(const Item& entry){
 #endif
 }
 
+template<class Item>
+btNode<Item>* binarySearchTree<Item>::minimum(){
+	btNode<Item>* minPtr = tree_ptr.retrieveNode();
+	while(tree_ptr.hasLeft()){
+		tree_ptr.shiftLeft();
+		minPtr = tree_ptr.retrieveNode();
+	}
+	tree_ptr.shiftToRoot();
+	return minPtr;
+
+}
+
+template<class Item>
+btNode<Item>* binarySearchTree<Item>::maximum(){
+	btNode<Item>* maxPtr = tree_ptr.retrieveNode();
+	while(tree_ptr.hasRight()){
+		tree_ptr.shiftRight();
+		maxPtr = tree_ptr.retrieveNode();
+	}
+	tree_ptr.shiftToRoot();
+	return maxPtr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 template<class Item>
 void binarySearchTree<Item>::printT(){
@@ -130,6 +164,17 @@ void binarySearchTree<Item>::printT(){
 	/*Send it all the way back up or it will mess everything up.*/
 	tree_ptr.shiftToRoot();
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*Doesn't work*/

@@ -22,7 +22,21 @@ int main(){
 	//b->printT();
 	b->addNode(1);
 	b->addNode(4);
+	b->addNode(0);
 	b->printT();
+
+	/*Testing minimum, expecting 0.*/
+	cout << "MINIMUM " << endl;
+	btNode<int> * min = b->minimum();
+	cout << min->data()<< endl<< endl;
+
+	
+	/*Testing maximum, expecting 0.*/
+	cout << "MAXIMUM " << endl;
+	btNode<int> * max = b->maximum();
+	cout << max->data()<< endl<< endl;
+	
+	
 	return 0;
 
 
