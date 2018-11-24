@@ -15,20 +15,23 @@ binarySearchTree<Item>::binarySearchTree(const Item& entry){
 /*NOTE professo timmy said to return a btNode pointer... Not sure why but okay? I would much rather return something like a binaryTreePointer which keeps track of everything like parent, left right etc..... Lets see because this poitner is just pointing to that node, not necessarily the node itself.*/
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
+	/*cout << "T " << target << endl;*/
 	btNode<Item> * retNode = NULL;
+	/*cout << "RET " << retNode << endl;*/
 	if(target == tree_ptr.retrieve()){
 		retNode = tree_ptr.retrieveNode();
 		return retNode;
 	}
 	bool found = false;
-	while(!false){
+	while(!found){
+		/*cout << "found : " << found << endl;*/
 		if(target == tree_ptr.retrieve()){
 			retNode = tree_ptr.retrieveNode();
 			found = true;
 			//tree_ptr.shiftToRoot();
 			//return retNode;
 		}
-		if(target < tree_ptr.retrieve() && tree_ptr.hasLeft()){
+		else if(target < tree_ptr.retrieve() && tree_ptr.hasLeft()){
 			tree_ptr.shiftLeft();
 		}
 		else if(target > tree_ptr.retrieve() && tree_ptr.hasRight()){
@@ -38,10 +41,9 @@ btNode<Item>* binarySearchTree<Item>::searchNode(const Item& target){
 			found = true;
 		}
 	}
-	tree_ptr.shiftToRoot();
+	/*cout << "RETTT " << retNode << endl;*/
+ 	tree_ptr.shiftToRoot();
 	return retNode;
-
-
 }
 
 

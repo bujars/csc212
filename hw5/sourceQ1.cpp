@@ -9,9 +9,10 @@ int main(){
 
 	/*NOTE not really sure how searchNode will be tested honeslty. It is a btNode not really a binary tree so we cant do much with it. Like shift left or stuff like that.*/
 	btNode<int> * c = b->searchNode(2);
-	cout << "PRINTING C " << endl;
-	cout << c->data();
-	cout << endl << endl;
+	/*cout << "PRINTING C " << endl;*/
+	/*assert(c !=NULL);*/
+	/*cout << c->data();*/ /*NOTE this fails when there is nothing in the tree!!!!!!!!!*/
+	/*cout << endl << endl;*/
 	//cout << c == NULL << endl;
 	//binarySearchTree<int> * c = NULL;
 	//c->addNode(2);
