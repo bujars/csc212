@@ -117,6 +117,8 @@ public:
     bool hasLeft( ) const;
     bool hasRight( ) const;
 	void print(); /*Function I added just to test that everything is okay.*/ 
+	void setRoot(btNode<Item>* new_root); /*This is a function that is needed for Q4 for transplant. Tree may need to set its root to a tree.*/
+
 private:
     // TODO
 	btNode<Item> * currentNode;

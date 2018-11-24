@@ -1,4 +1,4 @@
-//#if 0 
+#if 0 
 
 #include "Sefa_B_HW5_Q4.h"
 
@@ -50,7 +50,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 
@@ -105,7 +105,7 @@ int main(){
 
 
 
-#if 0
+//#if 0
 #include "Sefa_B_HW5_Q2.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
@@ -113,7 +113,10 @@ int main(){
 	//c->print();
 	/*b->addLeft(2);*/
 	b->createFirstNode(2);
+	b->addLeft(1);
 	b->print();
+#if 0
+	
 	cout << "SIZE " <<b ->size() << endl;
 	cout << "HAS PARENT " << b->hasParent() << endl;
 	cout << "HAS LEFT " <<b->hasLeft() << endl;
@@ -171,13 +174,23 @@ int main(){
 	cout << "RETRIEVE " <<b->retrieve() << endl;
 	*/
 
+#endif
+
+	btNode<int> * e = new btNode<int>;
+	btNode<int> * f = new btNode<int>(2);
+	btNode<int> * g = new btNode<int>(4);
+	e->set_left_ptr(f);
+	e->set_left_ptr(g);
+	b->setRoot(e);
+	b->print();
+
 
 	return 0;
 }
 
 
 
-#endif
+//#endif
 
 
 

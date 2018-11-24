@@ -4,6 +4,7 @@
 
 
 #include "Sefa_B_HW5_Q2.h"
+#include "Sefa_B_HW5_Q1.h"
 
 template<class Item>
 binaryTree<Item>::binaryTree(){
@@ -112,8 +113,6 @@ btNode<Item>* binaryTree<Item>::retrieveNode(){
 	return currentNode;/*currentNode->parent();*/ /*NOTE not sure why I had parent here....Hope it doesn't mess any function. Changing because need current for q4. */
 }
 
-
-
 template<class Item>
 void binaryTree<Item>::addRight(const Item& entry){
 	/*NOTE this could be done using an if statement and just return. But I would rather it halt the program so that the user can know that they cannot perform this command and must change it*/
@@ -205,12 +204,13 @@ void binaryTree<Item>::shiftUp(){
 
 }
 
-
 template<class Item>
 void binaryTree<Item>::print(){
 	assert(currentNode!=NULL);
 	/*if(currentNode != NULL){*/
 	cout << currentNode->data() << endl;
+	/*currentNode = currentNode->left();
+	cout << currentNode->data() << endl;*/  /*Added these two lines for testing setRoot*/
 	//cout << currentNode->left()->data();*/
 #if 0
 	/*if(root_ptr == NULL){
@@ -223,5 +223,17 @@ void binaryTree<Item>::print(){
 	}*/
 #endif
 }
+
+template<class Item>
+void binaryTree<Item>::setRoot(btNode<Item> * new_root){
+	if(new_root == rootNode){ /*If we are trying to set root to what we already have, dont do anything...*/
+		return; 
+	}
+	clearbT(rootNode);
+	rootNode = new_root;
+	currentNode = rootNode; 
+}
+
+
 
 #endif
