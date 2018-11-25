@@ -19,6 +19,9 @@ class binarySearchTree{
 
 		btNode<Item>* minimum();
 		btNode<Item>* maximum();
+		
+		void transplant(btNode<Item>* oldTree, btNode<Item>* newTree);
+		
 		void operator=(const binarySearchTree<Item>& source);
 		void printT();
 	private:

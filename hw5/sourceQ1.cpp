@@ -1,4 +1,4 @@
-#if 0 
+//#if 0 
 
 #include "Sefa_B_HW5_Q4.h"
 
@@ -36,7 +36,13 @@ int main(){
 	btNode<int> * max = b->maximum();
 	cout << max->data()<< endl<< endl;
 	
-	
+
+
+
+	/*Testing transplant.......Will have to get back to honestly because not even sure how to create the trees and stuff....*/
+
+
+
 	return 0;
 
 
@@ -50,7 +56,7 @@ int main(){
 
 
 
-#endif
+//#endif
 
 
 
@@ -105,7 +111,7 @@ int main(){
 
 
 
-//#if 0
+#if 0
 #include "Sefa_B_HW5_Q2.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
@@ -190,7 +196,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 

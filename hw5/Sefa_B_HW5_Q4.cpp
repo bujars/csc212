@@ -138,6 +138,37 @@ btNode<Item>* binarySearchTree<Item>::maximum(){
 
 
 
+/* The point of the transplant function is to replace the 
+ * old subtree with the new subtree on the overall Binary search tree.
+ *
+ *  Cases: 
+ *  1. If oldTree has no parent, then just set newTree to the root...
+ *  because it would mean oldTree was the root.
+ *  2. If oldtree was the left child of the tree, make newTree the left.
+ *  3. If oldtree was the right child, make newTree the right,
+ *
+ *  This function will be utalized in delete. because it will be used in cases of shifting the tree.
+ *
+ * */
+
+template<class Item>
+void binarySearchTree<Item>::transplant(btNode<Item>* oldTree, 
+										btNode<Item>* newTree){
+	if(oldTree->parent() == NULL){
+		tree_ptr.setRoot(newTree);
+	}
+	else if(oldTree == (oldTree->parent())->left()){
+		(oldTree->parent())->set_left_ptr(newTree);
+	}
+	else{
+		(oldTree->parent())->set_right_ptr(newTree);
+	}
+	if(newTree!=NULL){
+		newTree->set_parent(oldTree->parent());
+	}
+}
+
+
 
 
 
