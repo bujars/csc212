@@ -138,9 +138,19 @@ btNode<Item>* binarySearchTree<Item>::maximum(){
 }
 #endif
 
-/*NOTE need to rewrite min/max because those ^ cannot be used in delete...*/
+
+
+
+/*NOTE need to rewrite min/max because those ^ cannot be used in delete...
+ *
+ * In addition. Note I do not check any cases such as is the node actually in the tree and other stuff...... okay i should do that because I was only given pesduo code....
+ *
+ * */
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::minimum(btNode<Item>* node){
+	assert(node!=NULL);
+	btNode<Item>* found = searchNode(node->data());
+	assert(found !=NULL);
 	btNode<Item>* minPtr = node;
 	btNode<Item>* iterator = node;
 	while(iterator->left() !=NULL){
@@ -153,6 +163,9 @@ btNode<Item>* binarySearchTree<Item>::minimum(btNode<Item>* node){
 
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::maximum(btNode<Item>* node){
+	assert(node!=NULL);
+	btNode<Item>* found = searchNode(node->data());
+	assert(found !=NULL);
 	btNode<Item>* maxPtr = node;
 	btNode<Item>* iterator = node;
 	while(iterator->right() !=NULL){
