@@ -55,13 +55,13 @@ size_t heap<Item>::deleteNode(){
 	while(i < count){
 		Item temp = heapData[i];
 		/*NOTE it must be swapped with the larger child. I will have it go to the left if the two chilren are equal.*/
-		if((heapData[i] < heapData[2i+1]) && (heapData[2i+1] >= heapData[2i+2])){
-			heapData[i] = heapData[2i+1];
-			heapData[2i+1] = temp;
+		if((heapData[i] < heapData[2*i+1]) && (heapData[2*i+1] >= heapData[2*i+2])){
+			heapData[i] = heapData[2*i+1];
+			heapData[2*i+1] = temp;
 		}
-		else if((heapData[i]< heapData[2i+2]) && (heapData[2i+2] > heapData[2i+1])){
-			heapData[i] = heapData[2i+2];
-			heapData[2i+2] = temp;
+		else if((heapData[i]< heapData[2*i+2]) && (heapData[2*i+2] > heapData[2*i+1])){
+			heapData[i] = heapData[2*i+2];
+			heapData[2*i+2] = temp;
 		}
 		else{
 			i = count;

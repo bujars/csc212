@@ -12,6 +12,8 @@ int main(){
 	h->addNode(5);
 	h->addNode(6);
 	h->print();
+	h->deleteNode();
+	h->print();
 	return 0;
 
 
