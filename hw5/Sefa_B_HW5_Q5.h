@@ -8,6 +8,13 @@ template<class Item>
 class heap{
 	public:
 		heap(size_t init_capcity = 30);
+		
+		/*Big 3 have not been implemented.*/
+		~heap();
+		heap(const heap<Item>& source);
+		void operator=(const heap<Item>& source);
+		
+		
 		void addNode(const Item& entry);
 		size_t deleteNode(); /*Just deletes the highest node, the root node. */
 		size_t searchNode(const Item& target); 
@@ -16,6 +23,7 @@ class heap{
 		size_t maximum();
 		void resize(const size_t& new_size);
 		void print();
+		size_t root(); /*NOTE, I just wrote this haven't used it.*/
 	private:
 		/*binaryTree<int> * heapData;*/
 		/*size_t capacity; */

@@ -4,6 +4,7 @@ int main(){
 
 	heap<int> * h = new heap<int>(5);
 	h->addNode(1);
+	cout <<"D"<< h->deleteNode() << endl;
 	h->print();
 	h->addNode(2);
 	h->print();
@@ -12,10 +13,37 @@ int main(){
 	h->addNode(5);
 	h->addNode(6);
 	h->print();
-	h->deleteNode();
+	
+	cout << "DELETEING " << endl;
+	
+	cout <<"D"<< h->deleteNode() << endl;
 	h->print();
-	cout << endl << h->minimum() << endl;
-	cout << endl << h->maximum() << endl;
+	cout <<"D"<< h->deleteNode() << endl;
+	h->print();
+	cout <<"D"<< h->deleteNode() << endl;
+	h->print();
+	cout <<"D"<< h->deleteNode() << endl;
+	h->print();
+	cout <<"D"<< h->deleteNode() << endl;
+	h->print();
+	
+	//	cout <<"D"<< h->deleteNode() << endl;
+	
+	
+//	cout << endl << h->minimum() << endl;
+//	cout << endl << h->maximum() << endl;
+	
+	cout << endl;
+	int arr[10] = {5,8,3,6,2,9,0,1,7,4};
+	size_t size = 10;
+	int* sortedArr = heapSort(arr, size);
+	for(size_t i = 0; i < size; i++){
+		cout << sortedArr[i] << " ";
+	}
+	cout << endl;
+		
+	
+	
 	return 0;
 
 
