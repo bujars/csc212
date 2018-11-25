@@ -25,6 +25,8 @@ int main(){
 	b->addNode(0);
 	b->printT();
 
+	btNode<int> * d = b->searchNode(0);
+
 
 
 
@@ -43,7 +45,25 @@ int main(){
 
 
 	/*Testing transplant.......Will have to get back to honestly because not even sure how to create the trees and stuff....*/
+	
+	/*Testing delete.*/
+	b->removeNode(d);
 
+
+
+	binarySearchTree<int> * bst = new binarySearchTree<int>(100);
+	bst->addNode(50);
+	bst->addNode(200);
+	bst->addNode(30);
+	bst->addNode(60);
+	bst->addNode(75);
+	bst->addNode(210);
+	bst->addNode(195);
+	bst->printP();
+	btNode<int> * s = bst->searchNode(60);
+	cout << endl << endl  <<s->data() << endl << endl;
+	bst->removeNode(s);
+	bst->printP();
 
 
 	return 0;

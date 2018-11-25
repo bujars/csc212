@@ -213,9 +213,40 @@ void binarySearchTree<Item>::transplant(btNode<Item>* oldTree,
 
 
 
+template<class Item>
+void binarySearchTree<Item>::removeNode(btNode<Item>* nodeZ){
+	assert(nodeZ!=NULL); /*Make sure we are given a node*/
+	btNode<Item>* found = searchNode(nodeZ->data()); /*Make sure this node is in the tree*/
+	assert(found !=NULL);
+	if(nodeZ->left() == NULL && nodeZ->right() == NULL){
+		/*delete found;*/ /*This doesnt make snese because found is not from the tree. How would I be able to find the pointer from the tree and delete it???*/
 
+		/*My guess would be to just set the current node data = 0, and have its parent just point to NULL?????*/
+		(nodeZ->parent())->set_parent(NULL);
+		nodeZ->set_data(0);
+		/*delete nodeZ;*/ /*Dont think this will actually do anything...*/
+	}
+	/*If we have only the right child, shift it to current position.*/
+	if(nodeZ->left() == NULL){
+		transplant(nodeZ, nodeZ->right());
+	}
+	else if(nodeZ->right() == NULL){ /*else if only left, shift to current*/
+		transplant(nodeZ, nodeZ->left());
+	}
+	else{
+		/*If we have two children, here is the hard part. We must first find the new smallest maximum, or sucessor */
+		btNode<Item>* nodeZSuccessor = minimum(nodeZ->right());
+		if(nodeZSuccessor->parent() != nodeZ){
+			transplant(nodeZSuccessor, nodeZSuccessor->right());
+			nodeZSuccessor->set_right_ptr(nodeZ->right());
+			(nodeZSuccessor->right())->set_parent(nodeZSuccessor);
+		}
+		transplant(nodeZ, nodeZSuccessor);
+		nodeZSuccessor->set_left_ptr(nodeZ->left());
+		(nodeZSuccessor->left())->set_parent(nodeZSuccessor);
+	}
 
-
+}
 
 
 
@@ -241,7 +272,12 @@ void binarySearchTree<Item>::printT(){
 
 
 
+template<class Item>
+void binarySearchTree<Item>::printP(){
+	btNode<Item> * bt = searchNode(100);
+	inOrderTraversal(bt, print<int>);
 
+}
 
 
 
