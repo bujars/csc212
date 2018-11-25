@@ -93,8 +93,8 @@ size_t heap<Item>::minimum(){
 	if(count == 1){
 		return min;
 	}
-	for(size_t i = 1; i < count-1; i++){
-		if(heapData[i] < heapData[i+1]){
+	for(size_t i = 1; i < count; i++){
+		if(heapData[i] < min){
 			min = heapData[i];
 		}
 	}
@@ -109,8 +109,8 @@ size_t heap<Item>::maximum(){
 	if(count == 1){
 		return max;
 	}
-	for(size_t i = 1; i < count-1; i++){
-		if(heapData[i] > heapData[i+1]){
+	for(size_t i = 1; i < count; i++){
+		if(heapData[i] > max){
 			max = heapData[i];
 		}
 	}

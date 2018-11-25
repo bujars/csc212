@@ -14,6 +14,8 @@ int main(){
 	h->print();
 	h->deleteNode();
 	h->print();
+	cout << endl << h->minimum() << endl;
+	cout << endl << h->maximum() << endl;
 	return 0;
 
 
