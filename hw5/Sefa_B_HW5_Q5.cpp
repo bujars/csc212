@@ -29,7 +29,7 @@ void heap<Item>::addNode(const Item& entry){
 		resize(CAPACITY*2);
 	}
 	heapData[count++] = entry; /*Count is incremented. */
-	size_t i = count; /*Set i to the index of the last, will be used to keep track of which elements to swap*/
+	size_t i = count-1; /*Set i to the index of the last, will be used to keep track of which elements to swap*/
 	while(i!=0 && (heapData[i]> heapData[(i-1)/2])){
 			Item temp = heapData[i];
 			heapData[i] = heapData[(i-1)/2];
@@ -54,11 +54,12 @@ size_t heap<Item>::deleteNode(){
 	size_t i = 0; /*Set index to start*/
 	while(i < count){
 		Item temp = heapData[i];
-		if(heapData[i] < heapData[2i+1]){
+		/*NOTE it must be swapped with the larger child. I will have it go to the left if the two chilren are equal.*/
+		if((heapData[i] < heapData[2i+1]) && (heapData[2i+1] >= heapData[2i+2])){
 			heapData[i] = heapData[2i+1];
 			heapData[2i+1] = temp;
 		}
-		else if(heapData[i]< heapData[2i+2]){
+		else if((heapData[i]< heapData[2i+2]) && (heapData[2i+2] > heapData[2i+1])){
 			heapData[i] = heapData[2i+2];
 			heapData[2i+2] = temp;
 		}
@@ -115,6 +116,18 @@ size_t heap<Item>::maximum(){
 	}
 	return max;
 }
+
+
+template<class Item>
+void heap<Item>::print(){
+	for(size_t i = 0; i < count; i++){
+		cout << heapData[i] << " ";
+	}
+	cout <<endl;
+
+}
+
+
 
 
 #endif

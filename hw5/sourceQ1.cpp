@@ -1,4 +1,29 @@
-//#if 0 
+#include "Sefa_B_HW5_Q5.h"
+
+int main(){
+
+	heap<int> * h = new heap<int>(5);
+	h->addNode(1);
+	h->print();
+	h->addNode(2);
+	h->print();
+	h->addNode(3);
+	h->addNode(4);
+	h->addNode(5);
+	h->addNode(6);
+	h->print();
+	return 0;
+
+
+}
+
+
+
+
+
+
+
+#if 0 
 
 #include "Sefa_B_HW5_Q4.h"
 
@@ -79,7 +104,7 @@ int main(){
 
 
 
-//#endif
+#endif
 
 
 

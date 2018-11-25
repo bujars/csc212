@@ -15,6 +15,7 @@ class heap{
 		size_t minimum();
 		size_t maximum();
 		void resize(const size_t& new_size);
+		void print();
 	private:
 		/*binaryTree<int> * heapData;*/
 		/*size_t capacity; */
