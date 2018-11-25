@@ -17,9 +17,15 @@ class binarySearchTree{
 		/*size_t minimum() const;
 		size_t maximum() const;*/
 
+		/*
 		btNode<Item>* minimum();
 		btNode<Item>* maximum();
+		*/
 		
+		btNode<Item>* minimum(btNode<Item>* node);
+		btNode<Item>* maximum(btNode<Item>* node);
+		
+			
 		void transplant(btNode<Item>* oldTree, btNode<Item>* newTree);
 		
 		void operator=(const binarySearchTree<Item>& source);

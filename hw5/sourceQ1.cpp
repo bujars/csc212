@@ -25,15 +25,18 @@ int main(){
 	b->addNode(0);
 	b->printT();
 
+
+
+
 	/*Testing minimum, expecting 0.*/
 	cout << "MINIMUM " << endl;
-	btNode<int> * min = b->minimum();
+	btNode<int> * min = b->minimum(c);
 	cout << min->data()<< endl<< endl;
 
 	
 	/*Testing maximum, expecting 0.*/
 	cout << "MAXIMUM " << endl;
-	btNode<int> * max = b->maximum();
+	btNode<int> * max = b->maximum(c);
 	cout << max->data()<< endl<< endl;
 	
 

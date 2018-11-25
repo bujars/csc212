@@ -113,6 +113,7 @@ void binarySearchTree<Item>::addNode(const Item& entry){
 #endif
 }
 
+#if 0
 template<class Item>
 btNode<Item>* binarySearchTree<Item>::minimum(){
 	btNode<Item>* minPtr = tree_ptr.retrieveNode();
@@ -135,6 +136,34 @@ btNode<Item>* binarySearchTree<Item>::maximum(){
 	tree_ptr.shiftToRoot();
 	return maxPtr;
 }
+#endif
+
+/*NOTE need to rewrite min/max because those ^ cannot be used in delete...*/
+template<class Item>
+btNode<Item>* binarySearchTree<Item>::minimum(btNode<Item>* node){
+	btNode<Item>* minPtr = node;
+	btNode<Item>* iterator = node;
+	while(iterator->left() !=NULL){
+		//minPtr = iterator;
+		iterator = iterator->left();
+		minPtr = iterator;
+	}
+	return minPtr;
+}
+
+template<class Item>
+btNode<Item>* binarySearchTree<Item>::maximum(btNode<Item>* node){
+	btNode<Item>* maxPtr = node;
+	btNode<Item>* iterator = node;
+	while(iterator->right() !=NULL){
+		//maxPtr = iterator;
+		iterator = iterator->right();
+		maxPtr = iterator;
+	}
+	return maxPtr;
+}
+
+
 
 
 
