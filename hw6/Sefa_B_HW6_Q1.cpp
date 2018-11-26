@@ -119,12 +119,14 @@ void graph<Item>::addEdge(const size_t& source, const size_t& target){
 template<class Item>
 size_t graph<Item>::numEdges(const size_t& source, const size_t& target){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
+	/*cout <<"(0,1)  " <<edges[0][1] << endl;*/
 	return edges[source][target];
 }
 
 template<class Item>
 bool graph<Item>::isConnected(const size_t& source, const size_t& target){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
+	/*cout << "NUME     "<<numEdges(source, target) << endl;*/
 	return numEdges(source, target) != 0;
 }
 
@@ -146,25 +148,54 @@ void graph<Item>::print(){
 	}
 }
 
+/*Pre-condition, must give a size and a vertex looking for. Size will be adjusted.*/
 template<class Item>
-Item* graph<Item>::neighbors(const size_t& vertex){
+Item* graph<Item>::neighbors(const size_t& vertex, size_t& size){
 	assert((vertex < numOfVertices) && (numOfVertices > 0));
 	/*Item * vertexNeighbors = new*/ 
 	/*Go through the row and count the number of vertices has neighrbor with to get size to set array. */
 	size_t numNeigh = 0;
+	/*cout << "NUM V " << numOfVertices << endl;*/
 	for(size_t i = 0; i < numOfVertices; i++){
-		if(isConnected(vertex, edges[vertex][i])){
-			numNeigh++;
+		/*cout << edges[vertex][i] << endl;
+		cout << "CONNECTED " <<isConnected(0, edges[0][i]) << endl;*/
+		if(isConnected(vertex, i)){
+			/*cout << edges[vertex][i] <<  " " << i << endl;*/
+			++numNeigh;
 		}
 	}
+	/*cout << "numN  " << numNeigh << endl;*/
 	Item* vertexNeighbors = new Item[numNeigh];
 	size_t indexNeigh = 0;
 	for(size_t i = 0; i < numOfVertices; i++){
-		if(isConnected(vertex, edges[vertex][i])){
-			vertexNeighbors[indexNeigh++] = edges[vertex][i]; 
+		/*cout << "indexN   "   <<indexNeigh << endl;*/
+		if(isConnected(vertex, i)){
+			vertexNeighbors[indexNeigh] = i;/*edges[vertex][i]; */
+			++indexNeigh;
+		
 		}
 	}
+	size = numNeigh;
 	return vertexNeighbors;
+}
+
+template<class Item>
+size_t graph<Item>::numEdgesTotal(){ //const{
+	assert(numOfVertices>0);
+	size_t totEdges = 0;
+	for(size_t i = 0; i < numOfVertices; i++){
+		for(size_t j = 0; j < numOfVertices; j++){
+			//if(this->isConnected(i, j)){
+				totEdges= totEdges + numEdges(i,j);
+			//}
+		}
+	}
+	return totEdges;
+}
+
+template<class Item>
+size_t graph<Item>::size() const{
+	return numOfVertices;
 }
 
 #endif

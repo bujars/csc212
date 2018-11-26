@@ -12,8 +12,23 @@ int main(){
 	g->addEdge(0, 1);
 	g->addEdge(2,0);
 	g->addEdge(0,1);
-	g->removeEdge(2,0);
+	g->addEdge(0,3);
+	g->addEdge(0,5);
+	//g->removeEdge(2,0);
 	/*g->removeEdge(2,0);*//*isConnected works and so does remove.*/
+	//g->print();
+	cout << g->numEdges(0,1) << endl;
+	cout << g->numEdgesTotal() << endl;
+	cout << g->size() << endl;
+	cout << "isC"<< g->isConnected(0,1) << endl;
+	size_t size = 0;
+	int * neigh = g->neighbors(0, size);
+	cout << endl;
+	for(size_t i = 0; i < size; i++){
+		cout << neigh[i] << " "; 
+	}
+	cout << endl << endl;
+	cout << endl << endl;
 	g->print();
 	return 0;
 }
