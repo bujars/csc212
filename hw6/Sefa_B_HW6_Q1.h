@@ -14,6 +14,7 @@ class graph{
 		graph(const graph<Item>& source);
 		~graph();
 		void operator=(const graph<Item>& souce);
+		/*NOTE this resize function currently only works for labels and each column, but not row for edges. Thus I will manually resize the 2D array in addVertex.*/
 		void resize(Item* arr, const size_t& new_size);
 		/*Adding each vertex where a vertex has a label('it's data')*/
 		void addVertex(const Item& label);

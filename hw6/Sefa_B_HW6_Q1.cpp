@@ -93,12 +93,15 @@ void graph<Item>::addVertex(const Item& label){
 	size_t oldCap = CAPACITY;
 	if(!(numOfVertices < oldCap)){
 		/*Resize every column....possibly row...forgot but i think its column.*/
-		for(size_t i = 0; i < oldCap; i++){
-			resize(edges[i], oldCap*2);
-			CAPACITY = oldCap;
+		int ** biggerEdges = new int*[oldCap*2];
+		for(size_t i = 0; i < oldCap*2; i++){
+			biggerEdges[i] = new int[oldCap*2];
 		}
-		resize(edges, oldCap*2);
-		CAPACITY = oldCap;
+		for(size_t i = 0; i < numOfVertices; i++){
+			for(size_t j = 0; j < numOfVertices; j++){
+				biggerEdges[i][j] = edges[i][j];
+			}
+		}
 		resize(labels, oldCap);
 		/*NOTE, now capacity doesn't need to be changed once more because now we need to make sure its the good way.*/
 	}
@@ -130,6 +133,38 @@ void graph<Item>::removeEdge(const size_t& source, const size_t& target){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
 	assert(isConnected(source, target));
 	edges[source][target]--;
+}
+
+template<class Item>
+void graph<Item>::print(){
+	for(size_t i = 0; i < numOfVertices; i++){
+		/*cout << labels[i] << endl;*/
+		for(size_t j = 0; j < numOfVertices; j++){
+			cout << edges[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+template<class Item>
+Item* graph<Item>::neighbors(const size_t& vertex){
+	assert((vertex < numOfVertices) && (numOfVertices > 0));
+	/*Item * vertexNeighbors = new*/ 
+	/*Go through the row and count the number of vertices has neighrbor with to get size to set array. */
+	size_t numNeigh = 0;
+	for(size_t i = 0; i < numOfVertices; i++){
+		if(isConnected(vertex, edges[vertex][i])){
+			numNeigh++;
+		}
+	}
+	Item* vertexNeighbors = new Item[numNeigh];
+	size_t indexNeigh = 0;
+	for(size_t i = 0; i < numOfVertices; i++){
+		if(isConnected(vertex, edges[vertex][i])){
+			vertexNeighbors[indexNeigh++] = edges[vertex][i]; 
+		}
+	}
+	return vertexNeighbors;
 }
 
 #endif
