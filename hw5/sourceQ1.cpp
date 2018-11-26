@@ -1,4 +1,4 @@
-#if 0
+//#if 0
 
 #include "Sefa_B_HW5_Q5b.h"
 
@@ -13,10 +13,10 @@ int main(){
 
 	return 0;
 }
-#endif
+//#endif
 
 
-//#if 0
+#if 0
 
 #include "Sefa_B_HW5_Q5.h"
 
@@ -69,7 +69,7 @@ int main(){
 
 }
 
-//#endif
+#endif
 
 
 
