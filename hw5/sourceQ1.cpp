@@ -36,13 +36,13 @@ int main(){
 	cout << endl;
 	int arr[10] = {5,8,3,6,2,9,0,1,7,4};
 	size_t size = 10;
-	int* sortedArr = heapSort(arr, size);
-	for(size_t i = 0; i < size; i++){
-		cout << sortedArr[i] << " ";
-	}
-	cout << endl;
-		
+	//int* sortedArr = heapSort(arr, size);
+	//heapSort(arr,size);
 	
+	for(size_t i = 0; i < size; i++){
+		cout << arr[i] << " ";
+	}
+	cout << endl;	
 	
 	return 0;
 
