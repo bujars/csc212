@@ -1,3 +1,21 @@
+#include "Sefa_B_HW5_Q5b.h"
+
+int main(){
+	int arr[10] = {2,6,7,3,8,1,9,0,4,5};
+	size_t size = 10;
+	heapSort(arr, size);
+	for(size_t i = 0; i < size; i++){
+		cout << arr[i] << " "; 
+	}
+	cout << endl;
+
+	return 0;
+}
+
+
+
+#if 0
+
 #include "Sefa_B_HW5_Q5.h"
 
 int main(){
@@ -49,9 +67,7 @@ int main(){
 
 }
 
-
-
-
+#endif
 
 
 

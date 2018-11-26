@@ -183,6 +183,7 @@ Item* heapSort(const Item arr[], size_t size){
 }
 #endif
 
+#if 0
 /*NOTE these aren't template functions because they actually dont have anything to do with the heap. It as if constructing the heap itself. It just configures the current array so that its as a heap. Doesn't use heapClass. */
 void makeHeap(int arr[], size_t size){
 	/*heap<int> * heapArr = new heap<int>(size);
@@ -240,4 +241,10 @@ void heapSort(int arr[], size_t size){
 	}
 
 }
+#endif
+
+
+
+
+
 #endif

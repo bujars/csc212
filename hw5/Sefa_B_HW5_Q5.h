@@ -34,10 +34,11 @@ class heap{
 
 };
 
+#if 0
 void heapSort(int arr[], size_t size);
 void reheapify_down(int arr[], size_t size);
 void makeHeap(int arr[], size_t size);
-
+#endif
 
 #include "Sefa_B_HW5_Q5.cpp"
 
