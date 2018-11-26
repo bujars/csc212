@@ -1,3 +1,5 @@
+#if 0
+
 #include "Sefa_B_HW5_Q5b.h"
 
 int main(){
@@ -11,10 +13,10 @@ int main(){
 
 	return 0;
 }
+#endif
 
 
-
-#if 0
+//#if 0
 
 #include "Sefa_B_HW5_Q5.h"
 
@@ -44,7 +46,7 @@ int main(){
 	h->print();
 	cout <<"D"<< h->deleteNode() << endl;
 	h->print();
-	
+#if 0
 	//	cout <<"D"<< h->deleteNode() << endl;
 	
 	
@@ -61,13 +63,13 @@ int main(){
 		cout << arr[i] << " ";
 	}
 	cout << endl;	
-	
+#endif
 	return 0;
 
 
 }
 
-#endif
+//#endif
 
 
 

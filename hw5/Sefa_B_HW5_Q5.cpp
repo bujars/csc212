@@ -59,10 +59,12 @@ size_t heap<Item>::deleteNode(){
 		return retVal;
 	}
 	size_t i = 0; /*Set index to start*/
-	while((i < count)){ //&& ((2*i+1) >= count && (2*i+2) >= count)){
+	while((i < count)){//&&// (2*i+1)<count){ //&& ((2*i+1) >= count && (2*i+2) >= count)){
 		Item temp = heapData[i];
 		/*NOTE it must be swapped with the larger child. I will have it go to the left if the two chilren are equal.*/
-		if((heapData[i] < heapData[2*i+1]) && (heapData[2*i+1] >= heapData[2*i+2])){
+		if(!(2*i+2<count))
+			i = count;
+		else if((heapData[i] < heapData[2*i+1]) && (heapData[2*i+1] >= heapData[2*i+2])){
 			heapData[i] = heapData[2*i+1];
 			heapData[2*i+1] = temp;
 			i = 2*i+1;
@@ -76,9 +78,9 @@ size_t heap<Item>::deleteNode(){
 			i = count;
 		}
 
-		if((2*i+1) >= count && (2*i+2) >= count){
+		/*if((2*i+1) >= count && (2*i+2) >= count){
 			i = count;
-		}
+		}*/
 	}
 	return retVal;
 }
