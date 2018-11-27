@@ -9,8 +9,14 @@
 // INVARIANT for the node class:
 //   The data of a node is stored in data_field, and the link in link_field.
 
+#ifndef MAIN_SAVITCH_NODE2_CPP
+#define MAIN_SAVITCH_NODE2_CPP
+
+
+
 #include <cassert>    // Provides assert
 #include <cstdlib>    // Provides NULL and size_t
+#include "node2.h"
 
     template <class Item>
     void list_clear(node<Item>*& head_ptr)
@@ -123,3 +129,6 @@
 		return cursor;
 	return NULL;
     }
+
+
+#endif

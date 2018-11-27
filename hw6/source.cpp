@@ -1,4 +1,20 @@
+#include "Sefa_B_HW6_Q2.h"
+#include "node2.h"
+int main(){
+	graph<int> d;//(30);// = new graph<int>(30);
+	//d.addVertex(2);
+	//d.print();
+	
+	node<int> ** list;
+	//list->list_head_insert(0);
+		
+	return 0;
+}
 
+
+
+
+#if 0
 #include "Sefa_B_HW6_Q1.h"
 #include "Sefa_B_HW3.h"
 int main(){
@@ -38,3 +54,4 @@ int main(){
 	return 0;
 }
 
+#endif
