@@ -1,5 +1,6 @@
 
 #include "Sefa_B_HW6_Q1.h"
+#include "Sefa_B_HW3.h"
 int main(){
 	graph<int> * g = new graph<int>(50);
 	graph<int> *s = new graph<int>(*g);
@@ -30,6 +31,10 @@ int main(){
 	cout << endl << endl;
 	cout << endl << endl;
 	g->print();
+
+
+	node * h;
+
 	return 0;
 }
 
