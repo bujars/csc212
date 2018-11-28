@@ -2,6 +2,10 @@
 #define __GRAPH_CPP__
 #include "Sefa_B_HW6_Q1.h"
 
+/*NOTE weight cannot be - or 0. */
+
+
+
 template<class Item>
 graph<Item>::graph(const size_t& init_cap){
 	CAPACITY = init_cap;
@@ -111,23 +115,31 @@ void graph<Item>::addVertex(const Item& label){
 }
 
 template<class Item>
-void graph<Item>::addEdge(const size_t& source, const size_t& target){
+void graph<Item>::addEdge(const size_t& source, const size_t& target, const size_t& weight){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
-	edges[source][target]++;
+	assert(!isConnected(source,target));
+	assert(weight > 0);
+	/*cout << "WTF " << endl;*/
+	edges[source][target] = weight;
 }
 
 template<class Item>
-size_t graph<Item>::numEdges(const size_t& source, const size_t& target){
-	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
-	/*cout <<"(0,1)  " <<edges[0][1] << endl;*/
-	return edges[source][target];
+size_t graph<Item>::numEdges(const size_t& vertex){
+	assert((numOfVertices > 0) && ((vertex < numOfVertices)));
+	size_t totEdge = 0;
+	for(size_t i = 0; i < numOfVertices; i++){
+		if(isConnected(vertex, i)){
+			totEdge++;
+		}
+	}
+	return totEdge;
 }
 
 template<class Item>
 bool graph<Item>::isConnected(const size_t& source, const size_t& target){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
 	/*cout << "NUME     "<<numEdges(source, target) << endl;*/
-	return numEdges(source, target) != 0;
+	return (edges[source][target] != 0);
 }
 
 template<class Item>
@@ -142,7 +154,7 @@ void graph<Item>::print(){
 	for(size_t i = 0; i < numOfVertices; i++){
 		/*cout << labels[i] << endl;*/
 		for(size_t j = 0; j < numOfVertices; j++){
-			cout << edges[i][j] << " ";
+			cout << edges[i][j] << "\t";
 		}
 		cout << endl;
 	}
@@ -154,8 +166,9 @@ Item* graph<Item>::neighbors(const size_t& vertex, size_t& size){
 	assert((vertex < numOfVertices) && (numOfVertices > 0));
 	/*Item * vertexNeighbors = new*/ 
 	/*Go through the row and count the number of vertices has neighrbor with to get size to set array. */
-	size_t numNeigh = 0;
+	size_t numNeigh = numEdges(vertex);/*0;*/
 	/*cout << "NUM V " << numOfVertices << endl;*/
+#if 0
 	for(size_t i = 0; i < numOfVertices; i++){
 		/*cout << edges[vertex][i] << endl;
 		cout << "CONNECTED " <<isConnected(0, edges[0][i]) << endl;*/
@@ -164,6 +177,7 @@ Item* graph<Item>::neighbors(const size_t& vertex, size_t& size){
 			++numNeigh;
 		}
 	}
+#endif
 	/*cout << "numN  " << numNeigh << endl;*/
 	Item* vertexNeighbors = new Item[numNeigh];
 	size_t indexNeigh = 0;
@@ -186,7 +200,7 @@ size_t graph<Item>::numEdgesTotal(){ //const{
 	for(size_t i = 0; i < numOfVertices; i++){
 		for(size_t j = 0; j < numOfVertices; j++){
 			//if(this->isConnected(i, j)){
-				totEdges= totEdges + numEdges(i,j);
+				totEdges++;/*= totEdges + numEdges(i,j);*/ /*This was before I knew they all have 1 edge.*/
 			//}
 		}
 	}

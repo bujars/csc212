@@ -19,12 +19,12 @@ class graph{
 		/*Adding each vertex where a vertex has a label('it's data')*/
 		void addVertex(const Item& label);
 		/*Adding an edge is basically just connecting to vertecies, so need the values for that.*/
-		void addEdge(const size_t& source, const size_t& target);
+		void addEdge(const size_t& source, const size_t& target, const size_t& weight);
 		void removeEdge(const size_t& source, const size_t& target);
 		void print();
 		size_t size() const; /*Returns the number of vertices*/
 		size_t numEdgesTotal(); //const; /*NOTE not sure if this wants total number of edges, or if it wants specific edges at a vale, and thus would need to have a source to target value. THUS I am spliting it between two ways*/
-		size_t numEdges(const size_t& source, const size_t& target);
+		size_t numEdges(const size_t& vertex);
 		bool isConnected(const size_t& source, const size_t& target); /*NOTE this can just call numEdges and compare it to 0. */
 		Item* neighbors(const size_t& vertex, size_t& size); /*Returns an 'array' of the vertices that are connected to the given vertex.*/
 	private:
