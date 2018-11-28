@@ -37,6 +37,7 @@ graph<Item>::~graph(){
 template<class Item>
 void graph<Item>::addVertex(const Item& label){
 	/*Assume for now enough capcity. Not sure How I would transfer over an array of nodes.....list copy???? */
+	//node<int> newVertex= new node<int>(numOfVertices);
 	list[numOfVertices] = new node<int>(numOfVertices, NULL);
 	cout << "Checking " << list[numOfVertices]->data() << endl;
 	labels[numOfVertices] = label;
@@ -44,11 +45,12 @@ void graph<Item>::addVertex(const Item& label){
 }
 
 template<class Item>
-void graph<Item>::addEdge(const size_t& source, const size_t& target){
+void graph<Item>::addEdge(const size_t& source, const size_t& target, const size_t& weight){
 	assert((numOfVertices>0) && ((source < numOfVertices) && (target < numOfVertices)));
-	
+	assert(!isConnected(source, target));/*Make sure these two verticies aren't already conencted.*/
+	/*The data is a nodeeeeeeeeeeee*/
+	list[source]->list_insert(list[source], list[target]);
 }
-
 
 template<class Item>
 void graph<Item>::print(){
@@ -61,5 +63,25 @@ template<class Item>
 size_t graph<Item>::size() const {
 	return numOfVertices;
 }
+
+template<class Item>
+bool graph<Item>::isConnected(const size_t& source, const size_t& target){
+	assert(numOfVertices> 0);
+	assert(source < numOfVertices);
+	assert(target < numOfVertices);
+	/*Check if anything in that list links to the taarget link. to get target list[target]*/
+	bool isFound = false;
+	node<int> * current = list[source]; /*Set current to the node of the head at source*/
+	while((current !=NULL) && (!isFound)){
+		if(current->link() == list[target]){
+			isFound = true;
+		}
+		current = current->link();
+	}
+	return isFound;
+	
+}
+
+
 
 #endif

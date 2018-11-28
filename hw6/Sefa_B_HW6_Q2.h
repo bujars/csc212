@@ -19,7 +19,7 @@ class graph{
 		/*This will set a node at list[numOfVertices]*/
 		void addVertex(const Item& label);
 		/*This will just insert into list[source] -> target*/
-		void addEdge(const size_t& source, const size_t& target);
+		void addEdge(const size_t& source, const size_t& target, const size_t& weight);
 		/*This will just call list remove at list[source]->target*/
 		void removeEdge(const size_t& source, const size_t& target);
 		/*This just returns numOfVertices*/
@@ -35,7 +35,7 @@ class graph{
 	private:
 		//node<int> * list; /*I will go with this method, where nodes are ints because of vertex number. THis is an array of the head pointers*/
 		Item * labels; /*This is just an array that holds the labels of each item .*/
-		node<int> ** list;//*/ /*Array of Nodes? I could be mistaken but array of nodes is just node* list. This creates an array and each point is then anode. aAt each index you can just use node operations... What I have below i think is a linked list of a linked list...?*/
+		node<Item> ** list;//*/ /*Array of Nodes? I could be mistaken but array of nodes is just node* list. This creates an array and each point is then anode. aAt each index you can just use node operations... What I have below i think is a linked list of a linked list...?*/
 		/*I think using Item here may allow us to use it in terps of if two labels are attached to one another??? 
 		 * Like in Q1 we had labels sepaerate from edge connections....Not sure actually will hve to get back to.*/
 		size_t numOfVertices;

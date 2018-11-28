@@ -1,4 +1,4 @@
-#if 0
+//#if 0
 #include "Sefa_B_HW6_Q2.h"
 #include "node2.h"
 int main(){
@@ -10,16 +10,19 @@ int main(){
 	d.addVertex(4);
 	d.addVertex(5);
 	d.print();
+	cout << endl << endl;
+	cout << d.isConnected(0,1)<<endl;
+	d.addEdge(0 ,1, 10);
 	//node<int> ** list;
 	//list->list_head_insert(0);
 		
 	return 0;
 }
 
-#endif
+//#endif
 
 
-//#if 0
+#if 0
 #include "Sefa_B_HW6_Q1.h"
 #include "Sefa_B_HW3.h"
 int main(){
@@ -70,4 +73,4 @@ int main(){
 	return 0;
 }
 
-//#endif
+#endif
