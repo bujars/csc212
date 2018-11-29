@@ -73,6 +73,25 @@ void graph<Item>::operator=(const graph<Item>& source){
 	}
 }
 
+/*NOTE this function only works for labels.*/
+template<class Item>
+void graph<Item>::resize(const size_t& new_size){
+	if(new_size == CAPACITY)
+		return; /*This is saying, if what we want is already the same, dont do anything.*/
+	if(new_size < numOfVertices)
+		return; /*This is saying that if we want something smaller than the entries, dont do it becuase we cant lose stuff.*/
+	Item * newLabels = new Item[new_size];
+	for(size_t i = 0; i < numOfVertices; i++){
+		newLabels[i] = labels[i];
+	}
+	delete labels;
+	CAPACITY = new_size;
+	labels = newLabels;
+}
+
+
+
+#if 0 
 /* NOTE argument arr. This is because we don't know which array/double array we are changing.*/
 template<class Item>
 void graph<Item>::resize(Item * arr ,const size_t& new_size){
@@ -90,6 +109,9 @@ void graph<Item>::resize(Item * arr ,const size_t& new_size){
 	arr = newArr;
 }
 
+#endif
+
+
 template<class Item>
 void graph<Item>::addVertex(const Item& label){
 	/*If we don't have enough space, 
@@ -101,12 +123,12 @@ void graph<Item>::addVertex(const Item& label){
 		for(size_t i = 0; i < oldCap*2; i++){
 			biggerEdges[i] = new int[oldCap*2];
 		}
-		for(size_t i = 0; i < numOfVertices; i++){
-			for(size_t j = 0; j < numOfVertices; j++){
+		for(size_t i = 0; i < oldCap; i++){
+			for(size_t j = 0; j < oldCap; j++){
 				biggerEdges[i][j] = edges[i][j];
 			}
 		}
-		resize(labels, oldCap);
+		resize(oldCap);
 		/*NOTE, now capacity doesn't need to be changed once more because now we need to make sure its the good way.*/
 	}
 	/*If everything is resized as needed, now just append everything to the end.*/
@@ -153,11 +175,16 @@ template<class Item>
 void graph<Item>::print(){
 	for(size_t i = 0; i < numOfVertices; i++){
 		/*cout << labels[i] << endl;*/
+		cout << "?" << endl;
 		for(size_t j = 0; j < numOfVertices; j++){
 			cout << edges[i][j] << "\t";
+			cout << "NONO" << endl;
+			cout << "i " << i << "j " << j <<endl;
 		}
+		cout << "YIKES" << endl;
 		cout << endl;
 	}
+	cout << "HEREE" << endl;
 }
 
 /*Pre-condition, must give a size and a vertex looking for. Size will be adjusted.*/
@@ -210,6 +237,13 @@ size_t graph<Item>::numEdgesTotal(){ //const{
 template<class Item>
 size_t graph<Item>::size() const{
 	return numOfVertices;
+}
+
+template<class Item>
+size_t graph<Item>::getWeight(const size_t& source, const size_t& target){
+	assert(numOfVertices > 0);
+	assert(source < numOfVertices && target<numOfVertices);
+	return edges[source][target];
 }
 
 #endif

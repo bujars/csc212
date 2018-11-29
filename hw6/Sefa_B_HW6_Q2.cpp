@@ -49,7 +49,7 @@ void graph<Item>::addEdge(const size_t& source, const size_t& target, const size
 	assert((numOfVertices>0) && ((source < numOfVertices) && (target < numOfVertices)));
 	assert(!isConnected(source, target));/*Make sure these two verticies aren't already conencted.*/
 	/*The data is a nodeeeeeeeeeeee*/
-	list[source]->list_insert(list[source], list[target]);
+	//list[source]->list_insert(list[source], list[target]);
 }
 
 template<class Item>
