@@ -55,9 +55,9 @@ class graph{
 //#include "Sefa_B_HW6_Q1.cpp"
 
 
-void makeHeap(int arr[], size_t size);
-void reheapify_down(int arr[], size_t size);
-void heapSort(int arr[], size_t size);
+void makeHeap(int arr[], int weigh[], size_t size);
+void reheapify_down(int arr[], int weigh[], size_t size);
+void heapSort(int arr[], int weigh[], size_t size);
 //#include "Sefa_B_HW5_Q5b.cpp"
 
 #include "Sefa_B_HW6_Q1.cpp"

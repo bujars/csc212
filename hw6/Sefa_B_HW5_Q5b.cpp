@@ -15,7 +15,7 @@ using namespace std;
 
 
 /*NOTE these aren't template functions because they actually dont have anything to do with the heap. It as if constructing the heap itself. It just configures the current array so that its as a heap. Doesn't use heapClass. */
-void makeHeap(int arr[], size_t size){
+void makeHeap(int arr[], int weigh[], size_t size){
 	/*heap<int> * heapArr = new heap<int>(size);
 	for(size_t i = 0; i < size; i++){
 		heapArr->addNode(arr[i]);
@@ -25,17 +25,20 @@ void makeHeap(int arr[], size_t size){
 	size_t indexNew;
 	for(size_t i = 1; i < size; i++){
 		indexNew = i;
-		while((indexNew>0) && (arr[indexNew] > arr[(indexNew-1)/2])){
-			int temp = arr[indexNew];
+		while((indexNew>0) && (weigh[indexNew] > weigh[(indexNew-1)/2])){
+			int tempArr = arr[indexNew];
+			int tempWeigh = weigh[indexNew];
+			weigh[indexNew] = weigh[(indexNew-1)/2];
+			weigh[(indexNew-1)/2] = tempWeigh;
 			arr[indexNew] = arr[(indexNew-1)/2];
-			arr[(indexNew-1)/2] = temp;
+			arr[(indexNew-1)/2] = tempArr;
 			indexNew = (indexNew-1)/2;
 		}
 	}
 }
 
 /*This function is basically like delete, just moves larger child up, and root down.*/
-void reheapify_down(int arr[], size_t size){
+void reheapify_down(int arr[], int weigh[], size_t size){
 	size_t i = 0;
 	if(size == 1){
 		return;
@@ -43,18 +46,23 @@ void reheapify_down(int arr[], size_t size){
 	/*While we are not a heap, and we have a child to swap with.*/
 	while((i<size) && (2*i+1)<size){//&& ((2*i+1)<size && (2*i+2) < size)){
 		/*Again like in delete, if */
-		int temp = arr[i];
+		int tempWeigh = weigh[i];
+		int tempArr = arr[i];
 		if((2*i+2) >= size){ /*NOTE if our right side is too big, stop this loop.*/
 			i = size;
 		}
-		else if((arr[i] < arr[2*i+1])&&(arr[(2*i+1)]>=arr[2*i+2])){
+		else if((weigh[i] < weigh[2*i+1])&&(weigh[(2*i+1)]>=weigh[2*i+2])){
 			arr[i] = arr[2*i+1];
-			arr[2*i+1] = temp;
+			arr[2*i+1] = tempArr;
+			weigh[i] = weigh[2*i+1];
+			weigh[2*i+1] = tempWeigh;
 			i = 2*i+1;
 		}
 		else if((arr[i]< arr[2*i+2]) && (arr[2*i+2] > arr[2*i+1])){
 			arr[i] = arr[2*i+2];
-			arr[2*i+2] = temp;
+			arr[2*i+2] = tempArr;
+			weigh[i] = weigh[2*i+2];
+			weigh[2*i+2] = tempWeigh;
 			i = 2*i+2;
 		}
 		else{
@@ -66,9 +74,9 @@ void reheapify_down(int arr[], size_t size){
 							
 
 
-void heapSort(int arr[], size_t size){
+void heapSort(int arr[], int weigh[], size_t size){
 	size_t i;
-	makeHeap(arr, size); /*Turn array into heap.*/
+	makeHeap(arr, weigh, size); /*Turn array into heap.*/
 	/*for(size_t i = 0; i < size; i++){
 		cout << arr[i] << endl;
 	}*/
@@ -76,10 +84,13 @@ void heapSort(int arr[], size_t size){
 	while(i > 1){
 		--i; /*Decrease index so its valid. Start from last.*/
 		/*Swap root with last. */
-		int temp = arr[0];
+		int tempArr = arr[0];
+		int tempWeigh = weigh[0];
 		arr[0] = arr[i]; 
-		arr[i] = temp;
-		reheapify_down(arr, i); 
+		arr[i] = tempArr;
+		weigh[0] = weigh[i];
+		weigh[i] = tempWeigh;
+		reheapify_down(arr, weigh, i); 
 		/*Make sure max is always at the top by rearragning.*/
 	}
 
