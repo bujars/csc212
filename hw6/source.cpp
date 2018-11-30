@@ -26,7 +26,7 @@ int main(){
 //#if 0
 #include "Sefa_B_HW6_Q1.h"
 #include "Sefa_B_HW3.h"
-#include "Sefa_B_HW6_Q3.h"
+//#include "Sefa_B_HW6_Q3.h"
 int main(){
 	graph<int> * g = new graph<int>(50);
 	graph<int> *s = new graph<int>(*g);
@@ -95,6 +95,10 @@ int main(){
 	dfs.addEdge(4, 5, 6);
 	//cout << "fail here?";
 	dfs.print();
+	size_t index = 0;
+	dfs.depthFirstSearch(dfs, index);
+	
+	
 	//cout << "?????" << endl;
 	return 0;
 }

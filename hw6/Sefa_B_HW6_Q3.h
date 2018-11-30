@@ -1,3 +1,4 @@
+#if 0
 /*NOTE I include Q1 for this assignment. Q2 can also work.*/
 #include "Sefa_B_HW6_Q1.h"
 
@@ -11,4 +12,5 @@ bool * iterateDFS(const graph<Item>& G, const Item& vertex, bool* vertexPassed);
 
 //#include "Sefa_B_HW6_Q3.cpp"
 
+#endif
 
