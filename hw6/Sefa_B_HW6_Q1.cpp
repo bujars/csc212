@@ -114,13 +114,46 @@ void graph<Item>::resize(Item * arr ,const size_t& new_size){
 
 template<class Item>
 void graph<Item>::addVertex(const Item& label){
+	if(!(numOfVertices < CAPACITY)){
+		size_t size = CAPACITY*2;
+	
+		int ** larger = new int*[size];
+		for(size_t i = 0; i < size; i++){
+			larger[i] = new int[size];
+		}
+		for(size_t i = 0; i < numOfVertices; i++){
+			for(size_t j = 0; j<numOfVertices; j++)
+				larger[i][j] = edges[i][j];
+		}
+	
+	
+		for(size_t i = 0; i < numOfVertices; i++){
+			delete [] edges[i];
+		}
+		delete edges;
+	
+		edges  = larger;
+
+		int * largerLabels = new int[size];
+		for(size_t i = 0; i < numOfVertices; i++){
+			largerLabels[i] = labels[i];
+		}
+		delete labels;
+		labels = largerLabels;
+		CAPACITY = size;
+	}
+	labels[numOfVertices] = label;
+	numOfVertices++;
+
+
+#if 0
 	/*If we don't have enough space, 
 	 * we need to increase the capacity for everything*/
 	size_t oldCap = CAPACITY;
 	if(!(numOfVertices < oldCap)){
 		/*Resize every column....possibly row...forgot but i think its column.*/
 		int ** biggerEdges = new int*[oldCap*2];
-		for(size_t i = 0; i < oldCap*2; i++){
+		for(size_t i = 0; i < (oldCap*2); i++){
 			biggerEdges[i] = new int[oldCap*2];
 		}
 		for(size_t i = 0; i < oldCap; i++){
@@ -128,12 +161,38 @@ void graph<Item>::addVertex(const Item& label){
 				biggerEdges[i][j] = edges[i][j];
 			}
 		}
+	
+		/*Never set edges to bigger?????????????????????????*/
+		for(size_t i = 0; i <oldCap*2; i++){
+			delete [] edges[i];
+			/*for(size_t j = 0; j < oldCap*2;j++){
+				
+			}*/
+		}
+		delete edges;
+		
+		edges = biggerEdges;
+		/*for(size_t i = 0; i < oldCap*2; i++){
+			edges[i]=biggerEdges[i];
+		}*/
+		/*for(size_t i = 0; i< CAPACITY; i++){
+			
+		}*/
+
 		resize(oldCap);
 		/*NOTE, now capacity doesn't need to be changed once more because now we need to make sure its the good way.*/
 	}
 	/*If everything is resized as needed, now just append everything to the end.*/
 	labels[numOfVertices++] = label;
+	cout << "VinAdd: " << numOfVertices << endl;
 	/*Don't really have to do anything to the edges here because by default they are set to 0. If not, then wuld have to go through that row/column and set to 0.*/
+	for(size_t i = 0; i < numOfVertices; i++){
+		for(size_t j = 0; j < numOfVertices; j++){
+			cout << edges[i][j] << "            ";
+		}
+		cout << endl;
+	}
+#endif
 }
 
 template<class Item>
@@ -168,23 +227,25 @@ template<class Item>
 void graph<Item>::removeEdge(const size_t& source, const size_t& target){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
 	assert(isConnected(source, target));
-	edges[source][target]--;
+	edges[source][target] = 0;
 }
 
 template<class Item>
 void graph<Item>::print(){
+	//cout << "VinP " <<numOfVertices;
 	for(size_t i = 0; i < numOfVertices; i++){
-		/*cout << labels[i] << endl;*/
-		cout << "?" << endl;
+		
+		//cout << labels[i] << endl;
+		//cout << "?" << endl;
 		for(size_t j = 0; j < numOfVertices; j++){
 			cout << edges[i][j] << "\t";
-			cout << "NONO" << endl;
-			cout << "i " << i << "j " << j <<endl;
+			//cout << "NONO" << endl;
+			//cout << "...i: " << i << " j: " << j << "      ";// <<endl;
 		}
-		cout << "YIKES" << endl;
+		//cout << "YIKES" << endl;
 		cout << endl;
 	}
-	cout << "HEREE" << endl;
+	//cout << "HEREE" << endl;
 }
 
 /*Pre-condition, must give a size and a vertex looking for. Size will be adjusted.*/

@@ -10,7 +10,7 @@ using namespace std;
 template<class Item>
 class graph{
 	public:
-		graph(const size_t& init_cap = 5);
+		graph(const size_t& init_cap = 1);
 		graph(const graph<Item>& source);
 		~graph();
 		void operator=(const graph<Item>& souce);

@@ -51,7 +51,7 @@ int main(){
 	//cout << "WORK" << endl;
 	g->addEdge(0,5, 6);
 //#endif
-	//g->removeEdge(2,0);
+	g->removeEdge(2,0);
 	/*g->removeEdge(2,0);*//*isConnected works and so does remove.*/
 	g->print();
 	cout << endl;
@@ -90,12 +90,12 @@ int main(){
 	dfs.addEdge(2,0, 10);
 	dfs.addEdge(2, 3, 7);
 	dfs.addEdge(3, 4, 2);
-	//dfs.addEdge(4, 0, 4);
-	//dfs.addEdge(4, 1, 4);
-	//dfs.addEdge(4, 5, 6);
+	dfs.addEdge(4, 0, 4);
+	dfs.addEdge(4, 1, 4);
+	dfs.addEdge(4, 5, 6);
 	//cout << "fail here?";
 	dfs.print();
-	cout << "?????" << endl;
+	//cout << "?????" << endl;
 	return 0;
 }
 
