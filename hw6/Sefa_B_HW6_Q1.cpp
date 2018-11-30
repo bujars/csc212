@@ -329,7 +329,7 @@ size_t graph<Item>::getWeight(const size_t& source, const size_t& target){
 	assert(source < numOfVertices && target<numOfVertices);
 	return edges[source][target];
 }
-
+#if 0
 /*NOTE not sure if I needed a process function for this function, such as print or something... If so, then I would need to add another data structure (array), that would keep track of the order in which vertices were traversed. */
 template<class Item>
 void graph<Item>::depthFirstSearch(graph<Item>& G, const Item& vertex){ /*NOTE may need to implement using pointers. */
@@ -399,7 +399,7 @@ void graph<Item>::iterateDFS(graph<Item>& G, const Item& vertex, bool* vertexPas
 
 }*/
 
-
+#endif
 
 #if 0
 

@@ -26,12 +26,15 @@ class graph{
 		void removeEdge(const size_t& source, const size_t& target);
 		void print();
 		size_t size() const; /*Returns the number of vertices*/
-		size_t numEdgesTotal(); //const; /*NOTE not sure if this wants total number of edges, or if it wants specific edges at a vale, and thus would need to have a source to target value. THUS I am spliting it between two ways*/
+		size_t numEdgesTotal(); /*const;*/ 
+		/*NOTE not sure if this wants total number of edges, or if it wants specific edges at a vale, 
+		 * and thus would need to have a source to target value. THUS I am spliting it between two ways*/
 		size_t numEdges(const size_t& vertex);
 		bool isConnected(const size_t& source, const size_t& target); /*NOTE this can just call numEdges and compare it to 0. */
 		Item* neighbors(const size_t& vertex, size_t& size); /*Returns an 'array' of the vertices that are connected to the given vertex.*/
 		size_t getWeight(const size_t& source, const size_t& target);
 
+#if 0
 		/* NOTE not sure if I needed a process function for this function, 
 		 * such as print or something... If so, then I would need to add another 
 		 * data structure (array), that would keep track of the order 
@@ -39,9 +42,11 @@ class graph{
 		void depthFirstSearch(graph<Item>& G, const Item& vertex); 
 		/*NOTE may need to implement using pointers. */
 
-		//bool * 
+		void breadthFirstSearch(graph<Item>&G, const Item& vertex);
+
+		/*bool * */
 		void iterateDFS(graph<Item>& G, const Item& vertex, bool* vertexPassed);
-	
+#endif
 	
 	private:
 		int ** edges; /*THe "weighted" edges array*/
