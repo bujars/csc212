@@ -1,5 +1,5 @@
 #include "Sefa_B_HW6_Q1.h"
-
+#include <queue> /* This is for BFS. Including the c++ one incase mine had any errors. */
 
 /*NOTE not sure if I needed a process function for this function, such as print or something... If so, then I would need to add another data structure (array), that would keep track of the order in which vertices were traversed. */
 template<class Item>
@@ -12,7 +12,6 @@ void depthFirstSearch(graph<Item>& G, const size_t& vertex){ /*NOTE may need to 
 	iterateDFS(G, vertex, vertexPassed);
 	/*cout << "Made it here " << endl;*/
 }
-
 
 /*Chaning to void because the return wont let it reprocess other nodes...wait this is still not going to solve the problem. Everytime a recurive problem is called, we never get to go on foward. I think the statement must be placed within a while loop.....but how.......*/
 template<class Item>
@@ -60,6 +59,40 @@ void iterateDFS(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int
 	//return 
 	//iterateDFS(G, vertexNeighbors[nextVertex], vertexPassed);
 }
+
+template<class Item>
+void breadthFirstSearch(graph<Item>& G, const size_t& vertex){
+	/*NOTE must search by weight. BFS works different from DFS in the sense that it vistis all its neighbors first, 
+	 * before visiting more depth (versus DFS which tries to visit the longest path and then work its way back. )*/
+	assert(vertex < G.size());/*First check that we have a valid vertex. */
+	queue<Item> gQueue;
+	gQueue.push(vertex); /*Push the first vertex that we will be looking at.*/
+	/*The queue will help us by keeping track of which neighbors we need to visit next. */
+	bool * vertexPassed = new bool[G.size()]; /* This will keep track of every vertex we need to pass.*/
+	size_t numNeighbors = 0;
+	Item * vertexNeighbors;/* = G.neighbors(vertex, numNeighbors); */
+	/*NOTE! neighbors handles the sorting by weight thanks to my use of heapsort*/
+	Item currentV;
+	/*As long as we still have more neighbors to visit, */
+	while(!gQueue.empty()){
+		currentV = gQueue.front(); /*store the first guy.*/
+		cout << currentV << endl; /*Print the order in which we visit the nodes.*/
+		gQueue.pop();
+		vertexPassed[currentV] = true; /*Mark the fact that we traverse the current vertex. */
+		/*Find the neightbors*/
+		vertexNeighbors = G.neighbors(currentV, numNeighbors);
+		for(size_t i = 0; i < numNeighbors; i++){
+			/*If we didnt pass that neighbor, then push it onto the queue to be visited. */
+			if(vertexPassed[vertexNeighbors[i]] == false){
+				vertexPassed[vertexNeighbors[i]] = true; /*Mark that you ment through this neightbor, otherwise its going to double go through them*/
+				gQueue.push(vertexNeighbors[i]);
+			}
+		}
+	}
+
+}
+
+
 
 
 

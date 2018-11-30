@@ -99,7 +99,7 @@ int main(){
 	dfs.print();
 	const size_t index = 0;
 	depthFirstSearch(dfs, index);
-	
+	breadthFirstSearch(dfs, index);	
 	
 	//cout << "?????" << endl;
 	return 0;
