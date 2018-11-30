@@ -22,7 +22,7 @@ class graph{
 		/*Adding each vertex where a vertex has a label('it's data')*/
 		void addVertex(const Item& label);
 		/*Adding an edge is basically just connecting to vertecies, so need the values for that.*/
-		void addEdge(const size_t& source, const size_t& target, const size_t& weight);
+		void addEdge(const size_t& source, const size_t& target, const unsigned int& weight);
 		void removeEdge(const size_t& source, const size_t& target);
 		void print();
 		size_t size() const; /*Returns the number of vertices*/
@@ -49,7 +49,7 @@ class graph{
 #endif
 	
 	private:
-		int ** edges; /*THe "weighted" edges array*/
+		unsigned int ** edges; /*THe "weighted" edges array*/
 		size_t CAPACITY; 
 		size_t numOfVertices; /*Basically like a count*/
 		Item * labels; /*Data of each vertex*/

@@ -24,12 +24,12 @@ int main(){
 
 
 //#if 0
-//#include "Sefa_B_HW6_Q1.h"
+#include "Sefa_B_HW6_Q1.h"
 //#include "Sefa_B_HW3.h"
 #include "Sefa_B_HW6_Q3.cpp"
 //#include "Sefa_B_HW6_Q3.h"
 int main(){
-#if 0
+//#if 0
 	graph<int> * g = new graph<int>(50);
 	graph<int> *s = new graph<int>(*g);
 	g->addVertex(0); /*Set vertex 0*/
@@ -74,7 +74,7 @@ int main(){
 	cout << endl << endl << g->getWeight(0,3) << endl;
 
 	//node * h;
-#endif
+//#endif
 
 	/*Testing Q3*/
 	cout << endl << endl << "TESTING Q3" << endl ;

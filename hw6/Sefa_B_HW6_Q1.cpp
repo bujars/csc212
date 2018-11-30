@@ -10,9 +10,9 @@
 template<class Item>
 graph<Item>::graph(const size_t& init_cap){
 	CAPACITY = init_cap;
-	edges = new int*[CAPACITY];
+	edges = new unsigned int*[CAPACITY];
 	for(size_t i = 0; i < CAPACITY; i++){
-		edges[i] = new int[CAPACITY];
+		edges[i] = new unsigned int[CAPACITY];
 	}
 	labels = new Item[CAPACITY];
 	numOfVertices = 0;
@@ -33,9 +33,9 @@ graph<Item>::~graph(){
 template<class Item>
 graph<Item>::graph(const graph<Item>& source){
 	CAPACITY = source.CAPACITY;
-	edges = new int*[CAPACITY];
+	edges = new unsigned int*[CAPACITY];
 	for(size_t i = 0; i < CAPACITY; i++){
-		edges[i] = new int[CAPACITY];
+		edges[i] = new unsigned int[CAPACITY];
 	}
 	labels = new Item[CAPACITY];
 	numOfVertices = source.numOfVertices;
@@ -118,9 +118,9 @@ void graph<Item>::addVertex(const Item& label){
 	if(!(numOfVertices < CAPACITY)){
 		size_t size = CAPACITY*2;
 	
-		int ** larger = new int*[size];
+		unsigned int ** larger = new unsigned int*[size];
 		for(size_t i = 0; i < size; i++){
-			larger[i] = new int[size];
+			larger[i] = new unsigned int[size];
 		}
 		for(size_t i = 0; i < numOfVertices; i++){
 			for(size_t j = 0; j<numOfVertices; j++)
@@ -135,7 +135,7 @@ void graph<Item>::addVertex(const Item& label){
 	
 		edges  = larger;
 
-		int * largerLabels = new int[size];
+		Item * largerLabels = new Item[size];
 		for(size_t i = 0; i < numOfVertices; i++){
 			largerLabels[i] = labels[i];
 		}
@@ -197,7 +197,7 @@ void graph<Item>::addVertex(const Item& label){
 }
 
 template<class Item>
-void graph<Item>::addEdge(const size_t& source, const size_t& target, const size_t& weight){
+void graph<Item>::addEdge(const size_t& source, const size_t& target, const unsigned int& weight){
 	assert((numOfVertices > 0) && ((source < numOfVertices) && (target < numOfVertices)));
 	assert(!isConnected(source,target));
 	assert(weight > 0);
