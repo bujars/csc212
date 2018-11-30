@@ -11,7 +11,7 @@ using namespace std;
 
 #include "Sefa_B_HW6_Q1.h"
 /*NOTE NOTE NOTE NOTE NOTE This code is from HW5_Q5b.cpp*/
-
+/*NOTE 11/30/18. These functions have been alterated to heapsort an array based on weights not just vertices */
 
 
 /*NOTE these aren't template functions because they actually dont have anything to do with the heap. It as if constructing the heap itself. It just configures the current array so that its as a heap. Doesn't use heapClass. */
