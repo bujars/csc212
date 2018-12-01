@@ -12,7 +12,7 @@ graph<Item>::graph(const size_t init_cap){
 	 * So, first declare an array of the type that it will be pointing too with capacity.
 	 * then declare each pointer in the array to whatever it need be, here its nodes. */
 	
-	list = new node<int>*[CAPACITY];
+	list = new node<string>*[CAPACITY];
 	/*for(size_t i = 0; i < CAPACITY; i++){
 		list[i] = new node<Item>();
 	}*/ /*I think this is supposed to be set in addVertex because making a new node makes the head basically....*/
@@ -38,7 +38,9 @@ template<class Item>
 void graph<Item>::addVertex(const Item& label){
 	/*Assume for now enough capcity. Not sure How I would transfer over an array of nodes.....list copy???? */
 	//node<int> newVertex= new node<int>(numOfVertices);
-	list[numOfVertices] = new node<int>(numOfVertices, NULL);
+	//int data[2] = {numOfVertices, 0}; /*All head pointer data is going to be first what the vertex val is, and 0 to now weight*/
+	string data = "" + to_string(numOfVertices) + "." + to_string(0);
+	list[numOfVertices] = new node<string>(data, NULL);
 	cout << "Checking " << list[numOfVertices]->data() << endl;
 	labels[numOfVertices] = label;
 	++numOfVertices;
@@ -48,14 +50,56 @@ template<class Item>
 void graph<Item>::addEdge(const size_t& source, const size_t& target, const size_t& weight){
 	assert((numOfVertices>0) && ((source < numOfVertices) && (target < numOfVertices)));
 	assert(!isConnected(source, target));/*Make sure these two verticies aren't already conencted.*/
+	string data = "" + to_string(target)+"." + to_string(weight); /*NOTE the target and weight is sotred in a string. Target first then weight*/
 	/*The data is a nodeeeeeeeeeeee*/
-	//list[source]->list_insert(list[source], list[target]);
+	/*list[source]->*/ /*list[source] used as head pointer handles where  new node is supposed to be added. its a void function.*/
+	list_insert(list[source], data); /*insert after the head pointer the data. */
 }
+
+template<class Item>
+void graph<Item>::removeEdge(const size_t& source, const size_t& target){
+	assert((numOfVertices>0) && ((source < numOfVertices) && (target < numOfVertices)));
+	assert(isConnected(source, target));/*Make sure the two edges are actually connected.*/
+
+	/*Have to find the node previous to the one im looking for to use list_remove.*/
+	node<string> * nodeRemove = list[source];// = list_locate(list[source], )
+	node<string> * prevNode = NULL; /*lets set to current*/
+	bool found = false;
+	size_t valCurr = getVertexNum(nodeRemove); 
+	while(nodeRemove!=NULL && !found){
+		if(valCurr == target){
+			found = true;
+		}
+		else{
+			prevNode = nodeRemove;
+			nodeRemove = nodeRemove->link();
+			if(nodeRemove!=NULL) /*NOTE NOTE NOTE. This must be checked because our checking if at end is very poor. so precaution not to call function*/
+				valCurr = getVertexNum(nodeRemove);
+		}
+	}
+	cout << prevNode->data() << endl;
+	
+	/*Now that we have previous ptr, remove it.*/
+	//remove_ptr = previous_ptr->link( );
+	prevNode->set_link(nodeRemove->link( ));
+	
+
+	//list_remove(prevNode);
+}
+
+
 
 template<class Item>
 void graph<Item>::print(){
 	for(size_t i = 0; i < numOfVertices; i++){
-		cout << list[i]->data() << endl;
+		node<string> * current = list[i];
+		while(current!=NULL){
+			cout << getVertexNum(current) << " ";
+			current = current->link();
+			/*if(current!=NULL) *//*NOTE NOTE NOTE. This must be checked because our checking if at end is very poor. so precaution not to call function*/
+				/*currentVal = getVertexNum(current);*/
+		}
+		cout << endl;
 	}
 }
 
@@ -71,15 +115,34 @@ bool graph<Item>::isConnected(const size_t& source, const size_t& target){
 	assert(target < numOfVertices);
 	/*Check if anything in that list links to the taarget link. to get target list[target]*/
 	bool isFound = false;
-	node<int> * current = list[source]; /*Set current to the node of the head at source*/
-	while((current !=NULL) && (!isFound)){
-		if(current->link() == list[target]){
+	node<string> * current = list[source]; /*Set current to the node of the head at source*/
+	size_t currentVal = getVertexNum(current);/*stoi((current->data()).substr(0, (current->data()).find(".")));*/
+	/*cout << currentVal << endl;
+	cout << getWeightNum(current) << endl;*/
+	while((current !=NULL) && (!isFound)){		
+		if(currentVal == target)
 			isFound = true;
-		}
+		/*if(current->link() == list[target]){
+			isFound = true;
+		}*/
 		current = current->link();
+		if(current!=NULL) /*NOTE NOTE NOTE. This must be checked because our checking if at end is very poor. so precaution not to call function*/
+			currentVal = getVertexNum(current);
 	}
 	return isFound;
 	
+}
+
+template<class Item>
+size_t graph<Item>::getVertexNum(node<string> * current){
+	assert(current!=NULL);
+	return stoi((current->data()).substr(0, (current->data()).find(".")));
+}
+
+template<class Item>
+size_t graph<Item>::getWeightNum(node<string> * current){
+	assert(current!=NULL);
+	return stoi((current->data()).substr((current->data()).find(".")+1));
 }
 
 

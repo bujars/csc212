@@ -1,29 +1,48 @@
-#if 0
+//#if 0
 #include "Sefa_B_HW6_Q2.h"
 #include "node2.h"
 int main(){
 	graph<int> d;//(30);// = new graph<int>(30);
+//#if 0
 	d.addVertex(2);
+//#if 0
 	d.print();
 	cout << endl << endl;
+//#if 0
 	d.addVertex(3);
 	d.addVertex(4);
 	d.addVertex(5);
 	d.print();
 	cout << endl << endl;
-	cout << d.isConnected(0,1)<<endl;
+//#if 0
+	cout << "Connected "<< d.isConnected(0,1)<<endl;
+//#if 0
 	d.addEdge(0 ,1, 10);
+	d.addEdge(0 ,2, 20);
+	d.addEdge(0 ,3, 30);
+	d.addEdge(1 ,2, 40);	
+	d.addEdge(1 ,3, 50);
+	d.addEdge(1 ,0, 60);
+	cout << endl << endl; 
+	cout << "Connected " << d.isConnected(0,1)<<endl;	
+	d.print();
+	cout << endl << endl;
+	cout << "erre" << endl;
+	d.removeEdge(0,1);
+	cout << "Connected " << d.isConnected(0,1)<<endl;
+	d.print();
+#if 0
 	//cout << d.getWeight(0,1) << endl; //for Q1
 	//node<int> ** list;
 	//list->list_head_insert(0);
-		
+#endif
 	return 0;
 }
 
-#endif
+//#endif
 
 
-//#if 0
+#if 0
 #include "Sefa_B_HW6_Q1.h"
 //#include "Sefa_B_HW3.h"
 #include "Sefa_B_HW6_Q3.cpp"
@@ -105,4 +124,4 @@ int main(){
 	return 0;
 }
 
-//#endif
+#endif

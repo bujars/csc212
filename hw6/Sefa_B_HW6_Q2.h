@@ -4,7 +4,10 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
-#include <list>
+//#include <list>
+
+#include <string> /*"to hold the double data type ie vertex,weight" */
+
 //#include "Sefa_B_HW3.h"
 #include "node2.h" /*NOTE, this was taken from the textbook. */
 using namespace std;
@@ -32,10 +35,13 @@ class graph{
 		bool isConnected(const size_t& source, const size_t& target);
 		/*Just for my testing purposes of checking head_ptr; */
 		void print();
+		/*Gets the vertex value from the string inside node "vertex.weight"*/
+		size_t getVertexNum(node<string> * current);
+		size_t getWeightNum(node<string> * current);
 	private:
 		//node<int> * list; /*I will go with this method, where nodes are ints because of vertex number. THis is an array of the head pointers*/
 		Item * labels; /*This is just an array that holds the labels of each item .*/
-		node<Item> ** list;//*/ /*Array of Nodes? I could be mistaken but array of nodes is just node* list. This creates an array and each point is then anode. aAt each index you can just use node operations... What I have below i think is a linked list of a linked list...?*/
+		node<string> ** list;//*/ /*Array of Nodes? I could be mistaken but array of nodes is just node* list. This creates an array and each point is then anode. aAt each index you can just use node operations... What I have below i think is a linked list of a linked list...?*/
 		/*I think using Item here may allow us to use it in terps of if two labels are attached to one another??? 
 		 * Like in Q1 we had labels sepaerate from edge connections....Not sure actually will hve to get back to.*/
 		size_t numOfVertices;
