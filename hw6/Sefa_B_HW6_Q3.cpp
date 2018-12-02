@@ -3,7 +3,7 @@
 
 /*NOTE not sure if I needed a process function for this function, such as print or something... If so, then I would need to add another data structure (array), that would keep track of the order in which vertices were traversed. */
 template<class Item>
-void depthFirstSearch(graph<Item>& G, const size_t& vertex){ /*NOTE may need to implement using pointers. */
+void depthFirst(graph<Item>& G, const size_t& vertex){ /*NOTE may need to implement using pointers. */
 	assert(vertex < G.size());
 	bool * vertexPassed = new bool[G.size()];
 	/*/int * neighbors = G.neighbors(vertex);*/
@@ -15,7 +15,7 @@ void depthFirstSearch(graph<Item>& G, const size_t& vertex){ /*NOTE may need to 
 
 /*Chaning to void because the return wont let it reprocess other nodes...wait this is still not going to solve the problem. Everytime a recurive problem is called, we never get to go on foward. I think the statement must be placed within a while loop.....but how.......*/
 template<class Item>
-void iterateDFS(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int * neighbors, const Item& vertex, bool * vertexPassed){
+void iterateDF(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int * neighbors, const Item& vertex, bool * vertexPassed){
 	/*cout << "Here 1" << endl;*/
 	cout << "Vertex Val " << vertex << endl;
 	size_t numNeighbors = 0; /*NOTE must pass a size to get number of neighbors a vertex has. */
@@ -61,7 +61,7 @@ void iterateDFS(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int
 }
 
 template<class Item>
-void breadthFirstSearch(graph<Item>& G, const size_t& vertex){
+void breadthFirst(graph<Item>& G, const size_t& vertex){
 	/*NOTE must search by weight. BFS works different from DFS in the sense that it vistis all its neighbors first, 
 	 * before visiting more depth (versus DFS which tries to visit the longest path and then work its way back. )*/
 	assert(vertex < G.size());/*First check that we have a valid vertex. */

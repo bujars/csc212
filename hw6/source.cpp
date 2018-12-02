@@ -117,8 +117,8 @@ int main(){
 	//cout << "fail here?";
 	dfs.print();
 	const size_t index = 0;
-	depthFirstSearch(dfs, index);
-	breadthFirstSearch(dfs, index);	
+	depthFirst(dfs, index);
+	breadthFirst(dfs, index);	
 	
 	//cout << "?????" << endl;
 	return 0;

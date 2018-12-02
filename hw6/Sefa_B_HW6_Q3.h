@@ -20,15 +20,15 @@ bool * iterateDFS(const graph<Item>& G, const Item& vertex, bool* vertexPassed);
 		 * 		 		 * data structure (array), that would keep track of the order 
 		 * 		 		 		 * in which vertices were traversed. */
 	template<class Item>
-	void depthFirstSearch(graph<Item>& G, const size_t& vertex); 
+	void depthFirst(graph<Item>& G, const size_t& vertex); 
 	/*NOTE may need to implement using pointers. */
 	
 	template<class Item>
-	void breadthFirstSearch(graph<Item>& G, const size_t& vertex);
+	void breadthFirst(graph<Item>& G, const size_t& vertex);
 
 	/*bool * */
 	template<class Item>
-	void iterateDFS(graph<Item>& G, const size_t& vertex, bool* vertexPassed);
+	void iterateDF(graph<Item>& G, const size_t& vertex, bool* vertexPassed);
 
 #include "Sefa_B_HW6_Q3.cpp"
 
