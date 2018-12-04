@@ -56,10 +56,15 @@ void graph<Item>::operator=(const graph<Item>& source){
 	if(this == &source){
 		return;
 	}
-	CAPACITY = source.CAPACITY;
-	edges = new int*[CAPACITY];
+	delete labels;
 	for(size_t i = 0; i < CAPACITY; i++){
-		edges[i] = new int[CAPACITY];
+		delete edges[i];
+	}
+	delete edges;				
+	CAPACITY = source.CAPACITY;
+	edges = new unsigned int*[CAPACITY];
+	for(size_t i = 0; i < CAPACITY; i++){
+		edges[i] = new unsigned int[CAPACITY];
 	}
 	labels = new Item[CAPACITY];
 	numOfVertices = source.numOfVertices;

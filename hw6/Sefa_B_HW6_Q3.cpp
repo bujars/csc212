@@ -9,7 +9,7 @@ void depthFirst(graph<Item>& G, const size_t& vertex){ /*NOTE may need to implem
 	/*/int * neighbors = G.neighbors(vertex);*/
 	/*cout << "This works" << endl;*/
 	//vertexPassed = 
-	iterateDFS(G, vertex, vertexPassed);
+	iterateDF(G, vertex, vertexPassed);
 	/*cout << "Made it here " << endl;*/
 }
 
@@ -52,12 +52,12 @@ void iterateDF(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int 
 			//nextVertex = i; /*Store the next vertex with the lowest weight. */
 		//}
 		if(vertexPassed[vertexNeighbors[i]] == false){
-			iterateDFS(G, vertexNeighbors[i], vertexPassed);
+			iterateDF(G, vertexNeighbors[i], vertexPassed);
 		}
 	}
-	/*Once we get the next vertex, recall this function*/
+	/*Once we get the next vertex, recall this function*//*
 	//return 
-	//iterateDFS(G, vertexNeighbors[nextVertex], vertexPassed);
+	//iterateDFS(G, vertexNeighbors[nextVertex], vertexPassed);*/
 }
 
 template<class Item>
