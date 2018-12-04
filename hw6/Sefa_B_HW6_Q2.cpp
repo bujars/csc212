@@ -168,4 +168,24 @@ int * graph<Item>::neighbors(const size_t& source, size_t& size){
 	return neighborHood;
 }
 
+template<class Item>
+size_t graph<Item>::numEdges(const size_t& vertex){
+	assert((numOfVertices > 0)&& (vertex < numOfVertices));
+	size_t totEdge = list_length(list[vertex])-1;
+	return totEdge;
+}
+
+template<class Item>
+size_t graph<Item>::numEdgesTotal(){
+	assert(numOfVertices > 0);
+	size_t totEdges = 0;
+	for(size_t i = 0; i < numOfVertices; i++){
+		totEdges+= (list_length(list[i])-1);
+	}
+	return totEdges;
+}
+
+
+
+
 #endif

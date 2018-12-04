@@ -30,7 +30,7 @@ class graph{
 		/* This will go through list[i] and do listLengh for each. */
 		size_t numEdgesTotal();
 		/*This will just go through the list and calculate the length.*/
-		size_t numEdges(const size_t& source, const size_t& target);
+		size_t numEdges(const size_t& vertex); /* source, const size_t& target);*/
 		/*Not sure if I need this function, but basically list[source]->search(target) != NULL. On second thought yes need, because search for such a pointer, if found, then you can just increase data...*/
 		bool isConnected(const size_t& source, const size_t& target);
 		/*Just for my testing purposes of checking head_ptr; */

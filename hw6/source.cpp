@@ -50,6 +50,8 @@ int main(){
 	for(size_t i =0; i < size; i++){
 		cout << neigh[i] << endl;
 	}
+	
+	cout << endl << endl << d.numEdgesTotal() << endl << endl << d.numEdges(2) << endl;
 	return 0;
 }
 
