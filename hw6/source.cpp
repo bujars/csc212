@@ -12,6 +12,7 @@ int main(){
 int main(){
 	graph<int> d;//(30);// = new graph<int>(30);
 //#if 0
+	graph<int> e;
 	d.addVertex(2);
 //#if 0
 	d.print();
@@ -52,6 +53,13 @@ int main(){
 	}
 	
 	cout << endl << endl << d.numEdgesTotal() << endl << endl << d.numEdges(2) << endl;
+
+	cout << "L " << endl;
+	e = d;
+	e.print();
+
+
+
 	return 0;
 }
 

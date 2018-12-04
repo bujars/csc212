@@ -35,6 +35,29 @@ graph<Item>::~graph(){
 }
 
 template<class Item>
+void graph<Item>::operator=(const graph<Item>& source){
+	if(this == &source){
+		return;
+	}
+	CAPACITY = source.CAPACITY;
+	for(size_t i =0; i< CAPACITY; i++){
+		list_clear(list[i]);
+	}
+	delete labels;
+	list = new node<string>*[CAPACITY];
+	labels = new Item[CAPACITY];
+	numOfVertices = source.numOfVertices; 
+	for(size_t i = 0; i < CAPACITY; i++){
+		labels[i] = source.labels[i];
+		node<string> * head;
+		node<string> * tail;
+		list_copy(source.list[i],head,tail);
+		list[i] = head;
+	}
+	/*numOfVertices = source.numOfVertices; */
+}
+
+template<class Item>
 void graph<Item>::addVertex(const Item& label){
 	/*Assume for now enough capcity. Not sure How I would transfer over an array of nodes.....list copy???? */
 	//node<int> newVertex= new node<int>(numOfVertices);
