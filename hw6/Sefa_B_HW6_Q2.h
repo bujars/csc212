@@ -38,6 +38,8 @@ class graph{
 		/*Gets the vertex value from the string inside node "vertex.weight"*/
 		size_t getVertexNum(node<string> * current);
 		size_t getWeightNum(node<string> * current);
+		int* neighbors(const size_t& source, size_t& size);
+
 	private:
 		//node<int> * list; /*I will go with this method, where nodes are ints because of vertex number. THis is an array of the head pointers*/
 		Item * labels; /*This is just an array that holds the labels of each item .*/

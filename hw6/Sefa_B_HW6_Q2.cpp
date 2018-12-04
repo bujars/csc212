@@ -93,6 +93,8 @@ template<class Item>
 void graph<Item>::print(){
 	for(size_t i = 0; i < numOfVertices; i++){
 		node<string> * current = list[i];
+		cout << "Vertex " << getVertexNum(current) << "   Edges ";
+		current = current->link();
 		while(current!=NULL){
 			cout << getVertexNum(current) << " ";
 			current = current->link();
@@ -145,6 +147,25 @@ size_t graph<Item>::getWeightNum(node<string> * current){
 	return stoi((current->data()).substr((current->data()).find(".")+1));
 }
 
+template<class Item>
+int * graph<Item>::neighbors(const size_t& source, size_t& size){
+	assert(source < numOfVertices); /*Make sure we have in list. */
+	size_t length = list_length(list[source]);/*Get the space we need*/
+	cout << "LEN "<<length << endl;	
+	int * neighborHood = new int[length-1]; /*Notice -1 because dont want to include head pointer. */
+	size_t index = 0;
 
+	node<string> * current = list[source];
+	current = current->link(); /*move to first thing*/
+	//for(size_t i = 1; i < length; i++){ /*Go through the neghbors now...*/
+	while(current!=NULL){
+		neighborHood[index] = getVertexNum(current);
+		index++;
+		current = current->link();
+	}
+	size = length-1;
+	//cout << "SIZE " << end
+	return neighborHood;
+}
 
 #endif

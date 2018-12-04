@@ -1,10 +1,12 @@
+#if 0
+
 #include "Sefa_B_HW6_Q4.cpp"
 int main(){
 	return 0;
 }
+#endif
 
-
-#if 0
+//#if 0
 #include "Sefa_B_HW6_Q2.h"
 #include "node2.h"
 int main(){
@@ -42,10 +44,16 @@ int main(){
 	//node<int> ** list;
 	//list->list_head_insert(0);
 #endif
+	cout << endl << endl;
+	size_t size = 0;
+	int * neigh = d.neighbors(1, size);
+	for(size_t i =0; i < size; i++){
+		cout << neigh[i] << endl;
+	}
 	return 0;
 }
 
-#endif
+//#endif
 
 
 #if 0
