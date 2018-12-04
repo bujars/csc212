@@ -35,6 +35,22 @@ graph<Item>::~graph(){
 }
 
 template<class Item>
+graph<Item>::graph(const graph<Item>& source){
+	CAPACITY = source.CAPACITY;
+	list = new node<string>*[CAPACITY];
+	labels = new Item[CAPACITY];
+	numOfVertices = source.numOfVertices; 
+	for(size_t i = 0; i < CAPACITY; i++){
+		labels[i] = source.labels[i];
+		node<string> * head;
+		node<string> * tail;
+		list_copy(source.list[i],head,tail);
+		list[i] = head;
+	}
+}
+
+
+template<class Item>
 void graph<Item>::operator=(const graph<Item>& source){
 	if(this == &source){
 		return;

@@ -57,7 +57,9 @@ int main(){
 	cout << "L " << endl;
 	e = d;
 	e.print();
-
+ 	cout << endl << endl << "B" << endl;
+	graph<int> b(e);
+	b.print();
 
 
 	return 0;
