@@ -73,6 +73,7 @@ int main(){
 //#include "Sefa_B_HW3.h"
 #include "Sefa_B_HW6_Q3.cpp"
 //#include "Sefa_B_HW6_Q3.h"
+#include "Sefa_B_HW6_Q4.cpp"
 int main(){
 //#if 0
 	graph<int> * g = new graph<int>(50);
@@ -154,6 +155,9 @@ int main(){
 	cout << endl << endl;
 	o.print();
 	//cout << "?????" << endl;
+	//return 0;
+	
+	dijkstra(dfs, 0);
 	return 0;
 }
 

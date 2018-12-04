@@ -5,12 +5,12 @@
 #include <limits.h>
 template<class Item>
 void dijkstra(graph<Item> g, const Item& startVertex){
-	
+	cout << "Function called" << endl;	
 	int distance[g.size()]; /*Will keep the minumum total distance to this vertex from start*/
 	bool marked[g.size()]; /*Will keep track of which vertices we have already processed.*/
 	int path[g.size()]; /*Will keep the value of the 'last'/smallest vertex that led to that path. */
 	initializeSingleSource(g, startVertex, distance, marked, path); /*Sets all arrays to default values*/
-
+	cout << "initalized " << endl; 
 	/* I am stuck in determining on how to go through the rest of the nodes, like do i call neighbors? but what if those neighbors end? how do i then go through the next set of neighbors?
 	 *
 	 * 
@@ -24,10 +24,11 @@ void dijkstra(graph<Item> g, const Item& startVertex){
 		if(distance[index] != INT_MAX){
 			/*This if statement is basically to check if we are at a value where nothing has conencted to it, assuming that no paths can have max weight*/
 			size_t numNeighbors = 0;
-			int * neighborsIndex = neighbors(g, index, numNeighbors);
+			int * neighborsIndex = g.neighbors(index, numNeighbors);
 			for(size_t j = 0; j < numNeighbors; j++){
-				if(marked[neighborsIndex[i]] == false){ /*Make sure that we haven't completely processed this vertex, otherwise we will be going thorugh it again...*/
-					relax(g, index, neighborsIndex[i], distance, path); /*Go through the neighbors and adjust their distances if necessary. */
+				if(marked[neighborsIndex[j]] == false){ /*Make sure that we haven't completely processed this vertex, otherwise we will be going thorugh it again...*/
+					cout << "Index " << index << " curr neigh " << neighborsIndex[j] << endl;  
+					relax(g, index, neighborsIndex[j], distance, path); /*Go through the neighbors and adjust their distances if necessary. */
 				}
 			}
 		}
@@ -35,10 +36,18 @@ void dijkstra(graph<Item> g, const Item& startVertex){
 	}
 
 	/*Okay, instead of market, I think the point of the queue is to say, whichever verticies are on this queue we can still visit. Otherwise, we cannot visit it...But the thing that confuses me is how to retrieve the min/order the min in terms of weight. --> I know my neghbors function organizes them by weight, but priority queue wont be 'that smart' to do it*/ /* ==> need to figure this out because it will save a lot of work in organizing and looping through...but for now its whatever...*/
+	/*Printing the arrays to see what the functions do. */
+	for(size_t i = 0; i < g.size(); i++){
+		cout << "DISTANCE " << distance[i] << " "; 
+		cout << "Marked " << marked[i] << " ";
+		cout << "Path " << path[i] << " ";
+		cout << endl;
+	}
+
 }
 
 template<class Item>
-void relax(graph<int> g, const size_t& indexSource, const size_t& indexTarget, int distance[], int path[]){
+void relax(graph<Item> g, const size_t& indexSource, const size_t& indexTarget, int distance[], int path[]){
 	int weightSourceTarget  = g.getWeight(indexSource, indexTarget) + distance[indexSource];
 	if(distance[indexTarget] > (weightSourceTarget)){
 		distance[indexTarget] = weightSourceTarget;
