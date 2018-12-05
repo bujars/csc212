@@ -228,7 +228,7 @@ template<class Item>
 int * graph<Item>::neighbors(const size_t& source, size_t& size){
 	assert(source < numOfVertices); /*Make sure we have in list. */
 	size_t length = list_length(list[source]);/*Get the space we need*/
-	cout << "LEN "<<length << endl;	
+	/*cout << "LEN "<<length << endl;*/	
 	int * neighborHood = new int[length-1]; /*Notice -1 because dont want to include head pointer. */
 	size_t index = 0;
 

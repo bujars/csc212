@@ -113,6 +113,8 @@ int main(){
 	for(size_t i = 0; i < size; i++){
 		cout << neigh[i] << " "; 
 	}
+
+	cout << "printed??" << endl;
 	cout << endl << endl;
 	cout << endl << endl;
 	g->print();
