@@ -14,7 +14,15 @@ graph<Item>::graph(const size_t& init_cap){
 	for(size_t i = 0; i < CAPACITY; i++){
 		edges[i] = new unsigned int[CAPACITY];
 	}
+	for(size_t i = 0; i < CAPACITY; i++){
+		for(size_t j = 0; j < CAPACITY; j++){
+			edges[i][j] = 0;
+		}
+	}
 	labels = new Item[CAPACITY];
+	for(size_t i = 0; i < CAPACITY; i++){
+		labels[i] = Item();
+	}
 	numOfVertices = 0;
 
 }
@@ -87,6 +95,9 @@ void graph<Item>::resize(const size_t& new_size){
 	if(new_size < numOfVertices)
 		return; /*This is saying that if we want something smaller than the entries, dont do it becuase we cant lose stuff.*/
 	Item * newLabels = new Item[new_size];
+	for(size_t i = 0; i < new_size; i++){
+		newLabels[i] = Item();
+	}
 	for(size_t i = 0; i < numOfVertices; i++){
 		newLabels[i] = labels[i];
 	}
@@ -127,6 +138,11 @@ void graph<Item>::addVertex(const Item& label){
 		for(size_t i = 0; i < size; i++){
 			larger[i] = new unsigned int[size];
 		}
+		for(size_t i = 0; i < size; i++){
+			for(size_t j = 0; j < size; j++){
+				larger[i][j] = 0;
+			}
+		}
 		for(size_t i = 0; i < numOfVertices; i++){
 			for(size_t j = 0; j<numOfVertices; j++)
 				larger[i][j] = edges[i][j];
@@ -141,6 +157,9 @@ void graph<Item>::addVertex(const Item& label){
 		edges  = larger;
 
 		Item * largerLabels = new Item[size];
+		for(size_t i = 0; i < size; i++){
+			largerLabels[i] = Item();
+		}
 		for(size_t i = 0; i < numOfVertices; i++){
 			largerLabels[i] = labels[i];
 		}
