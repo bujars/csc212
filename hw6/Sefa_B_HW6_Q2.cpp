@@ -6,6 +6,9 @@ template<class Item>
 graph<Item>::graph(const size_t init_cap){
 	CAPACITY = init_cap;
 	labels = new Item[CAPACITY];
+	for(size_t i = 0; i < CAPACITY; i++){
+		labels[i] = Item();
+	}
 	//list = new node<int>(CAPACITY);
 	
 	/* "A dynamic 2D array is basically an arry of pointers to arrays" 
@@ -55,13 +58,17 @@ void graph<Item>::operator=(const graph<Item>& source){
 	if(this == &source){
 		return;
 	}
-	CAPACITY = source.CAPACITY;
+	/*CAPACITY = source.CAPACITY;*/
 	for(size_t i =0; i< CAPACITY; i++){
 		list_clear(list[i]);
 	}
+	CAPACITY = source.CAPACITY;
 	delete labels;
 	list = new node<string>*[CAPACITY];
 	labels = new Item[CAPACITY];
+	for(size_t i = 0; i < CAPACITY; i++){
+		labels[i] = Item();
+	}
 	numOfVertices = source.numOfVertices; 
 	for(size_t i = 0; i < CAPACITY; i++){
 		labels[i] = source.labels[i];
@@ -78,9 +85,40 @@ void graph<Item>::addVertex(const Item& label){
 	/*Assume for now enough capcity. Not sure How I would transfer over an array of nodes.....list copy???? */
 	//node<int> newVertex= new node<int>(numOfVertices);
 	//int data[2] = {numOfVertices, 0}; /*All head pointer data is going to be first what the vertex val is, and 0 to now weight*/
+	if(!(numOfVertices < CAPACITY)){
+		size_t size = CAPACITY*2;
+		Item * labelsNew = new Item[size];
+		for(size_t i = 0; i < size; i++){
+			labelsNew[i] = Item();
+		}
+		for(size_t i = 0; i < numOfVertices; i++){
+			labelsNew[i] = labels[i];
+		}
+		delete labels;
+		labels = labelsNew;
+		node<string>** listNew = new node<string>*[size];
+		for(size_t i = 0; i < numOfVertices; i++){
+			node<string> * head;
+			node<string> * tail;
+			list_copy(list[i], head, tail);
+			listNew[i] = head;
+		}
+		for(size_t i = 0; i < numOfVertices; i++){
+			list_clear(list[i]);
+		}
+		delete [] list;
+		list = new node<string>*[size];
+		for(size_t i = 0; i < size; i++){
+			node<string> * head;
+			node<string> * tail;
+			list_copy(listNew[i], head, tail);
+			list[i] = head;
+		}
+		CAPACITY = size;
+	}
 	string data = "" + to_string(numOfVertices) + "." + to_string(0);
 	list[numOfVertices] = new node<string>(data, NULL);
-	cout << "Checking " << list[numOfVertices]->data() << endl;
+	/*cout << "Checking " << list[numOfVertices]->data() << endl;*/
 	labels[numOfVertices] = label;
 	++numOfVertices;
 }
