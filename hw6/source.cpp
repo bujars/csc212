@@ -6,7 +6,7 @@ int main(){
 }
 #endif
 
-//#if 0
+#if 0
 #include "Sefa_B_HW6_Q2.h"
 #include "node2.h"
 int main(){
@@ -65,10 +65,10 @@ int main(){
 	return 0;
 }
 
-//#endif
+#endif
 
 
-#if 0
+//#if 0
 #include "Sefa_B_HW6_Q1.h"
 //#include "Sefa_B_HW3.h"
 #include "Sefa_B_HW6_Q3.cpp"
@@ -161,4 +161,4 @@ int main(){
 	return 0;
 }
 
-#endif
+//#endif

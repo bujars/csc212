@@ -17,7 +17,7 @@ void depthFirst(graph<Item>& G, const size_t& vertex){ /*NOTE may need to implem
 template<class Item>
 void iterateDF(graph<Item>& G, const size_t& vertex, bool* vertexPassed){//(int * neighbors, const Item& vertex, bool * vertexPassed){
 	/*cout << "Here 1" << endl;*/
-	cout << "Vertex Val " << vertex << endl;
+	/*cout << "Vertex Val " << vertex << endl;*/
 	size_t numNeighbors = 0; /*NOTE must pass a size to get number of neighbors a vertex has. */
 	
 	int * vertexNeighbors = G.neighbors(vertex, numNeighbors);
