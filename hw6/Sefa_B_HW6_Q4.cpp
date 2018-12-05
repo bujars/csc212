@@ -26,13 +26,13 @@ void dijkstra(graph<Item> g, const Item& startVertex){
 			/*This if statement is basically to check if we are at a value where nothing has conencted to it, assuming that no paths can have max weight*/
 			size_t numNeighbors = 0;
 			int * neighborsIndex = g.neighbors(index, numNeighbors);
-			cout << numNeighbors << endl;
+			/*cout << numNeighbors << endl;
 			for(size_t h = 0 ; h < numNeighbors; h++){
 				cout << "I    " <<neighborsIndex[h] << endl;
-			}
+			}*/
 			for(size_t j = 0; j < numNeighbors; j++){
 				if(marked[neighborsIndex[j]] == false){ /*Make sure that we haven't completely processed this vertex, otherwise we will be going thorugh it again...*/
-					cout << "Index " << index << " curr neigh " << neighborsIndex[j] << endl;  
+					/*cout << "Index " << index << " curr neigh " << neighborsIndex[j] << endl; */ 
 					relax(g, index, neighborsIndex[j], distance, path); /*Go through the neighbors and adjust their distances if necessary. */
 				}
 			}
@@ -71,10 +71,10 @@ int indexNextMin(graph<Item> g, int distance[], bool marked[]){
 		if((distance[i] <= smallestDistance) &&  (marked[i] == false)){ /*NOTE might need to change but I have set to equal too...Incase we get two weights of equal len, want to consider both. */
 			smallestDistance = distance[i];
 			index = i;
-			cout << "iter " <<i << endl;
+			/*cout << "iter " <<i << endl;*/
 		}
 	}
-	cout << "IN " << index <<endl;
+	/*cout << "IN " << index <<endl;*/
 	return index;
 
 }

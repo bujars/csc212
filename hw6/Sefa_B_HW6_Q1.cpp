@@ -257,20 +257,20 @@ void graph<Item>::removeEdge(const size_t& source, const size_t& target){
 
 template<class Item>
 void graph<Item>::print(){
-	//cout << "VinP " <<numOfVertices;
+	/*cout << "VinP " <<numOfVertices;*/
 	for(size_t i = 0; i < numOfVertices; i++){
 		
-		//cout << labels[i] << endl;
-		//cout << "?" << endl;
+		/*cout << labels[i] << endl;
+		//cout << "?" << endl;*/
 		for(size_t j = 0; j < numOfVertices; j++){
 			cout << edges[i][j] << "\t";
-			//cout << "NONO" << endl;
-			//cout << "...i: " << i << " j: " << j << "      ";// <<endl;
+			/*cout << "NONO" << endl;
+			//cout << "...i: " << i << " j: " << j << "      ";// <<endl;*/
 		}
-		//cout << "YIKES" << endl;
+		/*cout << "YIKES" << endl;*/
 		cout << endl;
 	}
-	//cout << "HEREE" << endl;
+	/*cout << "HEREE" << endl;*/
 }
 
 /*Pre-condition, must give a size and a vertex looking for. Size will be adjusted.*/
@@ -334,9 +334,9 @@ size_t graph<Item>::numEdgesTotal(){ //const{
 	size_t totEdges = 0;
 	for(size_t i = 0; i < numOfVertices; i++){
 		for(size_t j = 0; j < numOfVertices; j++){
-			//if(this->isConnected(i, j)){
+			/*if(this->isConnected(i, j)){*/
 				totEdges++;/*= totEdges + numEdges(i,j);*/ /*This was before I knew they all have 1 edge.*/
-			//}
+			/*}*/
 		}
 	}
 	return totEdges;
