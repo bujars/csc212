@@ -209,8 +209,8 @@ int main(){
 
 
 
-#if 0
-#include "Sefa_B_HW5_Q2.h"
+//#if 0
+#include "Sefa_B_HW5_Q2.copy.h"
 int main(){
 	binaryTree<int> * b = new binaryTree<int>;
 	binaryTree<int>* c(b);
@@ -294,7 +294,7 @@ int main(){
 
 
 
-#endif
+//#endif
 
 
 
@@ -302,7 +302,7 @@ int main(){
 
 
 
-//#if 0
+#if 0
 #include "Sefa_B_HW5_Q1.h"
 
 //#if 0
@@ -415,7 +415,7 @@ int main(){
 	}
 	return 0;
 }
-//#endif
+#endif
 
 
 
