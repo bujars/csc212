@@ -26,6 +26,10 @@ btNode<Item>::btNode(const btNode<Item>* source){
 template<class Item>
 void btNode<Item>::operator =(const btNode<Item>* source){
 	if(this==source) return;
+	/*Now that I think of it...How would I even have a copy constructor for this? Not actually sure...unless I call list copy on source left = left, then on right but then parent? how does parent work? --> lets try it....*/
+	left_ptr = copyBt(source->left());
+	right_ptr = copyBt(source->right());
+	parent = source->parent();
 }
 
 

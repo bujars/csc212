@@ -392,6 +392,13 @@ int main(){
 	//root_ptr = &a;
 	clearbT(root_ptr);
 
+	
+	cout << "Trying new assingment operationr" << endl;
+	btNode<int>g;
+	g = a;
+	inOrderTraversal(&g, print<int>);
+	cout << endl << endl;
+
 
 	/*Testing creating nodes the way copy does*/
 	btNode<int> * r = new btNode<int>; /*Make a root with nothing.*/

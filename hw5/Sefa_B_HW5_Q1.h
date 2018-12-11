@@ -45,7 +45,7 @@ class btNode{
 		Item data_field; 
 		/*TO Keep track of the number of nodes in the binary tree.
 		 * Not necessarily needed but can help.*/
-		size_t count;
+		/*size_t count;*/ /*Not necessary at all confirmed 12/10 because we dont actually really add here and have to keep track of it, if that makes sense. Here are just pointers. In q2 you would have size because there its important to know how many you added and what not*/
 		/*Note sure if I will use this, 
 		 * but may be helpful for Binary Search Tree Q3.*/
 		/*btNode<Item>* parent_ptr;*/
