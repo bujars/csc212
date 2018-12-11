@@ -204,6 +204,18 @@ void binaryTree<Item>::shiftUp(){
 
 }
 
+/*
+ * So the way to do this without the parentNode is to keep pushing onto the stack. Last note of the night before i leave.
+ * So everyime we shift left or right or something, we push current into that stack. When we shift to root, clear the stack. 
+ * when we shift up, of course set current to top and then pop everything... Just initlaize stack in constructor.
+ *
+ * */
+
+
+
+
+
+
 template<class Item>
 void binaryTree<Item>::print(){
 	assert(currentNode!=NULL);
