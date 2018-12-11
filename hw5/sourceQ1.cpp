@@ -1,4 +1,4 @@
-//#if 0
+#if 0
 
 #include "Sefa_B_HW5_Q5b.h"
 
@@ -13,7 +13,7 @@ int main(){
 
 	return 0;
 }
-//#endif
+#endif
 
 
 #if 0
@@ -302,7 +302,7 @@ int main(){
 
 
 
-#if 0
+//#if 0
 #include "Sefa_B_HW5_Q1.h"
 
 //#if 0
@@ -403,10 +403,12 @@ int main(){
 	btNode<int> * cop = copybT(r);
 	print(cop->right());
 	clearbT(r);/*Works.*/
-	print(r->left());
+	if(r!=NULL){ /*note because in clearing we set to null and null has no left/right-->maybe thats something to check for but generally hsouldnt since get function.*/
+		print(r->left());
+	}
 	return 0;
 }
-#endif
+//#endif
 
 
 

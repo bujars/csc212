@@ -41,9 +41,11 @@ btNode<Item>::~btNode(){
 	/*Should essentially call list clear????? --> Not sure how unless the argument or ptr is this? */
 	//delete left_ptr;
 	//delete right_ptr;
+	/*Accordint to timmy, you just reset the variables, no need to even delete them.*/
 	data_field = 0;
-	//left_ptr = NULL;
-	//right_ptr = NULL;
+	left_ptr = NULL;
+	right_ptr = NULL;
+	parent_ptr = NULL;
 	/*delete this;
 	data_field = 0;
 	left_ptr = NULL;
@@ -68,18 +70,22 @@ size_t numNodesbT(const btNode<Item>* root_ptr){
 	if(root_ptr == NULL){ /*NOT sure if I would need to assert here and just halt program. */
 		return 0;
 	}
-//#if 0
+#if 0
 	/*NOTE this is my solution. Test it out and see if it works. If it does not, use the textbook which is simpler.*/
 	size_t count = 1;
 	count = count + numNodesbT(root_ptr->left()); /*Keep track of current count in the recursive call, and then the count = 1 is alays set to 1 in each call but still kept track of. This is so we add 1 each time we find a node.*/
 	count = count + numNodesbT(root_ptr->right());
 	/*cout << "DAAATAAA " << root_ptr->data() << endl;*/
 	return count;
-//#endif
-//return 1 + numNodesbT(root_ptr->left()) + numNodesbT(root_ptr->right());
+#endif
+	return 1 + numNodesbT(root_ptr->left()) + numNodesbT(root_ptr->right());
+	/*just changing to textbook method...had an inital thought but i might be wrong. What made me change my mind is that when we add, could it be possible that we are over counting? but i think the answer is no! becuase lets say we are done with the left subtree we add one to it and save it to count, then when we go to the right subtree, we add that to the total.*/
 
 	/*Textbook: return 1 + numNodesbT(root_ptr.left()) + numNodesbT(root_ptr.right()); */
 }
+
+
+
 
 template<class Item>
 size_t heightbT(const btNode<Item>* root_ptr){
@@ -94,7 +100,7 @@ size_t heightbT(const btNode<Item>* root_ptr){
 	//cout << "printing left " <<root_ptr->data() << endl;
 	rightCount = rightCount + 1 + heightbT(root_ptr->right());
 	//cout << "printing right " << root_ptr->data() << endl;
-	if(leftCount > rightCount)
+	if(leftCount > rightCount) /*Check which one has a longer path and keep returning that*/
 		return leftCount;
 	return rightCount;
 }
@@ -158,14 +164,19 @@ void clearbT(btNode<Item>*& root_ptr){
 	clearbT(child); /*go all the way to left.*/
 	child = root_ptr->right();
 	clearbT(child); /*go all the way to the right.*/
+	delete root_ptr;
+	root_ptr = NULL;
+	/*When we delete, this calls the destructor which should set eahc child to null.... I think?*/
 	/*parent = root_ptr->parent();
 	clearbT(parent);*/
 	/* I am not sure if the parent is supposed to be cleared, but doesn't seem to present any issues. 
 	 * 11/22/18 --> got rid of because not want to risk deleteing. deleting leaves on its way up clears parent.*/
 
+	/*12/11 --> Dont delete parent because */
+
 	
 	//root_ptr->set_data(0);
-	delete root_ptr;
+	//delete root_ptr;
 	//root_ptr = NULL;
 	//delete parent_ptr;
 	//parent_ptr = NULL;
@@ -184,8 +195,9 @@ btNode<Item>* copybT(btNode<Item>* root_ptr){
 	btNode<Item> * parent_ptr;
 	left_ptr = copybT(root_ptr->left()); /*Note we must always save the left becasue copybT returns a ptr*/
 	right_ptr = copybT(root_ptr->right());
-	parent_ptr = copybT(root_ptr->parent()); /*NOT really sure what this is supposed to do, if it even does anything at all.*/
-	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr, parent_ptr); /*Return a new node of this item.*/
+	/*parent_ptr = copybT(root_ptr->parent());*/ /*NOT really sure what this is supposed to do, if it even does anything at all.*/
+	return new btNode<Item>(root_ptr->data(), left_ptr, right_ptr, parent_ptr); /*Return a new node of this item.*/ 
+	/*I think I can just pass parent actually. because what I initlaizze assumed was do something like root.parent but that wouldnt make sense. But then again eahc rootis just a pointer to a btNode, so when we pass it into the function the left/right/parent always resents to the present root, hence we can alwyas push back in whatever parent is connected to it!*/
 	//parent_ptr = root_ptr->parent();
 }
 
