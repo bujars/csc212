@@ -219,7 +219,8 @@ int main(){
 	b->createFirstNode(2);
 	b->addLeft(1);
 	b->print();
-#if 0
+	cout << endl << endl;
+//#if 0
 	
 	cout << "SIZE " <<b ->size() << endl;
 	cout << "HAS PARENT " << b->hasParent() << endl;
@@ -228,8 +229,12 @@ int main(){
 	cout << "RETRIEVE " <<b->retrieve() << endl;
 	b->addRight(3);
 	cout << "HAS RIGHT " <<b->hasRight() << endl;
+	cout << endl << endl;
+	b->shiftLeft();
+
 	b->addLeft(10);
 	cout << "HAS LEFT " << b->hasLeft()<<endl;
+	cout << endl << endl;
 	//binaryTree<int> * bLeft = b->left();
 	/*b->addLeft(5); //Works for the case of assertion. */
 	
@@ -278,8 +283,8 @@ int main(){
 	cout << "RETRIEVE " <<b->retrieve() << endl;
 	*/
 
-#endif
-
+//#endif
+#if 0
 	btNode<int> * e = new btNode<int>;
 	btNode<int> * f = new btNode<int>(2);
 	btNode<int> * g = new btNode<int>(4);
@@ -288,6 +293,7 @@ int main(){
 	b->setRoot(e);
 	b->print();
 
+#endif
 
 	return 0;
 }

@@ -11,24 +11,21 @@ binaryTree<Item>::binaryTree(){
 	currentNode = NULL;
 	rootNode = NULL;
 	count = 0;
-	shiftingRoute  = new stack<Item>;
+	shiftingRoute  = new stack<btNode<Item> *>;
 	/*parentNode = NULL;*/
 }
 
 template<class Item>
 binaryTree<Item>::~binaryTree(){
-	//delete currentNode;
-	//delete rootNode;
-	/*delete parentNode;*/
-	/*Delete all and reset to NULL*/
 	/*Must go through the list and remove everything. Notice clearbT sets rootNode to NULL, so no need to worry about it.*/
 	clearbT(rootNode);
 	/*Just get rid of current next.*/
 	delete currentNode;
 	currentNode = NULL;
 	count = 0;
-	//rootNode = NULL;
-	/*parentNode = NULL;*/
+	while(!shiftingRoute.empty()){
+		shiftingRoute.pop();
+	}
 }
 
 template<class Item>
@@ -145,7 +142,7 @@ void binaryTree<Item>::shiftLeft(){
 	
 	/*NOTE NOTE NOTE I for some reason thought of adding parent here but why would i add parent when I move...just add the parent when you create the child in the constructor duh...*/
 
-
+	shiftingRoute->push(currentNode);
 	/*btNode<Item> * currPos = currentNode;*/
 	currentNode = currentNode->left();
 	/*currentNode->setParent(currPos);*/
@@ -155,6 +152,7 @@ template<class Item>
 void binaryTree<Item>::shiftRight(){
 	assert(hasRight() && (size() > 0));
 	/*btNode<Item> * currPos = currentNode;*/
+	shiftingRoute->push(currentNode);
 	currentNode = currentNode->right();
 	/*currentNode->setParent(currPos);*/
 }
@@ -200,7 +198,9 @@ void binaryTree<Item>::shiftUp(){
 
 	/* NOTE adding parent node simplifies the function. */
 	assert(size()>0 && hasParent());
-	currentNode = currentNode->parent(); /*set the currentNode to the parent of the node. If its the root, or nothing, it does nothing. */
+	currentNode = shiftingRoute->top();
+	shiftingRoute->pop();
+	/*currentNode = currentNode->parent(); *//*set the currentNode to the parent of the node. If its the root, or nothing, it does nothing. */
 
 
 }

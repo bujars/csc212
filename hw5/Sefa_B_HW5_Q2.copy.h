@@ -126,7 +126,10 @@ private:
     // TODO
 	btNode<Item> * currentNode;
 	btNode<Item> * rootNode;
-	stack<Item> * shiftingRoute;
+
+
+	/*NOTE how I set it to type btNode, we want to save the previous pointers, the values wont do us any good.*/
+	stack<btNode<Item> *> * shiftingRoute;
 	size_t count;
 	/*NOTE == Textbook says to use a count variable to keep track of number of nodes... I can either incorperate this and just addjust it in createNode and addLeft/Right, or I can just continue to use numNodes => Note this would take N time...*/
 
