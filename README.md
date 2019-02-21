@@ -1,4 +1,4 @@
-# csc212
+# CSC 212 DATA STRUCUTRES
 
 
 Please note that this work was for class assignments.
